@@ -1,0 +1,87 @@
+.storescard{
+    color:white;
+    display:flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    border-radius: 8px;
+    /* height: 60vh; */
+    align-items: center;
+    /* border: 2px solid grey; */
+    border-radius: 20px;
+    /* padding: 23px 16px; */
+    background-color: white;
+    box-shadow: 0px 4px 10px 3px lightgrey;
+    transition-duration: 0.7s;
+}
+
+.storecard p{
+    margin: 0 !important;
+}
+
+.storescard:hover{
+    cursor:pointer;
+    /* border:3px solid rgb(74, 141, 227); */
+    box-shadow: 0px 20px 30px 3px grey
+
+    
+}
+.storecard-name{
+    font-size: 1.3rem;
+}
+
+.img-div{
+    height: 47vh;
+    width: 100%;
+    padding: 12px 12px;
+}
+.storecard-image{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+.stats{
+    color: white;
+    width: 100%;
+    /* border-top: 2px solid dodgerblue; */
+    /* margin-top: 4%; */
+    padding: 12px 10px;
+    background-color: #002C8F;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.stats-title{
+    display: flex;
+    justify-content: space-between;
+    color: white ;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+.storecard-ratings{
+    display: flex !important;
+    align-items: center !important;
+    color: whitesmoke;
+    background-color: green;
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+.storecard-ratings img{
+    padding: 0 !important;
+    width: 16px !important;
+    margin-left: 3px !important;
+}
+.storecard-ratings p{
+    margin: 0 !important;
+}
+
+.marker{
+    display: flex !important;
+    align-items: center !important;
+}
+.location{
+    padding: 12px !important;
+}
+
+.location p{
+    margin: 0 !important;
+}

@@ -1,0 +1,83 @@
+.productCard{
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 26px;
+    padding: 0 10px;
+    cursor:pointer;
+    /* border : 1px solid skyblue; */
+    transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color: white;
+   
+}
+.productCard p{
+    margin: 0 !important;
+    color: black !important;
+}
+.productCard >img{
+    width: 100%;
+}
+.shopTabs{
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-between;
+}
+.counter{
+    display: flex;
+}
+
+.productCardStats{
+    /* background-color: dodgerblue; */
+    /* borde: 1px solid dodgerblue; */
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px;
+    border-radius: 4px;
+    background-color: white;
+}
+.shopTabs
+{
+    width: 100%;
+    margin-top: 18px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shopTabs > button{
+    background-color: dodgerblue;
+    border:none;
+    padding: 12px 8px;
+    width: 100%;
+    color: white;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.counter{
+    margin-left:8px;
+    align-items: center !important;
+}
+.minus-Counter, .plus-Counter{
+    font-size: 25px !important;
+    width: 30px !important;
+    height: 30px !important;
+    padding: 0 0px !important;
+    margin: 0px 8px;
+    cursor: pointer;
+    border:none;
+    background-color: black;
+    border-radius: 50%;
+    color: white;
+
+}
+.minus-Counter>p , .plus-Counter>p{
+    display: flex;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+}

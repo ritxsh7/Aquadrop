@@ -1,0 +1,30 @@
+.shopDisplay{
+    color: white;
+    display: flex;
+}
+.shopImage{
+    width: 50%;
+}
+.shopInfo{
+    padding: 80px 40px;
+    background-color: dodgerblue;
+    display: flex;
+    flex-direction: column;
+}
+.location{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid white;
+    /* margin: 10px 0px; */
+    padding-bottom: 30px;
+}
+.shotPara{
+    font-size: 1.3rem;
+    padding: 35px 14px;
+    border-bottom: 1px solid white;
+}
+.ratings{
+    margin-top: 45px;
+    display: flex;
+    align-items: center;
+}

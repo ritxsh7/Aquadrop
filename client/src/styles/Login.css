@@ -1,0 +1,92 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.form-info{
+    width: 60vw;
+    max-height: 100%;
+    background: rgb(0,0,0);
+    padding: 10px 10px;
+    /* margin: 10px 10px; */
+    margin: 0 auto;
+}
+header{
+    text-align: center !important;
+    padding: 10px !important;
+    font-size: 30px !important;
+    color: dodgerblue !important;
+    font-weight: 900 !important;
+    margin-top: 18px !important;
+    height: 30px !important;
+
+}
+.form-info form{
+    margin-block: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input{
+    display: inline;
+    width: 80% !important;
+    padding: 10px 10px;
+    margin: 10px auto !important;
+    font-size: 25px;
+    outline: none;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+}
+.form-info form a{
+    text-decoration: none;
+    font-size: 22px;
+    margin: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+.form-info form a:hover{
+    color: dodgerblue;
+}
+input[type="button"]{
+    font-size: 25px;
+    font-weight: 400;
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+    transition: .4s;
+    margin-top: 23px;
+}
+input[type="button"]:hover{
+    opacity: 0.5;
+    /* color: dodgerblue; */
+}
+.sign-up{
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 18px;
+    color: white;
+    margin-right: 3px;
+}
+.sign-up a{
+    text-decoration: none;
+    font-weight: 700;
+    color: white;
+    margin-left: 3px;
+}
+.sign-up a:hover{
+    /* text-decoration: underline 2px; */
+    /* /* text-underline-offset: 3.5px; */
+    color: dodgerblue;
+}
+
+#sign-up{
+    margin-right: 4px;
+}
+
+/* CSS to achieve responsiveness */
+@media screen and (max-width:700) {
+    .form-info{
+        width: 100%;
+    }
+}

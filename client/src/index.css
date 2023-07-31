@@ -1,0 +1,237 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+
+
+*{
+
+  margin: 0 ;
+  padding: 0 ;
+  box-sizing: border-box;
+}
+p{
+  margin: 0 !important;
+}
+
+body,html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Karla', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Karla', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-image: url("./images/drinking-water-bg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.Header{
+  background-color: rgb(0,0,0,0.65);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.contacts{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 34px;
+  align-items: center;
+}
+.contact-left{
+  display: flex;
+  width: 43%;
+}
+.contact-left div{
+    display: flex;
+    margin: 8px 25px ;
+    align-items: center;
+}
+.contact-right ul{
+  margin: 0 !important;
+  width: 10vw;
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+}
+.contact-right > p{
+  margin: 0 !important;
+}
+.contact-left img{
+  width: 30px;
+  margin-right: 8px;
+  margin-bottom: 0 !important;
+}
+.twt-icon{
+  width: 38px;
+}
+.twt-icon:hover{
+  cursor: pointer;
+}
+.fb-icon{
+  width: 30px;
+}
+.fb-icon:hover{
+  cursor: pointer;
+}
+.insta-icon{
+  width: 30px;
+}
+.insta-icon:hover{
+  cursor: pointer;
+}
+
+.top{
+  display: flex;
+  justify-content: space-around;
+  border-top: 0.25px solid whitesmoke;
+  padding: 15px 0;
+  position: sticky !important;
+  top: 0 !important;
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.logo img{
+  width: 60px;
+  margin-right: 10px;
+}
+
+.navbar-const{
+  width: 60%;
+  display: flex;
+  justify-content: right;
+}
+
+.navbar-const> ul{
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navbar-const > ul > li > a{
+  color: white;
+  text-decoration: none;
+  margin-right: 2vw;
+  font-size: 18px;
+  font-weight:bold;
+  transition: 0.4s;
+}
+.navbar-const > ul > li img{
+  width: 28px;
+  /* margin-left: 18px; */
+  transition: 0.3s;
+  margin-right: 5px;
+}
+.navbar-const > ul > li img:hover{
+  cursor: pointer;
+  transform: scale(1.4);
+}
+.navbar-const > ul > li > a:hover{
+  color: #0195FF;
+  cursor: pointer;
+}
+
+/*--------------------------------HERO------------------------------------------------*/
+
+.hero{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0,0,0,0.65);
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+.hero-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+}
+.welcome{
+  color: #0195FF;
+  margin-bottom: 30px;
+}
+.tag{
+  font-size: 4rem;
+}
+.buttons{
+  width: 60%;
+  display: inline;
+  margin-top: 15%;
+  justify-content: space-between;
+}
+.explore{
+  width: 40%;
+  background-color:#0195FF ;
+  padding: 20px 0;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  color: white;
+  opacity: 0.8;
+}
+.join-us{
+  width: 40%;
+  background-color:whitesmoke ;
+  padding: 20px 0;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  color: #0195FF;
+  margin-left: 16%;
+  opacity: 0.8;
+}
+
+.explore:hover,.join-us:hover{
+  opacity: 0.5;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* <------------------------------------HOME-------------------------------------------> */
+/* .homepage{
+  /* background:url('./images//water-splash-bg.jpg');
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat; */
+  /* background-color: rgb(8, 7, 7); */
+
+
+.shop-by-store{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: 1fr 1fr;
+  margin: 0px auto;
+  background-color: #FFFFFF;
+  row-gap: 4%;
+  column-gap: 4%;
+  background-color: white;
+  /* background-color: gradient(blue,lightblue,0.5); */
+  padding: 60px 140px;
+}
+
+.shopDetailsWrapper{
+  height: 100vw;
+  color: black;
+  background-color: #C0EDFA;
+}

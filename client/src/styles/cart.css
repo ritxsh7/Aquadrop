@@ -1,0 +1,39 @@
+.product-container h1,.product-container h2,.product-container h3,.product-container h4{
+	color: whitesmoke !important;
+}
+.filters {
+	background-color: dodgerblue;
+	color: whitesmoke;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	margin: 25px;
+	height: 86vh;
+	border-radius: 10px;
+  }
+  .filters h3{
+	color: white !important;
+  }
+  .product-container {
+	width: 70vw;
+  }
+  .home{
+	display: flex;
+	background-color: darkslateblue;
+	color: white;
+  }
+
+  .cart-item{
+	border: 1px solid black !important;
+	margin: 25px !important;
+	display: flex !important;
+	align-items: center !important;
+	padding: 0px 33px !important;
+	border-radius : 10px;
+  }
+
+  .title{
+	color: white !important;
+	margin: 20px 0px;
+  }

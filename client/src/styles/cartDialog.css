@@ -1,0 +1,30 @@
+.cartitem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px !important;
+    margin-bottom: 20px;
+    border-top: 1px solid dodgerblue;
+    border-bottom: 1px solid dodgerblue;
+    padding: 18px 0 18px 0;
+  }
+  
+  .cartItemImg {
+    width: 80px !important;
+    height: 60px;
+    border-radius: 15px;
+    object-fit: cover;
+  }
+  
+  .cartItemDetail {
+    display: flex;
+    flex: 1;
+    padding: 0 20px;
+    flex-direction: column;
+    font-weight: bold;
+  }
+
+  .go-to-cart{
+    width: 95%;
+    margin: 12px 10px !important;
+  }

@@ -1,0 +1,53 @@
+.seller-wrapper{
+    width: 100%;
+    background-color:rgb(0,0,0,0.65);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.seller-wrapper h2{
+    font-size: 40px;
+    margin-top: 55px;
+    color: dodgerblue;
+    font-weight: bold;
+
+}
+.seller-wrapper h1{
+    color: whitesmoke;
+    margin-top: 12px;
+    font-size: 4rem;
+}
+
+.seller-wrapper > img{
+    width: 30vw;
+    height: 28vh;
+}
+.input-form h3{
+    color: white !important;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.input-form{
+    color:wheat;
+    padding: 20px;
+    width: 40%;
+    height: 46vh;
+    margin: 3% auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(22, 89, 225, 0.6);
+    border-radius: 12px;
+}
+.input-form label{
+    font-weight: bold;
+}
+.input-form label input{
+    display: block;
+}
+
+.input-form input[type ="text"]{
+    width: 100%;
+}
