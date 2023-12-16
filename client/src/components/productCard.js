@@ -1,60 +1,96 @@
-import '../styles/ProductCard.css';
-import React from 'react';
-import { Button } from 'react-bootstrap';
-import { CartState } from '../context/Context';
+import React, { useState } from "react";
 
-export default function ProductCard(props) {
+//styles
+import "../styles/ProductCard.css";
+import Loader from "./Loader";
 
-  const [count, setCount] = React.useState(props.n)
+//routes
+import { useNavigate } from "react-router-dom";
 
-  const upCounter = () => {
-    setCount(count + 1);
-  }
+//store
+import { useDispatch, useSelector } from "react-redux";
+import { calculateTotal, addTocart, removeCart } from "../features/cart";
 
-  const downCounter = () => {
-    setCount(count - 1);
-  }
+const ProductCard = ({ _id, name, image, price, description }) => {
+  //setup store
+  const login = window.localStorage.getItem("isLoggedIn");
 
-  const { state: { cart }, dispatch } = CartState();
+  const dispatch = useDispatch();
+
+  //local states
+  const [added, setAdded] = useState(false);
+  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  //add to cart function
+  const addToCart = (e) => {
+    console.log(login);
+    if (login === "false") {
+      setLoading(true);
+      navigate("/login");
+    } else {
+      setAdded(!added);
+      if (count === 0) {
+        setCount(count + 1);
+      }
+      dispatch(addTocart({ _id, name, count, price, image, description }));
+      dispatch(calculateTotal());
+    }
+  };
+
+  const removeFromCart = () => {
+    setAdded(!added);
+    setCount(0);
+    dispatch(removeCart(_id));
+    dispatch(calculateTotal());
+  };
 
   return (
-    <div className='productCard'>
-      <img className='productImg' src={props.img} alt=''>
-      </img>
-      <div className='productCardStats'>
-        <h3 style={{ marginTop: '0px', fontSize: '1.2rem' }}>{props.name}</h3>
-        <p>{props.qty}</p>
-        <h3 style={{ marginTop: '10px !important'  }}>₹ {props.mrp}</h3>
-
-        <div className='shopTabs'>
-
-          {
-            cart.some(p => p.id === props.id) ?
-              <Button variant='danger' onClick={() => {
-                dispatch({
-                  type : 'REMOVE_FROM_CART',
-                  payload : props
-                })
+    <div className="product-card">
+      {/* <Loader loading={loading} /> */}
+      <div className="left">
+        <h1>{name}</h1>
+        <p>₹ {price}</p>
+        <h5>{description}</h5>
+        <div className="cart-definers">
+          <button
+            className="add-to-cart"
+            style={{
+              backgroundColor: `${added ? "#B0495A" : "#009ED1"}`,
+            }}
+            onClick={added ? removeFromCart : addToCart}
+          >
+            {added ? "Remove from cart" : "Add to card"}
+          </button>
+          <div className="counter">
+            <button
+              className="minus"
+              onClick={() => {
+                if (count != 0) {
+                  setCount(count - 1);
+                }
               }}
-              style={{backgroundColor:'red'}}
-              > 
-                  Remove from cart</Button>
-        :
-        <Button onClick={() => {
-          dispatch({
-            type: 'ADD_TO_CART',
-            payload: props
-          })
-        }}>Add to cart</Button>
-        }
-
-        {/* <div className='counter'>
-            <button className='minus-Counter' onClick={downCounter}><p>-</p></button>
-            <h4 style={{ lineHeight: '2' }}>{count}</h4>
-            <button className='plus-Counter' onClick={upCounter}><p>+</p></button>
-          </div> */}
+            >
+              -
+            </button>
+            <p>{count}</p>
+            <button
+              className="plus"
+              onClick={() => {
+                setCount(count + 1);
+              }}
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="right">
+        <img src={image}></img>
       </div>
     </div>
-    </div >
-  )
-}
+  );
+};
+
+export default ProductCard;

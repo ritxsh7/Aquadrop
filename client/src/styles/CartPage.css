@@ -1,0 +1,112 @@
+.cart-page-user{
+    height: 87vh;
+    background-color: #dfeeff;
+    padding: 2rem 10rem;
+    display: flex;
+}
+
+.no-items-cart{
+    background-color: white;
+    width: 70%;
+    padding: 2rem;
+    height: 55vh;
+    margin: 0.8rem 0;
+    border-radius: 0.4rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-status{
+    width: 70%;
+}
+.delivery-address{
+    background-color: white;
+    padding: 1rem;
+    margin: 0.8rem 0;
+    border-radius: 0.4rem;
+}
+.cart-list-ul{
+    background-color: white;
+    border-radius: 0.4rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 53vh;
+}
+.cart-list-ul::-webkit-scrollbar{
+    display: none;
+    width: none;
+}
+.cart-list {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.cart-list > ul{
+    list-style: none;
+}
+
+.cart-item{
+    display: flex;
+    gap: 3rem;
+    height: 25vh;
+    padding: 1.3rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.521);
+}
+
+.cart-item-remove{
+    color: white;
+        text-align: center;
+        padding: 0.4rem 1.4rem;
+        border-radius: 3px;
+        border: none;
+        background-color: tomato;
+        cursor: pointer;
+    margin-top: 0.7rem;
+}
+
+.cart-content{
+    height: 80%;
+}
+
+.cart-price{
+    background-color: white;
+    margin: 0.8rem;
+    height: max-content;
+    padding: 1rem;
+    border-radius : 0.4rem;
+    width: 27%;
+}
+.cart-price > h2{
+    font-weight: 500;
+    color: rgb(100, 100, 100);
+}
+
+.pricing-table{
+    padding: 1rem;
+    width: 100%;
+}
+.pricing-table tbody{
+    margin: 0.5rem 1rem;
+    vertical-align: center;
+}
+.pricing-table tbody tr td{
+    border-collapse: collapse;
+    height: 2.4rem;
+    border-bottom: 1px solid grey;
+}
+.place-order{
+    width: 100%;
+    color: white;
+    font-size: 1.2rem;
+        text-align: center;
+        padding: 0.6rem 2rem;
+        border-radius: 3px;
+        border: 1px solid white;
+        background-color: #0195FF;
+        margin: 0;
+        cursor: pointer;
+}

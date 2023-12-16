@@ -3,41 +3,80 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.close-icon{
+    width: 4rem;
+    color: red;
+}
+
 .form-info{
-    width: 60vw;
-    max-height: 100%;
-    background: rgb(0,0,0);
-    padding: 10px 10px;
+    width: 70vw;
+    max-width: 640px;
+    height: fit-content;
+    background:rgb(245, 245, 245);
     /* margin: 10px 10px; */
     margin: 0 auto;
+    color: dodgerblue;
+    display: flex;
+    height: 70vh;
+    position: absolute;
+    top: 15%;
+    right: 50%;
+    translate: 50% 0;
+    border-radius: 0.3rem;
 }
-header{
-    text-align: center !important;
-    padding: 10px !important;
-    font-size: 30px !important;
-    color: dodgerblue !important;
-    font-weight: 900 !important;
-    margin-top: 18px !important;
-    height: 30px !important;
 
+.login-left{
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    padding:3rem 1.5rem ;
+    width: 40%;
+    background-color: dodgerblue;
+    color: white;
+    text-align: left;
 }
+
+.login-left h2{
+    margin-bottom: 3rem;
+}
+.login-left p{
+    margin-top: 1rem !important;
+    color: rgb(224, 224, 224);
+    text-align: left;
+}
+.login-left img{
+    margin-top: 5rem;
+    width: 14rem;
+}
+
 .form-info form{
-    margin-block: 30px;
+    min-height: 100%;
+    width: 60%;
+    padding: 5px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-input{
+.form-info form input{
     display: inline;
-    width: 80% !important;
+    width: 80%;
     padding: 10px 10px;
-    margin: 10px auto !important;
-    font-size: 25px;
-    outline: none;
-    border: none;
-    background-color: white;
-    border-radius: 5px;
+    margin: 10px auto;
+    font-size: 18px;
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid dodgerblue;
+    background-color: transparent;
 }
+
+.form-info form input::placeholder{
+    font-size: large;
+}
+.form-info form input:focus{
+    border-bottom: 2px solid grey;
+}
+
 .form-info form a{
     text-decoration: none;
     font-size: 22px;
@@ -48,14 +87,15 @@ input{
 .form-info form a:hover{
     color: dodgerblue;
 }
-input[type="button"]{
+.form-info form [type="button"]{
     font-size: 25px;
     font-weight: 400;
     background-color: dodgerblue;
     color: white;
     cursor: pointer;
     transition: .4s;
-    margin-top: 23px;
+    margin-top: 2rem;
+    border: none;
 }
 input[type="button"]:hover{
     opacity: 0.5;
@@ -63,15 +103,15 @@ input[type="button"]:hover{
 }
 .sign-up{
     text-align: center;
-    font-size: 20px;
-    margin-bottom: 18px;
-    color: white;
-    margin-right: 3px;
+    font-size: 16px;
+    position: relative;
+    bottom: 0rem;
+    color: black;
 }
 .sign-up a{
+    font-size: 18px;
     text-decoration: none;
-    font-weight: 700;
-    color: white;
+    color: dodgerblue;
     margin-left: 3px;
 }
 .sign-up a:hover{

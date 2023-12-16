@@ -1,83 +1,83 @@
-.productCard{
-    border-radius: 8px;
+.product-card{
+    display: flex;
+    height: 35vh;
+    margin: 2rem 0;
+    padding: 1.3rem;
+    /* align-items: center; */
+    justify-content: space-between;
+    background-color: #5D677D;
+    border-radius: 0.5rem;
+    color: white;
+}
+.left{
+    width: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin: 0 26px;
-    padding: 0 10px;
-    cursor:pointer;
-    /* border : 1px solid skyblue; */
-    transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
-    background-color: white;
-   
+    justify-content: flex-start !important;
 }
-.productCard p{
-    margin: 0 !important;
-    color: black !important;
+.left>h1{
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.4rem;
 }
-.productCard >img{
-    width: 100%;
+.right > img{
+    margin: auto 0;
+    height: 100%;
+   border-radius: 0.5rem;
 }
-.shopTabs{
-    /* width: 100%; */
-    display: flex;
-    justify-content: space-between;
+.left > p{
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+    margin: 1rem 0;
 }
-.counter{
-    display: flex;
-}
-
-.productCardStats{
-    /* background-color: dodgerblue; */
-    /* borde: 1px solid dodgerblue; */
-    width: 100%;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 20px;
-    border-radius: 4px;
-    background-color: white;
-}
-.shopTabs
-{
-    width: 100%;
-    margin-top: 18px ;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.left > h5{
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.2rem;
+    color: rgb(207, 207, 207);
 }
 
-.shopTabs > button{
-    background-color: dodgerblue;
-    border:none;
-    padding: 12px 8px;
-    width: 100%;
+
+.add-to-cart{
+    width: 70%;
+    font-size: 1.1rem;
+    font-weight: 400;
+    background-color: #009ED1;
     color: white;
-    font-size: 15px;
-    border-radius: 8px;
     cursor: pointer;
+    transition: .4s;
+    margin-right: auto;
+    border: none;
+    padding: 0.8rem 0;
+    border-radius: 0.3rem;
+}
+
+.cart-definers{
+    margin-top: 2rem;
+    height: 15rem;
+    display: flex;
+    align-items: center;
 }
 .counter{
-    margin-left:8px;
-    align-items: center !important;
+    margin-left: 1rem;
+    display: flex;
+    width: 30%;
+    align-items: center;
 }
-.minus-Counter, .plus-Counter{
-    font-size: 25px !important;
-    width: 30px !important;
-    height: 30px !important;
-    padding: 0 0px !important;
-    margin: 0px 8px;
-    cursor: pointer;
-    border:none;
-    background-color: black;
+
+.counter p {
+    line-height: 3rem;
+    padding: 0 1rem;
+}
+.plus,.minus{
+    font-size: 2rem;
+    font-weight: 100;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
-    color: white;
-
-}
-.minus-Counter>p , .plus-Counter>p{
-    display: flex;
-    height: 30px;
-    align-items: center;
-    justify-content: center;
+    border: none;
+    cursor: pointer;
+    line-height: 1.2rem
 }

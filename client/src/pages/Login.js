@@ -1,9 +1,13 @@
 import React from 'react'
+import Login from '../components/Login'
+import Header from '../components/Header'
 
-export default function Login() {
+
+export default function LoginPage() {
   return (
-    <div style={{backgroundColor: 'black ', opacity: 0.65}}>
-      
+    <div className='login-page'>
+      <Header />
+        <Login />
     </div>
   )
 }

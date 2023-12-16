@@ -1,107 +1,80 @@
-import { Link } from "react-router-dom";
+//components and styles
+import "../styles/cartDialog.css";
+
+//routers and backend
+import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+//states and stores
+import { useDispatch, useSelector } from "react-redux";
+import LogOut from "./LogOut";
 import { useState } from "react";
-import cartimg from '../images/cart.png'
-import { Badge, Button, Dropdown } from "react-bootstrap";
-import { CartState } from "../context/Context";
-import '../styles/cartDialog.css';
-//components
-import User from "./User.js"
-import Cart from './Cart.js'
-import { AiFillDelete } from "react-icons/ai";
-import PaymentForm from "./PaymentForm";
-import {FaGreaterThan} from 'react-icons/fa'
+import { loginUser } from "../features/user";
 
 function Navbar() {
+  //====================ROUTING====================================
+  const location = useLocation();
+  const { pathname } = location;
+  const splitLocation = pathname.split("/")[1];
 
-    const [open, setOpen] = useState(false);
-    const [cartState, setCartState] = useState(false);
+  //===================setup userState===========================
+  const { name } = useSelector((store) => store.user);
+  const { total } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
 
-    const openDialog = () => {
-        setOpen(true);
-    }
+  //======================FUNCTIONS=================================
+  //1. LOCAL STORAGE
+  // const { name } = localStorage.getItem("aqua-user");
 
-    const openCart = () => {
-        setCartState(true);
-    }
+  // if (userName) {
+  //   dispatch(loginUser({ name: userName }));
+  // }
+  const isLogin = localStorage.getItem("isLoggedIn");
 
-    
-    const {user : {user}} = CartState();
+  //2. LOGOUT DIALOG
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
-    const { state : { cart }, dispatch } = CartState();
+  return (
+    <div className="navbar-const">
+      <ul>
+        <li className={splitLocation === "" ? "active" : ""}>
+          <NavLink to="/">Home</NavLink>
+        </li>
 
-    
+        <li className={splitLocation === "seller" ? "active" : ""}>
+          <NavLink to="/seller">Become a seller </NavLink>
+        </li>
 
-    return (
-        <div className='navbar-const'>
-            <ul>
-                <li><Link to='/home'>Home</Link></li>
-                <li><Link to='/#about' >About Us</Link></li>
-                <li>
+        <li>
+          <a href="#footer">Contact</a>
+        </li>
 
-                    {
-                        user !== ''?
-                        <a>
-                        {`Hello, ${user} !`}
-                        </a>
-                        :
-                        <a onClick={() => openDialog()}>
-                        Login | Sign Up
-                        </a>
-                    }
-                    
-                    
-                </li>
-                <li><Link to='/add-products'>Become a seller <span><FaGreaterThan/></span> </Link></li>
-                <li>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic" style={{ backgroundColor: 'black', border: 'none'}}>
-                            <img src={cartimg} style={{ width: '30px', marginBottom: '3px' }}></img>
-                            <Badge bg='danger' style={{ marginLeft: '10px' }}>{cart.length}</Badge>
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu style={{ minWidth: '370px', backgroundColor:'black', color:'white' }}>
-
-                            {cart.length > 0 ?
-                                <>
-                                    {cart.map((prod) => (
-                                        <span className="cartitem" key={prod.id}>
-                                            <img
-                                                src={prod.img}
-                                                className="cartItemImg"
-                                                alt={prod.name}
-                                            />
-                                            <div className="cartItemDetail">
-                                                <span>{prod.name}</span>
-                                                <span>₹ {prod.mrp}</span>
-                                            </div>
-                                            <AiFillDelete
-                                                fontSize="20px"
-                                                style={{ cursor: "pointer" }}
-                                                onClick={() =>
-                                                    dispatch({
-                                                        type: "REMOVE_FROM_CART",
-                                                        payload: prod,
-                                                    })
-                                                }
-                                            />
-                                        </span>
-                                    ))}
-                                </>
-                                :
-                                <h4 style={{textAlign:'center'}}>  Cart is empty !!!</h4>
-                            }
-
-                        <Button variant="success" className="go-to-cart" onClick={()=>openCart()}>
-                            Go to cart
-                        </Button>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </li>
-            </ul>
-            <User open={open} setOpen={setOpen} />
-            <Cart cartState={cartState} setCartState={setCartState}/>
-        </div>
-    )
-
+        <li id="login-btn">
+          {name ? <h3>{`H3llo, ${name} !`}</h3> : <a href="/login">Login</a>}
+        </li>
+        <li>
+          <NavLink to={name ? `/cart/${name}` : "/login"}>
+            <div className="cart-icon">
+              <div className="cart-icon-badge">{total}</div>
+              <ion-icon name="cart"></ion-icon>
+            </div>
+          </NavLink>
+        </li>
+        <li>
+          {isLogin === "true" && (
+            <div
+              className="logout-btn"
+              onClick={() => {
+                setIsLogoutOpen(true);
+              }}
+            >
+              <ion-icon name="log-out-outline"></ion-icon>
+            </div>
+          )}
+        </li>
+      </ul>
+      <LogOut isLogoutOpen={isLogoutOpen} setIsLogoutOpen={setIsLogoutOpen} />
+    </div>
+  );
 }
 export default Navbar;

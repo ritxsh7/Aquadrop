@@ -1,25 +1,27 @@
-import express from 'express'
-import cors from 'cors';
-import bodyParser from 'body-parser'
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import Connection from "./configs/db.js";
+import Router from "./routes/route.js";
+import { cloudConnect } from "./configs/cloud.js";
 
-import Connection from './database/db.js'
-import defaultData from './default.js'
-import Router from './routes/route.js'
-
+dotenv.config();
 const app = express();
-
+const PORT = process.env.PORT;
+const url = process.env.MONGODB_URL;
 
 app.use(cors());
-app.use(bodyParser.json({extended : true}));
-app.use(bodyParser.urlencoded({extended : true}));
-app.use('/', Router );
+app.use(express.json());
+app.use("/api/v1", Router);
 
-const PORT = 8080;
+//===========connections==============
+Connection(url);
+cloudConnect();
 
-Connection();
+//==========server=========================
 
-app.listen(PORT, () => {
-    console.log(`Server runnning on my port ${PORT}`)
-})
+const msg = () => {
+  console.log(`Server runnning on my port ${PORT}`);
+};
 
-defaultData();
+app.listen(PORT, msg);

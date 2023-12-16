@@ -1,22 +1,67 @@
-import React from 'react'
-// import {useHistory} from "react-router-dom";
+import React, { useState } from "react";
 
-function Hero(){
+//comps
+import ForwardIcon from "../images/forward.png";
+import Steps from "../images/steps.png";
 
-    // const history = useHistory();
+//backend and routes
+import axios from "axios";
 
-    return(
-        <div className='hero'>
-            <div className='hero-content'>
-                <h1 className='welcome'><b>WELCOME TO AQUADROP</b></h1>
-                <h1 className='tag'> Water Delivered, Life Elevated</h1>
-                <div className='buttons'>
-                    <button className='explore'>EXPLORE</button>
-                    <button className='join-us'>JOIN US</button>
-                </div>
+function Hero() {
+  const [pincode, setPincode] = useState(0);
+
+  const exploreShops = async (e) => {
+    try {
+      e.preventDefault();
+      console.log(pincode);
+      const response = await axios.get(
+        "http://localhost:8080/api/v1/nearbyshops",
+        {
+          pincode,
+        }
+      );
+      console.log(response);
+    } catch (err) {
+      console.log(err.msg);
+    }
+    document.getElementById("homepage").scrollIntoView();
+  };
+
+  return (
+    <div className="hero">
+      <div className="hero-content">
+        <h1 className="welcome">
+          <b>
+            <span>Water </span>
+            Your Way,
+            <br />
+            Anytime!
+          </b>
+        </h1>
+        <p className="tag">
+          {" "}
+          Water Delivered, Life Elevated
+          <br />
+          Get to know the best drinking water dealers near you and have it
+          delivered to your doorsteps!
+        </p>
+        <form className="buttons">
+          <input
+            type="pincode"
+            required
+            placeholder="Enter Pincode"
+            onChange={(e) => setPincode(e.target.value)}
+          ></input>
+          <button className="explore" onClick={exploreShops}>
+            Discover more
+            <div className="forward">
+              <img src={ForwardIcon}></img>
             </div>
-        </div>
-    )
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default Hero;
