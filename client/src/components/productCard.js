@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateTotal, addTocart, removeCart } from "../features/cart";
 
-const ProductCard = ({ _id, name, image, price, description }) => {
+const ProductCard = ({ _id, name, image, price, description, shopId }) => {
   //setup store
   const login = window.localStorage.getItem("isLoggedIn");
 
@@ -34,7 +34,9 @@ const ProductCard = ({ _id, name, image, price, description }) => {
       if (count === 0) {
         setCount(count + 1);
       }
-      dispatch(addTocart({ _id, name, count, price, image, description }));
+      dispatch(
+        addTocart({ _id, name, count, price, image, description, shopId })
+      );
       dispatch(calculateTotal());
     }
   };

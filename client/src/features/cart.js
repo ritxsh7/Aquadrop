@@ -18,7 +18,7 @@ const cartReducer = createSlice({
     //=============REDUCER FOR ADDING AN ITEM IN CART-==========================
     addTocart: (state, { payload }) => {
       console.log(payload);
-      const { count, _id, price, image, name, description } = payload;
+      const { count, _id, price, image, name, description, shopId } = payload;
 
       //check if item is already present
       let checkItemInCart = current(state).items.find(
@@ -49,6 +49,7 @@ const cartReducer = createSlice({
           mrp: price,
           image: image,
           description: description,
+          shopId,
         });
         console.log(current(state).items);
       }
@@ -80,4 +81,5 @@ const cartReducer = createSlice({
 //exports
 export default cartReducer.reducer;
 
-export const { addTocart, calculateTotal, removeCart } = cartReducer.actions;
+export const { addTocart, calculateTotal, removeCart, clearCart } =
+  cartReducer.actions;

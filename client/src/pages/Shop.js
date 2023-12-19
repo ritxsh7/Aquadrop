@@ -26,7 +26,7 @@ const Shop = () => {
         `http://localhost:8080/api/v1/get-shop/${id}`
       );
       let { shop } = await response.data;
-      // console.log(shop);
+      console.log(shop);
       setShop(shop);
     } catch (err) {
       console.log(err.message);
@@ -92,7 +92,7 @@ const Shop = () => {
           <h1>Products available : </h1>
           <div>
             {shop?.products?.map((p) => {
-              return <ProductCard key={p._id} {...p} />;
+              return <ProductCard key={p._id} {...p} shopId={shop?._id} />;
             })}
           </div>
         </div>

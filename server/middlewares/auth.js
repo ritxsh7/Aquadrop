@@ -8,32 +8,32 @@ dotenv.config();
 export const auth = (req, res, next) => {
   try {
     //extract from body token
-    console.log(req);
-    const { token } = req.cookies;
+    // console.log(req.body);
+    const { token } = req.body;
 
     if (!token) {
-      res.redirect("/login");
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
-        message: "No token exists",
+        message: "No token",
       });
     }
 
     //verify the jwt token
     try {
       const payload = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(payload);
+      // console.log(payload);
 
       //add a new field user in the req body which will be receiver by the controller
       req.body.user = payload;
     } catch (err) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "Invalid token",
       });
     }
   } catch (err) {
-    res.status(400).json({
+    console.log("auth error : ", err.message);
+    return res.status(400).json({
       success: false,
       message: "Authentication error" + err.message,
     });
@@ -46,7 +46,7 @@ export const auth = (req, res, next) => {
 export const isUser = (req, res, next) => {
   try {
     const { user } = req.body;
-    console.log(user);
+    // console.log(user);
     if (user.role !== "Customer") {
       return res.status(400).json({
         success: false,
@@ -55,7 +55,8 @@ export const isUser = (req, res, next) => {
     }
     next();
   } catch (err) {
-    res.status(400).json({
+    console.log("error : ", err.message);
+    return res.status(400).json({
       success: false,
       message: "Authentication error",
     });

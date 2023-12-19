@@ -99,7 +99,7 @@ export default function Login() {
         {success && (
           <p style={{ color: "limegreen", textAlign: "center" }}>
             {success}
-            <SmallLoader />
+            <SmallLoader loading={loading} />
           </p>
         )}
 

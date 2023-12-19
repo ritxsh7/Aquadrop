@@ -20,11 +20,18 @@ function App() {
   // dotenv.config();
   //store
   const dispatch = useDispatch();
-
   const user = JSON.parse(localStorage.getItem("aqua-user"));
-  if (user) {
-    dispatch(loginUser(user));
-  }
+
+  useEffect(() => {
+    console.log(user);
+    if (user) {
+      dispatch(loginUser(user));
+      const { tokenExpire } = user;
+      if (tokenExpire - Date.now() < 0) {
+        window.localStorage.removeItem("aqua-user");
+      }
+    }
+  }, []);
 
   return (
     <Router>

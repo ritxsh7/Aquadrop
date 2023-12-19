@@ -1,41 +1,39 @@
-import { Dialog } from '@mui/material'
-import { BsCheck2Circle } from 'react-icons/bs'
-import { CartState } from '../context/Context';
-import '../styles/orderDialog.css';
+//styles
+import { Dialog } from "@mui/material";
+import "../styles/orderDialog.css";
+import checkIcon from "../images/checkIcon.png";
 
-import checkIcon from '../images/checkIcon.png'
+//routing
+import { useNavigate } from "react-router-dom";
 
+export default function OrderSuccessfull({ success, setSuccess }) {
+  const navigate = useNavigate();
 
-import React from 'react'
-import { Button } from 'react-bootstrap';
-
-export default function OrderSuccessfull({ order, setOrder, form, setFormState}) {
-
-    const { state: { cart }, dispatch } = CartState();
-
-    const clearCart = () => {
-        dispatch({
-            type: 'CLEAR_CART',
-            payload: {}
-        })
-    }
-    return (
-        <Dialog open={order} style={{padding:'30px'}}>
-            
-            <div className='orderDialog'>
-                <img src={checkIcon} className='check-icon'/>
-                <h3>Order Successfull</h3>
-                <Button variant='primary' onClick={() => {
-                        clearCart();
-                        setOrder(false);
-                        setFormState(false);
-                    }}
-                    style={{
-                        margin:'20px 0 0 0'
-                    }}>
-                    Go back to cart 
-                </Button>
-            </div>
-        </Dialog>
-    )
+  return (
+    <Dialog open={success} style={{ padding: "30px" }}>
+      <div className="orderDialog">
+        <img src={checkIcon} className="check-icon" />
+        <h3>Order Successfull</h3>
+        <button
+          variant="primary"
+          onClick={() => {
+            setSuccess(false);
+            navigate("/");
+          }}
+          style={{
+            margin: "20px 0 0 0",
+            padding: "0.7rem 1rem",
+            border: "none",
+            fontSize: "large",
+            backgroundColor: "#0195FF",
+            color: "white",
+            borderRadius: "0.1rem",
+            cursor: "pointer",
+          }}
+        >
+          Go back to shops
+        </button>
+      </div>
+    </Dialog>
+  );
 }

@@ -55,6 +55,7 @@
     height: 25vh;
     padding: 1.3rem;
     border-bottom: 1px solid rgba(128, 128, 128, 0.521);
+    border-top: 1px solid rgba(128, 128, 128, 0.521);
 }
 
 .cart-item-remove{
@@ -104,6 +105,33 @@
     font-size: 1.2rem;
         text-align: center;
         padding: 0.6rem 2rem;
+        border-radius: 3px;
+        border: 1px solid white;
+        background-color: #0195FF;
+        margin: 0;
+        cursor: pointer;
+}
+
+.address-form{
+    padding:  1rem 0;
+}
+
+.address-form input{
+    display: inline;
+    width: 80%;
+    padding: 10px 10px;
+    margin: 0.3rem auto;
+    font-size: 1rem;
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid dodgerblue;
+    background-color: transparent;
+}
+.change-address{
+        color: white;
+        font-size: 1rem;
+        text-align: center;
+        padding: 0.6rem 1rem;
         border-radius: 3px;
         border: 1px solid white;
         background-color: #0195FF;

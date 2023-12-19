@@ -1,9 +1,14 @@
-import User from "../model/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
+
+//models
+import User from "../model/User.js";
+import Order from "../model/Order.js";
+import Product from "../model/Product.js";
+import Shop from "../model/Shop.js";
 
 //==============================SIGNUP==================================
 
@@ -81,7 +86,7 @@ export const userLogin = async (req, res) => {
 
       //create a jwt token
       const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: "2h",
+        expiresIn: "3d",
       });
 
       //return cookies for response
@@ -101,6 +106,7 @@ export const userLogin = async (req, res) => {
             email: checkUser.email,
             role: checkUser.role,
             token: jwtToken,
+            tokenExpire: Date.now() + 3 * 24 * 60 * 60 * 1000,
           },
 
           message: "Login successful",
@@ -116,6 +122,95 @@ export const userLogin = async (req, res) => {
   }
 };
 
-const saveUserLocation = async (req, res) => {
-  const { location } = req.body;
+//========================PLACE ORDER==========================================
+export const placeOrder = async (req, res) => {
+  try {
+    const { order } = req.body;
+    const { user } = req.body;
+    console.log(order);
+    // console.log(user);
+
+    //create cartItems accroding to the schema of Order.items[]
+    const cartItems = order.items.map((item) => {
+      return {
+        shopId: item.shopId,
+        productId: item.id,
+        quantity: item.qty,
+        price: item.mrp,
+      };
+    });
+
+    //create a new order=========
+    const placedOrder = new Order({
+      userId: user.id,
+      items: cartItems,
+      totalQty: order.total,
+      totalAmount: order.price,
+    });
+
+    const newPlacedOrder = await placedOrder.save();
+
+    try {
+      const userId = user.id;
+
+      const checkUser = await User.findOneAndUpdate(
+        {
+          _id: userId,
+        },
+        { $push: { orders: newPlacedOrder._id } },
+        { new: true }
+      )
+        .populate("orders")
+        .exec();
+      // console.log(newPlacedOrder);
+      // console.log(checkUser);
+      if (!checkUser) {
+        return res.status(400).json({
+          success: false,
+          message: "User doesn't exist, please sign in / login",
+        });
+      }
+    } catch (err) {
+      console.log("cant find user : ", err.message);
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Order Successful",
+      data: placedOrder,
+    });
+  } catch (err) {
+    console.log("order error : ", err.message);
+    return res.status(400).json({
+      success: false,
+      message: "Failed to place the order",
+      data: err.message,
+    });
+  }
+};
+
+//========================USER LOCATION=====================================
+export const updateAddress = async (req, res) => {
+  try {
+    const { address } = req.body;
+    const { id } = req.params;
+    console.log({ id, address });
+
+    const checkUser = await User.findOneAndUpdate(
+      { email: id },
+      { $set: { address: address } },
+      { new: true }
+    );
+    console.log(checkUser);
+    return res.status(200).json({
+      message: "Updated successfully",
+      address: checkUser.address,
+    });
+  } catch (err) {
+    console.log("err while updating address : ", err.message);
+    res.status(400).json({
+      success: false,
+      message: "Can't update message",
+    });
+  }
 };
