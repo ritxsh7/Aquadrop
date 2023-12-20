@@ -19,12 +19,12 @@ const Shop = () => {
   const [err, setErr] = useState("");
   const [shop, setShop] = useState({});
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
   const getShopDetails = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        `http://localhost:8080/api/v1/get-shop/${id}`
-      );
+      const response = await axios.get(`${backendUrl}/get-shop/${id}`);
       let { shop } = await response.data;
       console.log(shop);
       setShop(shop);

@@ -25,7 +25,7 @@ const CartPage = () => {
   //stores
   const cart = useSelector((store) => store.cart);
   const user = useSelector((store) => store.user);
-  const token = window.localStorage.getItem("token");
+  const { token, address } = user;
   const dispatch = useDispatch();
 
   console.log(cart);
@@ -37,6 +37,10 @@ const CartPage = () => {
   //placing order endpoint
   const placeOrder = async () => {
     try {
+      if (!address) {
+        alert("Address is required for placing an order !");
+        return;
+      }
       setLoading(true);
       const response = await axios.post(
         `http://localhost:8080/api/v1/user/order/${user.name}`,
@@ -49,11 +53,11 @@ const CartPage = () => {
         dispatch(clearCart());
         dispatch(calculateTotal());
         setLoading(false);
-        setSuccess(response.data.message);
+        setSuccess(response?.data?.message);
       }, 3000);
     } catch (err) {
-      setErr(err.response.data.message);
-      console.log(err.response.data);
+      setErr(err?.response?.data?.message);
+      console.log(err?.response?.data);
       setLoading(false);
     }
   };

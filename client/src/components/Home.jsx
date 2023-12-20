@@ -13,14 +13,13 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(false);
   const [errMsg, setErrMsg] = useState("");
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   //stores
 
   const getTopShops = useCallback(async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:8080/api/v1/get-top-shops`
-      );
+      const response = await axios.get(`${backendUrl}/get-top-shops`);
       setShops(response.data.data);
       console.log(shops);
       setLoading(false);

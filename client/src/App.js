@@ -20,9 +20,9 @@ function App() {
   // dotenv.config();
   //store
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("aqua-user"));
 
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("aqua-user"));
     console.log(user);
     if (user) {
       dispatch(loginUser(user));

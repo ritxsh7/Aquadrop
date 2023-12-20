@@ -7,6 +7,7 @@ const Seller = () => {
   return (
     <main className="seller-page">
       <Header />
+      <h2>This page is under maintainance...</h2>
     </main>
   );
 };

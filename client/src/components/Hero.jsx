@@ -9,17 +9,15 @@ import axios from "axios";
 
 function Hero() {
   const [pincode, setPincode] = useState(0);
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const exploreShops = async (e) => {
     try {
       e.preventDefault();
       console.log(pincode);
-      const response = await axios.get(
-        "http://localhost:8080/api/v1/nearbyshops",
-        {
-          pincode,
-        }
-      );
+      const response = await axios.get(`${backendUrl}/nearbyshops`, {
+        pincode,
+      });
       console.log(response);
     } catch (err) {
       console.log(err.msg);

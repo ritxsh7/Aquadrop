@@ -27,6 +27,7 @@ export default function Login() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState(false);
   const [errMsg, setErrMsg] = useState("");
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   //========================functions==================================
 
@@ -34,13 +35,10 @@ export default function Login() {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const response = await axios.post(
-        `http://localhost:8080/api/v1/user/login/`,
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${backendUrl}/user/login/`, {
+        email,
+        password,
+      });
       console.log(response?.data?.data);
       const userData = response.data.data;
       dispatch(loginUser(userData));

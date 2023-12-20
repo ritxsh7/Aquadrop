@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserAddress } from "../features/user";
 import axios from "axios";
 import SmallLoader from "./SmallLoader";
 
@@ -10,17 +11,26 @@ const Address = () => {
   const [pincode, setPincode] = useState("");
   const [edit, setEdit] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
+  //   const [success, setSuccess] = useState("");
   const [err, setErr] = useState("");
+  const [tempaddress, setAddress] = useState({});
 
   //store
-  const { email, token } = useSelector((store) => store.user);
+  const { email, token, name, role, address } = useSelector(
+    (store) => store.user
+  );
+  const dispatch = useDispatch();
+
+  //backend
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+  useEffect(() => {}, [address]);
 
   const updateAddress = async () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `http://localhost:8080/api/v1/user/update-address/${email}`,
+        `${backendUrl}/user/update-address/${email}`,
         {
           address: {
             firstLine,
@@ -31,11 +41,16 @@ const Address = () => {
         }
       );
       console.log(response.data);
+      const newAddress = response?.data?.address;
+      //   setAddress(response?.data?.address);
+      dispatch(updateUserAddress(newAddress));
+      const newUser = { email, name, role, token, address: newAddress };
+      window.localStorage.setItem("aqua-user", JSON.stringify(newUser));
       setLoading(false);
       setEdit(false);
     } catch (err) {
-      console.log(err.response.data.message);
-      setErr(err.response.data.message);
+      console.log(err);
+      setErr("error");
       setLoading(false);
     }
   };
@@ -61,15 +76,21 @@ const Address = () => {
           ></input>
         </form>
       ) : (
-        <p
+        <div
           style={{
             color: "grey",
             margin: "0.4rem 0",
           }}
         >
-          Flat no. 7, Ashirwad Appartment, Maitri chowk, Sant Tukaram Nagar,
-          Pimpri, Pimpri Chinchwad, Maharashtra - 411018
-        </p>
+          {address ? (
+            <p>
+              {`${address.firstLine}, ${address.locality}, Pimpri, Pune - `}
+              <b>{address.pincode}</b>
+            </p>
+          ) : (
+            <p style={{ color: "tomato" }}>Please provide a delivery address</p>
+          )}
+        </div>
       )}
       <SmallLoader loading={loading} />
       {edit ? (
