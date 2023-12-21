@@ -23,13 +23,17 @@ function App() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("aqua-user"));
+
     console.log(user);
     if (user) {
       dispatch(loginUser(user));
+      window.localStorage.setItem("isLoggedIn", "true");
       const { tokenExpire } = user;
       if (tokenExpire - Date.now() < 0) {
         window.localStorage.removeItem("aqua-user");
       }
+    } else {
+      window.localStorage.setItem("isLoggedIn", "false");
     }
   }, []);
 

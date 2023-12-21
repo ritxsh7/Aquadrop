@@ -34,6 +34,8 @@ const CartPage = () => {
   const [success, setSuccess] = useState("");
   const [err, setErr] = useState("");
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
   //placing order endpoint
   const placeOrder = async () => {
     try {
@@ -43,7 +45,7 @@ const CartPage = () => {
       }
       setLoading(true);
       const response = await axios.post(
-        `http://localhost:8080/api/v1/user/order/${user.name}`,
+        `${backendUrl}/user/order/${user.name}`,
         {
           order: cart,
           token,
@@ -57,7 +59,7 @@ const CartPage = () => {
       }, 3000);
     } catch (err) {
       setErr(err?.response?.data?.message);
-      console.log(err?.response?.data);
+      console.log(err);
       setLoading(false);
     }
   };

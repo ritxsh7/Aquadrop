@@ -9,7 +9,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../features/user";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const serverUrl = process.env.REACT_APP_BACKEND_URL;
 console.log(serverUrl);
@@ -44,7 +44,7 @@ export default function Login() {
       dispatch(loginUser(userData));
       window.localStorage.setItem("aqua-user", JSON.stringify(userData));
       window.localStorage.setItem("token", userData.token);
-      window.localStorage.setItem("isLoggedIn", true);
+      window.localStorage.setItem("isLoggedIn", "true");
       setSuccess(response.data.message);
       setTimeout(() => {
         setLoading(false);
@@ -105,9 +105,9 @@ export default function Login() {
 
         <p className="sign-up">
           Not a member?
-          <a href="/signup" id="signup">
+          <NavLink to="/signup" id="signup">
             Sign up
-          </a>
+          </NavLink>
         </p>
       </form>
     </div>

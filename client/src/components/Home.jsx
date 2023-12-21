@@ -61,10 +61,7 @@ export default function Home() {
           </p>
         </div>
         <div className="horizon"></div>
-        <div className="shop-by-store">
-          {shopList}
-          {shopList}
-        </div>
+        <div className="shop-by-store">{shopList}</div>
         {err && (
           <p style={{ textAlign: "center", color: "red" }}>
             {errMsg}, check your internet connection

@@ -50,7 +50,11 @@ function Navbar() {
         </li>
 
         <li id="login-btn">
-          {name ? <h3>{`H3llo, ${name} !`}</h3> : <a href="/login">Login</a>}
+          {name ? (
+            <h3>{`H3llo, ${name} !`}</h3>
+          ) : (
+            <NavLink to="/login">Login</NavLink>
+          )}
         </li>
         <li>
           <NavLink to={name ? `/cart/${name}` : "/login"}>
