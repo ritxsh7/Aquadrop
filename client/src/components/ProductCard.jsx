@@ -30,10 +30,11 @@ const ProductCard = ({ _id, name, image, price, description, shopId }) => {
       setLoading(true);
       navigate("/login");
     } else {
-      setAdded(!added);
       if (count === 0) {
-        setCount(count + 1);
+        alert("Number of items can't be zero");
+        return;
       }
+      setAdded(!added);
       dispatch(
         addTocart({ _id, name, count, price, image, description, shopId })
       );
