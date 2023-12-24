@@ -28,7 +28,7 @@ const CartPage = () => {
   const { token, address } = user;
   const dispatch = useDispatch();
 
-  console.log(cart);
+  // console.log(cart);
   //states
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");

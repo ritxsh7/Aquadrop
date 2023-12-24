@@ -26,7 +26,7 @@ const Shop = () => {
       setLoading(true);
       const response = await axios.get(`${backendUrl}/get-shop/${id}`);
       let { shop } = await response.data;
-      console.log(shop);
+      // console.log(shop);
       setShop(shop);
     } catch (err) {
       console.log(err.message);

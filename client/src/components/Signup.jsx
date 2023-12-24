@@ -46,7 +46,7 @@ export default function Signup() {
         pincode,
         role: "Customer",
       });
-      console.log(response);
+      // console.log(response);
       setSuccess(response.data.message);
       setTimeout(() => {
         setLoading(false);

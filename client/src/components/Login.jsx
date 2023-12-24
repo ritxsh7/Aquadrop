@@ -39,7 +39,7 @@ export default function Login() {
         email,
         password,
       });
-      console.log(response?.data?.data);
+      // console.log(response?.data?.data);
       const userData = response.data.data;
       dispatch(loginUser(userData));
       window.localStorage.setItem("aqua-user", JSON.stringify(userData));

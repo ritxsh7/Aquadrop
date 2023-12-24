@@ -21,13 +21,13 @@ export default function Home() {
     try {
       const response = await axios.get(`${backendUrl}/get-top-shops`);
       setShops(response.data.data);
-      console.log(shops);
+      // console.log(shops);
       setLoading(false);
     } catch (err) {
       setLoading(false);
       setErr(true);
       setErrMsg(err.message);
-      console.log(errMsg);
+      // console.log(errMsg);
     }
   }, [shops]);
 

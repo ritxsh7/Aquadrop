@@ -14,11 +14,11 @@ function Hero() {
   const exploreShops = async (e) => {
     try {
       e.preventDefault();
-      console.log(pincode);
+      // console.log(pincode);
       const response = await axios.get(`${backendUrl}/nearbyshops`, {
         pincode,
       });
-      console.log(response);
+      // console.log(response);
     } catch (err) {
       console.log(err.msg);
     }
