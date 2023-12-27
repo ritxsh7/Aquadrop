@@ -9,7 +9,17 @@ export const auth = (req, res, next) => {
   try {
     //extract from body token
     // console.log(req.body);
-    const { token } = req.body;
+    let token = req.header("Authorization");
+    // console.log(token);
+
+    if (token.startsWith("Bearer ")) {
+      token = token.split(" ")[1];
+      // console.log(token);
+    } else {
+      return res.status(400).json({
+        message: "Not a bearer token",
+      });
+    }
 
     if (!token) {
       return res.status(400).json({

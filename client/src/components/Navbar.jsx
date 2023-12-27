@@ -41,12 +41,12 @@ function Navbar() {
           <NavLink to="/">Home</NavLink>
         </li>
 
-        <li className={splitLocation === "seller" ? "active" : ""}>
-          <NavLink to="/seller">Become a seller </NavLink>
+        <li>
+          <a href="#footer">Contact</a>
         </li>
 
         <li>
-          <a href="#footer">Contact</a>
+          {isLogin && <NavLink to={`/orders/${name}`}>My orders</NavLink>}
         </li>
 
         <li id="login-btn">

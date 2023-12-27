@@ -1,0 +1,86 @@
+.orders-page h2 {
+    background-color: #0077cc;
+    /* Water blue header */
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+}
+
+.names{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 0.2rem;
+}
+
+.orders-page{
+    background-color: #DFEEFF;
+    min-height: 88.8vh;
+}
+
+#orders-container {
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    width: 60vw;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+#orders-container button{
+    
+    color: white;
+        /* font-size: 1.2rem; */
+        text-align: center;
+        padding: 0.6rem 1rem;
+        border-radius: 3px;
+        margin-top: 1rem;
+        border: 1px solid white;
+        background-color: tomato;
+        cursor: pointer;
+}
+
+.order {
+    /* border: 1px solid #9bd1e8; */
+    /* Lighter blue border */
+    display: flex;
+    /* gap: 3rem; */
+    justify-content: space-evenly;
+    border-radius: 8px;
+    align-items: center;
+    margin: 10px;
+    /* padding: 15px; */
+    padding-bottom: 0.4rem;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* transition: transform 0.3s ease-in-out; */
+}
+
+
+.order img {
+    width: 5rem;
+}
+
+.names > p {
+    font-size: large;
+    /* margin-top: 10px; */
+    /* font-size: 1.2em; */
+    color: #0077cc;
+    /* Water blue text color */
+}
+
+.price {
+    color: rgb(75, 75, 75);
+    /* Darker water blue for price */
+    /* font-size: 1.1rem; */
+    margin: 8px 0;
+}
+
+.detail {
+    color: #555;
+    font-size: 0.9em;
+    margin: 8px 0;
+}

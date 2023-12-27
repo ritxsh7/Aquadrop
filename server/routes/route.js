@@ -1,5 +1,9 @@
 import express from "express";
-import { userSignUp } from "../controllers/userController.js";
+import {
+  cancelOrder,
+  getOrders,
+  userSignUp,
+} from "../controllers/userController.js";
 import { userLogin } from "../controllers/userController.js";
 import { auth, isUser, isDealer } from "../middlewares/auth.js";
 import { placeOrder } from "../controllers/userController.js";
@@ -25,6 +29,8 @@ router.post("/user/login", userLogin);
 //========================ROUTES FOR CUSTOMER==========================
 router.post("/user/order/:id", auth, isUser, placeOrder);
 router.post("/user/update-address/:id", auth, isUser, updateAddress);
+router.get("/user/get-orders/:id", auth, isUser, getOrders);
+router.delete("/user/order/:id", auth, isUser, cancelOrder);
 
 //===========================ROUTES FOR DEALER=========================
 

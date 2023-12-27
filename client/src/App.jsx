@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 // import dotenv from "dotenv";
 
@@ -15,22 +20,25 @@ import Shop from "./pages/Shop";
 import { useDispatch, useSelector } from "react-redux";
 import CartPage from "./pages/CartPage";
 import { loginUser } from "./features/user";
+import Orders from "./pages/Orders";
 
-function App() {
-  // dotenv.config();
-  //store
+const App = () => {
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("aqua-user"));
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("aqua-user"));
+    // console.log(user);
 
-    console.log(user);
     if (user) {
-      dispatch(loginUser(user));
-      window.localStorage.setItem("isLoggedIn", "true");
       const { tokenExpire } = user;
+      console.log(tokenExpire - Date.now());
       if (tokenExpire - Date.now() < 0) {
         window.localStorage.removeItem("aqua-user");
+        window.localStorage.setItem("isLoggedIn", false);
+        window.location.reload();
+      } else {
+        dispatch(loginUser(user));
+        window.localStorage.setItem("isLoggedIn", "true");
       }
     } else {
       window.localStorage.setItem("isLoggedIn", "false");
@@ -47,10 +55,11 @@ function App() {
           <Route exact path="/seller" element={<Seller />}></Route>
           <Route exact path="/shop/:id" element={<Shop />}></Route>
           <Route exact path="/cart/:id" element={<CartPage />}></Route>
+          <Route exact path="/orders/:id" element={<Orders />}></Route>
         </Routes>
       </div>
     </Router>
   );
-}
+};
 
 export default App;

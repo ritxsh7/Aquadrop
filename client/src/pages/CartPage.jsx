@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import { calculateTotal, clearCart } from "../features/cart";
 
 //router
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 //backend
 import axios from "axios";
@@ -34,6 +34,10 @@ const CartPage = () => {
   const [success, setSuccess] = useState("");
   const [err, setErr] = useState("");
 
+  //router
+  const navigate = useNavigate();
+
+  //backend
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   //placing order endpoint
@@ -49,6 +53,11 @@ const CartPage = () => {
         {
           order: cart,
           token,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       setTimeout(() => {
@@ -57,9 +66,12 @@ const CartPage = () => {
         setLoading(false);
         setSuccess(response?.data?.message);
       }, 3000);
-    } catch (err) {
-      setErr(err?.response?.data?.message);
-      console.log(err);
+    } catch (error) {
+      setErr(error?.response?.data?.message);
+      if (err === "Invalid token") {
+        window.location.reload();
+        navigate("/");
+      }
       setLoading(false);
     }
   };

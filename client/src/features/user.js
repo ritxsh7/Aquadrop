@@ -17,7 +17,7 @@ const user = createSlice({
     loginUser: (state, { payload }) => {
       const { name, role, email, token, address } = payload;
       //   console.log(token);
-      console.log(payload);
+      // console.log(payload);
       return { ...state, login: true, role, name, email, token, address };
     },
     updateUserAddress: (state, { payload }) => {

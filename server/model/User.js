@@ -34,10 +34,8 @@ const userSchema = new mongoose.Schema({
   },
   orders: [
     {
-      orderId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Order",
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order",
     },
   ],
 });

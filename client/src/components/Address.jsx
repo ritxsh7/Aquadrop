@@ -13,7 +13,6 @@ const Address = () => {
   const [loading, setLoading] = useState(false);
   //   const [success, setSuccess] = useState("");
   const [err, setErr] = useState("");
-  const [tempaddress, setAddress] = useState({});
 
   //store
   const { email, token, name, role, address } = useSelector(
@@ -37,7 +36,11 @@ const Address = () => {
             locality,
             pincode,
           },
-          token,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       console.log(response.data);

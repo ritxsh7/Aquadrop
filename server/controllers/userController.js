@@ -86,14 +86,14 @@ export const userLogin = async (req, res) => {
 
       //create a jwt token
       const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: "3d",
+        expiresIn: "365d",
       });
 
       //return cookies for response
 
       //options for cookie
       const options = {
-        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
         httpOnly: true,
       };
       console.log(jwtToken);
@@ -105,10 +105,10 @@ export const userLogin = async (req, res) => {
             name: checkUser.name,
             email: checkUser.email,
             role: checkUser.role,
+            address: checkUser.address,
             token: jwtToken,
-            tokenExpire: Date.now() + 3 * 24 * 60 * 60 * 1000,
+            tokenExpire: Date.now() + 365 * 24 * 60 * 60 * 1000,
           },
-
           message: "Login successful",
         });
     } else {
@@ -194,7 +194,7 @@ export const updateAddress = async (req, res) => {
   try {
     const { address } = req.body;
     const { id } = req.params;
-    console.log({ id, address });
+    // console.log({ id, address });
 
     const checkUser = await User.findOneAndUpdate(
       { email: id },
@@ -211,6 +211,65 @@ export const updateAddress = async (req, res) => {
     res.status(400).json({
       success: false,
       message: "Can't update message",
+    });
+  }
+};
+
+//======================GET ORDERS LIST OF THE USER =========================
+
+export const getOrders = async (req, res) => {
+  try {
+    const { id } = req.body.user;
+
+    try {
+      const checkUser = await Order.find({ userId: id }).populate({
+        path: "items",
+        populate: {
+          path: "productId",
+          model: "Product",
+        },
+      });
+
+      const products = checkUser.map((order) => {
+        return {
+          id: order._id,
+          image: order.items[0].productId.image,
+          name: order.items.map((item) => item.productId.name),
+          timeP: order.timePlaced.getTime(),
+          dateP: order.timePlaced,
+          timeD: order.timePlaced.getTime() + 2 * 60 * 60 * 1000,
+          price: order.totalAmount,
+        };
+      });
+
+      return res.status(200).json({
+        success: true,
+        data: products,
+      });
+    } catch (err) {
+      return res.status(400).json({
+        message: "Error while fetching orders : " + err.message,
+      });
+    }
+  } catch (err) {
+    console.log("err while getting orders : ");
+  }
+};
+
+//==========================CANCEL ORDER ==============================
+
+export const cancelOrder = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const order = await Order.findByIdAndDelete(id);
+    console.log("deleted order : ", order);
+    return res.status(200).json({
+      success: true,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: "Error while canceling order : " + err.message,
     });
   }
 };

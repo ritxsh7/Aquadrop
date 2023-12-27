@@ -12,7 +12,7 @@ import { loginUser } from "../features/user";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const serverUrl = process.env.REACT_APP_BACKEND_URL;
-console.log(serverUrl);
+// console.log(serverUrl);
 
 export default function Login() {
   //============================NAVIGATION===========================
@@ -41,15 +41,14 @@ export default function Login() {
       });
       // console.log(response?.data?.data);
       const userData = response.data.data;
+      // console.log(userData);
       dispatch(loginUser(userData));
       window.localStorage.setItem("aqua-user", JSON.stringify(userData));
-      window.localStorage.setItem("token", userData.token);
       window.localStorage.setItem("isLoggedIn", "true");
       setSuccess(response.data.message);
       setTimeout(() => {
         setLoading(false);
-        // window.history.back();
-        navigate("/");
+        window.history.back();
       }, 2000);
     } catch (err) {
       setLoading(false);

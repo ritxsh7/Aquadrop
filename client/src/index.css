@@ -15,9 +15,7 @@ body,html {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Bricolage Grotesque' !important;
 }
-body::-webkit-scrollbar{
-  display: none;
-}
+
 
 .App{
   width: 100%;
