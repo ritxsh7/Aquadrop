@@ -24,11 +24,11 @@ import Orders from "./pages/Orders";
 
 const App = () => {
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("aqua-user"));
 
   useEffect(() => {
     // console.log(user);
 
+    const user = JSON.parse(localStorage.getItem("aqua-user"));
     if (user) {
       const { tokenExpire } = user;
       console.log(tokenExpire - Date.now());
