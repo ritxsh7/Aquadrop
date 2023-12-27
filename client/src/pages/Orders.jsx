@@ -50,13 +50,13 @@ const Orders = () => {
       <div className="orders-page">
         <h2>Your recent orders</h2>
         <Loader loading={loading} />
-        <section id="orders-container">
+        <div id="orders-container">
           {orders?.map((item, i) => {
             return <Order key={i} {...item} />;
           })}
-        </section>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

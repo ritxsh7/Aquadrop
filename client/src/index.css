@@ -32,6 +32,8 @@ body,html {
 
 .landing-page{
   position: relative;
+  /* background-color: #CDE5FD; */
+  max-height: 80vh;
 }
 
 .how-to-order{
@@ -349,7 +351,7 @@ background-color: #cde5fd;
 
 .login-page{
   background: url('../src/images/login-bg.jpg');
-  height: 100vh;
+  height: 80vh;
   width: 100vw;
   background-size: cover;
 }
@@ -358,8 +360,8 @@ background-color: #cde5fd;
  /* ===================HOME PAGE================================ */
 .homepage
 {
-  height: fit-content;
-  transform: translateY(-4rem);
+  height: max-content;
+  /* transform: translateY(-4rem); */
   background-color: #cde5fd;
   padding-bottom: 6rem;
 }
@@ -392,10 +394,10 @@ background-color: #cde5fd;
  .footer{
   background-color: #0079ff;
   color: white;
-  padding: 1.7rem 2rem;
+  padding: 1rem 2rem;
   text-align: center;
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
   width: 100%;
   display: flex;
   justify-content: center;
