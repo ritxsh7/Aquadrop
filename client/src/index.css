@@ -396,7 +396,7 @@ background-color: #cde5fd;
   color: white;
   padding: 1rem 2rem;
   text-align: center;
-  position: absolute;
+  /* position: absolute; */
   /* bottom: 0; */
   width: 100%;
   display: flex;
