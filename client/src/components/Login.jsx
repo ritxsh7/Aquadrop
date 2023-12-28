@@ -2,17 +2,18 @@ import React from "react";
 import LoginSticker from "../images/sticker.png";
 import Loader from "./Loader";
 import SmallLoader from "./SmallLoader";
+import { GoogleButton } from "react-google-button";
 
 //backend and states and stores
 import { useEffect, useRef } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/user";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const serverUrl = process.env.REACT_APP_BACKEND_URL;
-// console.log(serverUrl);
+//auth
+import { signinWithGoogle } from "../Config/googleAuth";
 
 export default function Login() {
   //============================NAVIGATION===========================
@@ -20,6 +21,7 @@ export default function Login() {
 
   //=================setup store and state==========================
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -60,6 +62,12 @@ export default function Login() {
       );
     }
   };
+
+  useEffect(() => {
+    if (user.name) {
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <div className="form-info">
@@ -102,7 +110,20 @@ export default function Login() {
 
         <Loader loading={loading} />
 
-        <p className="sign-up">
+        <GoogleButton
+          onClick={async () => {
+            const user = await signinWithGoogle();
+            dispatch(loginUser(user));
+            window.localStorage.setItem("aqua-user", JSON.stringify(user));
+            window.localStorage.setItem("isLoggedIn", "true");
+            window.history.back();
+          }}
+          style={{
+            width: "80%",
+            textAlign: "center",
+          }}
+        />
+        <p className="sign-up" style={{ margin: "1rem 0" }}>
           Not a member?
           <NavLink to="/signup" id="signup">
             Sign up

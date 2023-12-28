@@ -2,6 +2,7 @@ import express from "express";
 import {
   cancelOrder,
   getOrders,
+  signinWithGoogle,
   userSignUp,
 } from "../controllers/userController.js";
 import { userLogin } from "../controllers/userController.js";
@@ -31,6 +32,7 @@ router.post("/user/order/:id", auth, isUser, placeOrder);
 router.post("/user/update-address/:id", auth, isUser, updateAddress);
 router.get("/user/get-orders/:id", auth, isUser, getOrders);
 router.delete("/user/order/:id", auth, isUser, cancelOrder);
+router.post("/user/google-auth/", signinWithGoogle);
 
 //===========================ROUTES FOR DEALER=========================
 

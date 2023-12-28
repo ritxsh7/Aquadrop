@@ -67,7 +67,7 @@ body,html {
   justify-content: space-around;
   padding: 18px 3rem;
   width: 100%;
-  background-color: transparent;
+  background-color: white;
 }
 .sticky-nav{
   background-color: white;
@@ -351,7 +351,7 @@ background-color: #cde5fd;
 
 .login-page{
   background: url('../src/images/login-bg.jpg');
-  height: 80vh;
+  height: 100vh;
   width: 100vw;
   background-size: cover;
 }

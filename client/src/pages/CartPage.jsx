@@ -43,7 +43,7 @@ const CartPage = () => {
   //placing order endpoint
   const placeOrder = async () => {
     try {
-      if (!address) {
+      if (JSON.stringify(address) === "{}") {
         alert("Address is required for placing an order !");
         return;
       }

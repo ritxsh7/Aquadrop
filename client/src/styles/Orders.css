@@ -13,6 +13,11 @@
     gap: 0.2rem;
 }
 
+.order-page{
+    background-color: #DFEEFF;
+    min-height: 100vh;
+}
+
 .orders-page{
     background-color: #DFEEFF;
     min-height: 88.8vh;
@@ -25,8 +30,9 @@
     flex-direction: column;
     min-width: 350px;
     width: 60vw;
+    min-height: 80vh;
     /* flex-wrap: wrap; */
-    justify-content: space-evenly;
+    justify-content: flex-start;
     padding: 1rem 0;
     /* overflow-y: scroll; */
 }
@@ -41,6 +47,10 @@
         border: 1px solid white;
         background-color: tomato;
         cursor: pointer;
+}
+
+.empty-orders{
+    padding: 3rem;
 }
 
 .order {

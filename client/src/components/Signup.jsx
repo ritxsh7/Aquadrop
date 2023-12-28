@@ -3,9 +3,13 @@ import "../styles/Login.css";
 import Loader from "./Loader";
 import SmallLoader from "./SmallLoader";
 import LoginSticker from "../images/sticker.png";
+import { GoogleButton } from "react-google-button";
+import { signinWithGoogle } from "../Config/googleAuth";
 
 //store and states
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../features/user";
 
 //connect backend
 import axios from "axios";
@@ -13,7 +17,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   //setup store
+  const [username, setUserName] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const user = useSelector((store) => store.user);
 
   //states for signup
   const [name, setName] = React.useState("");
@@ -49,6 +57,7 @@ export default function Signup() {
       // console.log(response);
       setSuccess(response.data.message);
       setTimeout(() => {
+        setUserName(user?.name);
         setLoading(false);
         navigate("/login");
       }, 3000);
@@ -122,6 +131,19 @@ export default function Signup() {
             <SmallLoader />
           </p>
         )}
+        <GoogleButton
+          onClick={async () => {
+            const user = await signinWithGoogle();
+            dispatch(loginUser(user));
+            window.localStorage.setItem("aqua-user", JSON.stringify(user));
+            window.localStorage.setItem("isLoggedIn", "true");
+            window.history.back();
+          }}
+          style={{
+            width: "80%",
+            textAlign: "center",
+          }}
+        />
         <p className="sign-up">
           Already a user?
           <a href="/login" id="signup">

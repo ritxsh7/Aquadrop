@@ -85,7 +85,7 @@ const Address = () => {
             margin: "0.4rem 0",
           }}
         >
-          {address ? (
+          {JSON.stringify(address) !== "{}" ? (
             <p>
               {`${address.firstLine}, ${address.locality}, Pimpri, Pune - `}
               <b>{address.pincode}</b>

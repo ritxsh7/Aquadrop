@@ -273,3 +273,61 @@ export const cancelOrder = async (req, res) => {
     });
   }
 };
+
+//==========================USER SIGNIN WITH GOOGLE========================================
+export const signinWithGoogle = async (req, res) => {
+  const { email, name } = req.body;
+  console.log(email, name);
+  try {
+    const checkUser = await User.findOne({ email });
+    let id;
+
+    if (!checkUser) {
+      const user = new User({
+        name,
+        email,
+        role: "Customer",
+      });
+
+      const newUser = await user.save();
+      id = newUser._id;
+    } else {
+      id = checkUser._id;
+    }
+
+    const payload = {
+      id,
+      name,
+      email,
+      role: "Customer",
+    };
+
+    // console.log(payload);
+
+    try {
+      const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "365d",
+      });
+      console.log(jwtToken);
+      return res.status(200).json({
+        success: true,
+        data: {
+          name,
+          email,
+          role: "Customer",
+          address: checkUser?.address || null,
+          token: jwtToken,
+          tokenExpire: Date.now() + 365 * 24 * 60 * 60 * 1000,
+        },
+      });
+    } catch (err) {
+      console.log("Token error : " + err.message);
+    }
+  } catch (err) {
+    console.log("Google Auth error : " + err.message);
+    return res.status(400).json({
+      success: false,
+      message: "Google Auth error : " + err.message,
+    });
+  }
+};
