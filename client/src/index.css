@@ -72,8 +72,8 @@ body,html {
 .sticky-nav{
   background-color: white;
   box-shadow: 0 3px 30px rgb(155, 155, 155);
-  position: fixed !important;
-  top: 0 !important;
+  position: sticky;
+  top: 0;
 }
 
 .logo{
@@ -323,7 +323,9 @@ body,html {
   cursor: pointer;
 }
 /* <------------------------------------HOME-------------------------------------------> */
-
+.shop{
+  background-color: #DFEEFF;
+}
 .shop-by-store{
   width: 80%;
   display: grid;
