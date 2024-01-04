@@ -8,17 +8,20 @@ import Steps from "../images/steps.png";
 import axios from "axios";
 
 function Hero() {
-  const [pincode, setPincode] = useState(0);
+  const [pincode, setPincode] = useState("411018");
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const exploreShops = async (e) => {
     try {
       e.preventDefault();
-      // console.log(pincode);
-      const response = await axios.get(`${backendUrl}/nearbyshops`, {
-        pincode,
-      });
-      // console.log(response);
+      if (!pincode || isNaN(parseInt(pincode)) || pincode.length !== 6) {
+        alert("Enter a valid Pin");
+        return;
+      }
+      // const response = await axios.get(
+      //   `${backendUrl}/nearbyshops/?pin=${pincode}`
+      // );
+      // // console.log(response);
     } catch (err) {
       console.log(err.msg);
     }
@@ -47,6 +50,7 @@ function Hero() {
           <input
             type="pincode"
             required
+            value={pincode}
             placeholder="Enter Pincode"
             onChange={(e) => setPincode(e.target.value)}
           ></input>
