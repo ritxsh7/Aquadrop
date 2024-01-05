@@ -80,15 +80,14 @@ function Navbar() {
           // ========================NAVBAR ITEMS=========================
 
           <>
-            {navItems.map((item) => {
-              if (isLogin || item.public) {
-                return (
-                  <li>
-                    <NavLink to={item.link(user.name)}>{item.name}</NavLink>
+            {navItems.map(
+              (item) =>
+                (item.public || isLogin === "true") && (
+                  <li key={item.name}>
+                    <NavLink to={item.link(user)}>{item.name}</NavLink>
                   </li>
-                );
-              }
-            })}
+                )
+            )}
           </>
         )}
 
@@ -140,15 +139,14 @@ function Navbar() {
             )}
           </header>
           <ul className="vertical-sidebar">
-            {navItems.map((item) => {
-              if (isLogin || item.public) {
-                return (
-                  <li>
-                    <NavLink to={item.link(user.name)}>{item.name}</NavLink>
+            {navItems.map(
+              (item) =>
+                (item.public || isLogin === "true") && (
+                  <li key={item.name} onClick={() => setIsSidebarOpen(false)}>
+                    <NavLink to={item.link(user)}>{item.name}</NavLink>
                   </li>
-                );
-              }
-            })}
+                )
+            )}
           </ul>
         </aside>
       }

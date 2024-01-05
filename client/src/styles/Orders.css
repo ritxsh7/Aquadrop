@@ -1,7 +1,6 @@
 .orders-page h2 {
-    background-color: #0077cc;
-    /* Water blue header */
-    color: #fff;
+    background-color: white;
+    color: #4b4b4b;
     text-align: center;
     padding: 0.4em;
 }
@@ -15,7 +14,8 @@
 
 .order-page{
     background-color: #DFEEFF;
-    min-height: 100vh;
+    min-height: 630px;
+    width: 100vw;
 }
 
 .orders-page{
@@ -24,17 +24,16 @@
 }
 
 #orders-container {
-    /* height: 480px; */
     margin: 2rem auto;
     display: flex;
     flex-direction: column;
     min-width: 350px;
     width: 60vw;
     min-height: 80vh;
-    /* flex-wrap: wrap; */
+
     justify-content: flex-start;
     padding: 1rem 0;
-    /* overflow-y: scroll; */
+
 }
 
 #orders-container button{
@@ -50,24 +49,20 @@
 }
 
 .empty-orders{
-    padding: 3rem;
+    padding: 1rem;
 }
 
 .order {
-    /* border: 1px solid #9bd1e8; */
-    /* Lighter blue border */
     display: flex;
-    /* gap: 3rem; */
     justify-content: space-evenly;
     border-radius: 8px;
-    align-items: center;
+    align-items:flex-start;
+    padding: 0.3rem 0;
     margin: 10px;
-    /* padding: 15px; */
-    padding-bottom: 0.4rem;
     width: 100%;
+    max-height: 10rem;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* transition: transform 0.3s ease-in-out; */
 }
 
 
@@ -75,23 +70,56 @@
     width: 5rem;
 }
 
-.names > p {
-    font-size: large;
-    /* margin-top: 10px; */
-    /* font-size: 1.2em; */
-    color: #0077cc;
-    /* Water blue text color */
+.names{
+   max-height: 10rem;
 }
 
+.names p {
+    font-size: large;
+    color: #0077cc;
+    margin: 0.3rem 0;
+}
+.timestamp{
+    margin-top: 0.6rem;
+}
 .price {
     color: rgb(75, 75, 75);
-    /* Darker water blue for price */
-    /* font-size: 1.1rem; */
-    margin: 8px 0;
+    margin-top: 1.5rem;
 }
 
 .detail {
     color: #555;
     font-size: 0.9em;
     margin: 8px 0;
+}
+
+.no-more-orders{
+    display: none;
+    height: 0;
+    transition: height 1s ease-in-out;
+}
+.more-orders{
+    margin: 0;
+    display: block;
+    height: auto;
+    transform: translateY(-0.5rem);
+}
+@media screen and (max-width:450px) {
+ .order-page h2{
+    font-size: medium;
+ }   
+ .order{
+    font-size: small;
+    margin: 0.4rem auto;
+ }
+ .order img{
+    height: 4rem;
+    width: 4rem;
+ }
+ .names p {
+    font-size: small;
+ }
+ .timestamp{
+    font-size: 0.7rem;
+ }
 }

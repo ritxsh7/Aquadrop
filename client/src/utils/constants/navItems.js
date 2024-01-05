@@ -7,16 +7,16 @@ export default [
   {
     name: "Become a seller >",
     link: (user) => "/seller",
-    public: false,
+    public: true,
   },
   {
     name: "Cart",
-    link: (user) => `/cart/${user}`,
+    link: (user) => user && `/cart/${user.name}`,
     public: false,
   },
   {
     name: "My orders",
-    link: (user) => `/orders/${user}`,
+    link: (user) => user && `/orders/${user.name}`,
     public: false,
   },
 ];

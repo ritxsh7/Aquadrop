@@ -21,27 +21,24 @@ const Shop = () => {
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-  const getShopDetails = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(`${backendUrl}/get-shop/${id}`);
-      let { shop } = await response.data;
-      // console.log(shop);
-      setShop(shop);
-    } catch (err) {
-      console.log(err.message);
-      setErr(err.message);
-    }
-    setLoading(false);
-  };
-
   useEffect(() => {
+    const getShopDetails = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`${backendUrl}/get-shop/${id}`);
+        let { shop } = await response.data;
+        setShop(shop);
+      } catch (err) {
+        console.log(err.message);
+        setErr(err.message);
+      }
+      setLoading(false);
+    };
     getShopDetails();
-  }, []);
+  }, [id]);
 
   return (
     <div className="shop">
-      <Header />
       <Loader loading={loading} />
       <div className="shop-page">
         <div className="shop-details">
@@ -85,16 +82,16 @@ const Shop = () => {
                 </p>
               </div>
             </div>
-            <img src={shop?.image}></img>
+            <img src={shop?.image} className="shop-img"></img>
           </div>
         </div>
         <div className="order-section">
           <h1>Products available : </h1>
-          <div>
+          <>
             {shop?.products?.map((p) => {
               return <ProductCard key={p._id} {...p} shopId={shop?._id} />;
             })}
-          </div>
+          </>
         </div>
       </div>
     </div>

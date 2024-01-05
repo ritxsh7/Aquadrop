@@ -24,7 +24,6 @@ const cartReducer = createSlice({
       let checkItemInCart = current(state).items.find(
         (item) => item.id === _id
       );
-      console.log(checkItemInCart);
 
       //if present then only modify quantity of the item don't add it
       if (checkItemInCart) {

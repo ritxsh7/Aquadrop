@@ -1,5 +1,6 @@
 .shop-page{
-    width: 65vw;
+    width: 90vw;
+    max-width: 750px;
     margin: 3rem auto;
 }
 
@@ -8,13 +9,12 @@
     display: flex;
     justify-content: space-between;
     background-color: #3E6FAE;
-    height: 14rem;
     border-radius: 0.5rem;
 }
 
-.shop-banner >img{
+.shop-img{
     width: 28rem;
-    height: 14rem;
+    height: 16rem;
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     border-left: 7rem solid wheat;
@@ -47,13 +47,41 @@
 }
 
 .shop-rating p{
-    margin-bottom: 0.5rem;
     padding: 0.2rem;
 }
 
 .shop-rating img{
     height: 1rem;
     width: 1rem;
+}
+
+
+@media screen and (max-width : 450px) {
+    .shop-banner{
+        padding: 0 1rem;
+    }
+    .shop-page{
+        margin: 1rem;
+    }
+    .shop-img{
+        width: 7rem;
+        height: 9rem;
+        margin: auto;
+        border: none;
+        border-radius: 0.5rem;
+    }
+    .shop-name{
+        font-size: small;
+        padding: 1rem 0;
+    }
+    .shop-name h2{
+        font-size: medium;
+        font-weight: 200;
+    }
+    .shop-rating{
+        margin: 0.3rem 0;
+        padding: 0;
+    }
 }
 
 
@@ -66,4 +94,11 @@
     font-size: x-large;
     padding-bottom: 1.4rem;
     border-bottom: 1px solid gray;
+}
+
+@media screen and (max-width: 450px){
+    .order-section>h1{
+        font-size: medium;
+        padding-bottom: 1rem;
+    }
 }

@@ -32,7 +32,7 @@ body,html {
 
 .landing-page{
   position: relative;
-  height: 80vh;
+  min-height: 80vh;
 }
 
 .how-to-order{
@@ -56,10 +56,12 @@ body,html {
   margin-top: 0.8rem;
   font-size: 2rem;
 }
-
+.always-show{
+  margin-top:0.5rem;
+}
 @media screen and (max-width:450px) {
   .landing-page{
-    height: 80vh;
+    min-height: 80vh;
   }
   .how-to-order{
     padding-top: 1rem;
@@ -94,9 +96,8 @@ body,html {
 .sticky-nav{
   background-color: #0195FF;
   box-shadow: 0 3px 30px rgb(155, 155, 155);
-  position: fixed;
-  top: 0;
-  
+  position: sticky;
+  top: 0; 
 }
 
 .logo{
@@ -206,6 +207,16 @@ body,html {
     margin-left: 2rem;
 }
 
+.modal{
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+ background: rgba(0,0,0,0.45);
+  z-index: 1000;
+}
+
 .logout-dialog{
   align-items: center;
   position: fixed;
@@ -227,6 +238,7 @@ body,html {
 }
 
 .logout-dialog button{
+  display: block;
   width: 80%;
   color: white;
     text-align: center;
@@ -236,7 +248,12 @@ body,html {
     background-color: rgb(255, 38, 0);
     margin-top: 1rem;
     cursor: pointer;
+    transition: display 0.3s ease-in;
 }
+.hide-logout{
+  display: none;
+}
+
 .close-x{
   position: absolute;
   top: 0;
@@ -285,9 +302,6 @@ body {
   text-decoration: none;
 }
 
-.vertical-sidebar a:hover {
-  background-color: #555;
-}
 
 @media screen and (max-width:450px){
   #login-btn a{
@@ -495,6 +509,7 @@ body {
 /* <------------------------------------HOME-------------------------------------------> */
 .shop{
   background-color: #DFEEFF;
+  height: fit-content;
 }
 .shop-by-store{
   width: 80%;
@@ -575,7 +590,7 @@ body {
     gap: 1rem;
   }
   .home-header h1{
-    font-size: large;
+    font-size:medium;
     border: none;
     border-bottom: 2px solid darkblue;
   }

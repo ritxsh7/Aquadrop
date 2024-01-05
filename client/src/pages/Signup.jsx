@@ -5,7 +5,6 @@ import Header from "../components/Header";
 const SignupPage = () => {
   return (
     <div className="login-page">
-      <Header />
       <Signup />
     </div>
   );

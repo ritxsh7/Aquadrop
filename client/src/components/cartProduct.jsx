@@ -4,6 +4,10 @@ import productImage from "../images/Products.jpg";
 import { useDispatch } from "react-redux";
 import { calculateTotal, removeCart } from "../features/cart";
 
+const blackColor = {
+  color: "black",
+};
+
 export default function CartProduct(props) {
   const dispatch = useDispatch();
   return (
@@ -11,11 +15,9 @@ export default function CartProduct(props) {
       <img src={props.image} />
       <div className="cart-content">
         <h3 style={{ fontWeight: "500" }}>{props.name}</h3>
-        <p>₹{props.mrp}</p>
-        <p style={{ color: "grey", marginTop: "0.5rem", fontSize: "0.8rem" }}>
-          {props.description}
-        </p>
-        <p style={{ marginTop: "0.5rem" }}>
+        <p style={blackColor}>₹{props.mrp}</p>
+        <p>{props.description}</p>
+        <p style={{ ...blackColor, marginTop: "0.5rem" }}>
           Quantity: {props.qty}
           <span>{"   |      "}</span>
           Total : ₹{props.mrp * props.qty}

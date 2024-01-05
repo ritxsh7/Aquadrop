@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 //styles
 import "../styles/CartPage.css";
@@ -26,10 +26,9 @@ const CartPage = () => {
   //stores
   const cart = useSelector((store) => store.cart);
   const user = useSelector((store) => store.user);
-  const { token, address } = user;
+  let { token, address } = user;
   const dispatch = useDispatch();
 
-  // console.log(cart);
   //states
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
@@ -78,9 +77,7 @@ const CartPage = () => {
   };
 
   return (
-    <ProtectedPage>
-      <Header />
-
+    <>
       <div className="cart-page-user">
         {cart.total > 0 ? (
           <div className="cart-status">
@@ -158,9 +155,8 @@ const CartPage = () => {
           </div>
         )}
       </div>
-      <Footer />
       <OrderSuccessfull success={success} setSuccess={setSuccess} />
-    </ProtectedPage>
+    </>
   );
 };
 

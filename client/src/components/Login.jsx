@@ -3,6 +3,7 @@ import LoginSticker from "../images/sticker.png";
 import Loader from "./Loader";
 import SmallLoader from "./SmallLoader";
 import { GoogleButton } from "react-google-button";
+import login from "../utils/styles/login";
 
 //backend and states and stores
 import { useEffect, useRef } from "react";
@@ -116,10 +117,8 @@ export default function Login() {
             window.localStorage.setItem("isLoggedIn", "true");
             window.history.back();
           }}
-          style={{
-            width: "80%",
-            textAlign: "center",
-          }}
+          style={login.signinWithGoogle}
+          className="goole-btn"
         />
         <p className="sign-up" style={{ margin: "1rem 0" }}>
           Not a member?

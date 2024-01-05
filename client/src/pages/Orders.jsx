@@ -19,39 +19,34 @@ const Orders = () => {
   const [orders, setOrders] = useState(null);
 
   const { email, token } = useSelector((store) => store.user);
-  // console.log(token);
 
   //backend
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
-  // console.log(backendUrl);
-
-  const getOrders = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `${backendUrl}/user/get-orders/${email}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setOrders(response?.data?.data?.reverse());
-      // console.log(orders);
-    } catch (err) {
-      console.log(err);
-    }
-    setLoading(false);
-  };
 
   useEffect(() => {
+    const getOrders = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          `${backendUrl}/user/get-orders/${email}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setOrders(response?.data?.data?.reverse());
+      } catch (err) {
+        console.log(err);
+      }
+      setLoading(false);
+    };
     getOrders();
   }, [email]);
 
   return (
-    <ProtectedPage>
-      <div className="order-page">
-        <Header />
+    <>
+      <>
         {orders?.length !== 0 ? (
           <div className="orders-page">
             <h2>Your recent orders</h2>
@@ -86,8 +81,8 @@ const Orders = () => {
             </div>
           </section>
         )}
-      </div>
-    </ProtectedPage>
+      </>
+    </>
   );
 };
 

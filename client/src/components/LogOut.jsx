@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const LogOut = ({ isLogoutOpen, setIsLogoutOpen }) => {
+const LogOut = ({ isLogout, setIsLogout }) => {
   //====NAVIGATIOIN======
   const navigate = useNavigate();
 
@@ -10,15 +10,15 @@ const LogOut = ({ isLogoutOpen, setIsLogoutOpen }) => {
     window.localStorage.setItem("isLoggedIn", false);
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("aqua-user");
-    setIsLogoutOpen(false);
+    setIsLogout(false);
     navigate("/");
     window.location.reload();
   };
 
   return (
-    isLogoutOpen && (
+    <div className={`modal ${isLogout ? "" : "hide-logout"}`}>
       <div className="logout-dialog">
-        <div className="close-x" onClick={() => setIsLogoutOpen(false)}>
+        <div className="close-x" onClick={() => setIsLogout(false)}>
           <ion-icon name="close-sharp"></ion-icon>
         </div>
         <h2>Are you sure to log out of this device ?</h2>
@@ -26,7 +26,7 @@ const LogOut = ({ isLogoutOpen, setIsLogoutOpen }) => {
           <b>LOGOUT</b>
         </button>
       </div>
-    )
+    </div>
   );
 };
 
