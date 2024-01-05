@@ -19,7 +19,7 @@ const LogOut = ({ isLogoutOpen, setIsLogoutOpen }) => {
     isLogoutOpen && (
       <div className="logout-dialog">
         <div className="close-x" onClick={() => setIsLogoutOpen(false)}>
-          <ion-icon name="close-circle-sharp"></ion-icon>
+          <ion-icon name="close-sharp"></ion-icon>
         </div>
         <h2>Are you sure to log out of this device ?</h2>
         <button onClick={handleLogout}>

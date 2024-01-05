@@ -30,38 +30,34 @@ function Hero() {
 
   return (
     <div className="hero">
-      <div className="hero-content">
-        <h1 className="welcome">
-          <b>
-            <span>Water </span>
-            Your Way,
-            <br />
-            Anytime!
-          </b>
-        </h1>
-        <p className="tag">
-          {" "}
-          Water Delivered, Life Elevated
-          <br />
-          Get to know the best drinking water dealers near you and have it
-          delivered to your doorsteps!
-        </p>
-        <form className="buttons">
-          <input
-            type="pincode"
-            required
-            value={pincode}
-            placeholder="Enter Pincode"
-            onChange={(e) => setPincode(e.target.value)}
-          ></input>
-          <button className="explore" onClick={exploreShops}>
-            Discover more
-            <div className="forward">
-              <img src={ForwardIcon}></img>
-            </div>
-          </button>
-        </form>
-      </div>
+      <h1 className="welcome">
+        <b>
+          <span>Water </span>
+          Your Way, Anytime!
+        </b>
+      </h1>
+      <p className="tag">
+        {" "}
+        Water Delivered, Life Elevated
+        <br />
+        Get to know the best drinking water dealers near you and have it
+        delivered to your doorsteps!
+      </p>
+      <form className="buttons">
+        <input
+          type="pincode"
+          required
+          value={pincode}
+          placeholder="Enter Pincode"
+          onChange={(e) => setPincode(e.target.value)}
+        ></input>
+        <button className="explore" onClick={exploreShops}>
+          Search by Pincode
+          <div className="forward">
+            <img src={ForwardIcon}></img>
+          </div>
+        </button>
+      </form>
     </div>
   );
 }

@@ -2,22 +2,15 @@
     color:white;
     display:flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     border-radius: 1.2rem;
-    /* height: 60vh; */
     align-items: center;
-    /* border: 2px solid grey; */
-    /* padding: 23px 16px; */
     background-color: #eaeaea;
-    /* box-shadow: 0px 0px 30px 3px gray; */
     transition-duration: 0.2s;
-    /* padding: 0.3rem; */
-    /* height: 50vh; */
     width: 50vh;
 }
 
 .storecard p{
-    margin: 0 !important;
+    margin: 0 ;
 }
 
 .storescard:hover{
@@ -45,12 +38,11 @@
     margin-top: 4%;  */
     padding: 0.5rem;
     padding-top: 0;
-    background-color: black;
+    background-color: #5D677D;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
 .stats-title{
-    font-weight: 400;
     font-size: medium;
     display: flex;
     justify-content: space-between;
@@ -60,25 +52,25 @@
     border-bottom: 1px solid whitesmoke;
 }
 .storecard-ratings{
-    display: flex !important;
-    align-items: center !important;
+    display: flex ;
+    align-items: center ;
     color: whitesmoke;
     background-color: rgb(0, 209, 83);
     padding: 3px 8px;
     border-radius: 12px;
 }
 .storecard-ratings img{
-    padding: 0 !important;
-    width: 16px !important;
-    margin-left: 3px !important;
+    padding: 0 ;
+    width: 16px ;
+    margin-left: 3px ;
 }
 .storecard-ratings p{
-    margin: 0 !important;
+    margin: 0 ;
 }
 
 .marker{
-    display: flex !important;
-    align-items: center !important;
+    display: flex ;
+    align-items: center ;
 }
 
 .location{
@@ -86,5 +78,45 @@
     padding-bottom: 0.5rem;
 }
 .location p{
-    margin: 0 !important;
+    margin: 0 ;
+}
+
+@media screen and (max-width : 450px){
+    .storescard{
+        gap : 0.5rem;
+        padding: 0.5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .img-div{
+       width: 30%;
+       padding: 0;
+    }
+
+    .storecard-image{
+        height: 6rem;
+        width: 6rem;
+    }
+    .stats{
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        height: 6rem;
+    }
+    .stats-title{
+        padding: 0 0 0.5rem 0;
+    }
+    .stats-title h2{
+        font-weight: 200    ;
+    }
+    .storecard-name{
+        font-size: medium;
+    }
+    .storecard-ratings{
+        font-size: small;
+    }
+    .location p{
+        font-size: small;
+    }
 }

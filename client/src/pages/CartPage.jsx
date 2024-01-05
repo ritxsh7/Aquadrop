@@ -20,6 +20,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import OrderSuccessfull from "../components/OrderSuccessfull";
 import Address from "../components/Address";
+import ProtectedPage from "../components/ProtectedPage";
 
 const CartPage = () => {
   //stores
@@ -77,7 +78,7 @@ const CartPage = () => {
   };
 
   return (
-    <>
+    <ProtectedPage>
       <Header />
 
       <div className="cart-page-user">
@@ -159,7 +160,7 @@ const CartPage = () => {
       </div>
       <Footer />
       <OrderSuccessfull success={success} setSuccess={setSuccess} />
-    </>
+    </ProtectedPage>
   );
 };
 

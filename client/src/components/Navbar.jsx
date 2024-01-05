@@ -1,15 +1,17 @@
 //components and styles
+import navItems from "../utils/constants/navItems";
 import "../styles/cartDialog.css";
+import navbar from "../utils/styles/navbar";
 
 //routers and backend
+import { Link } from "react-scroll";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 //states and stores
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LogOut from "./LogOut";
-import { useState } from "react";
-import { loginUser } from "../features/user";
+import { useEffect, useState } from "react";
 
 function Navbar() {
   //====================ROUTING====================================
@@ -18,66 +20,139 @@ function Navbar() {
   const splitLocation = pathname.split("/")[1];
 
   //===================setup userState===========================
-  const { name } = useSelector((store) => store.user);
+  const user = useSelector((store) => store.user);
   const { total } = useSelector((store) => store.cart);
-  const dispatch = useDispatch();
 
   //======================FUNCTIONS=================================
-  //1. LOCAL STORAGE
-  // const { name } = localStorage.getItem("aqua-user");
-
-  // if (userName) {
-  //   dispatch(loginUser({ name: userName }));
-  // }
   const isLogin = localStorage.getItem("isLoggedIn");
 
-  //2. LOGOUT DIALOG
-  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+  //states
+  const [isLogout, setIsLogout] = useState(false);
+  const [isSidebar, setIsSidebar] = useState(window.innerWidth <= 450);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  //==============CLOSING SIDEBAR EVENT LISTENER============
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (isSidebarOpen && !e.target.closest(".sidebar")) {
+        setIsSidebarOpen(!isSidebarOpen);
+        console.log("close now");
+      }
+    };
+
+    if (isSidebarOpen) document.addEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [isSidebarOpen, setIsSidebarOpen]);
+
+  // ==========MOBILE SCCREEN DETECTION====================
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSidebar(window.innerWidth <= 450);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="navbar-const">
+      {/* ===============================NAVBAR FOR WIDE SCREENS===================================== */}
+
       <ul>
-        <li className={splitLocation === "" ? "active" : ""}>
-          <NavLink to="/">Home</NavLink>
-        </li>
+        {isSidebar ? (
+          <div
+            style={navbar.sideIcon}
+            onClick={() =>
+              setTimeout(() => {
+                setIsSidebarOpen(!isSidebarOpen);
+              }, 500)
+            }
+          >
+            <ion-icon name="menu-sharp"></ion-icon>
+          </div>
+        ) : (
+          // ========================NAVBAR ITEMS=========================
 
-        <li>
-          <a href="#footer">Contact</a>
-        </li>
-
-        <li>
-          {isLogin && <NavLink to={`/orders/${name}`}>My orders</NavLink>}
-        </li>
+          <>
+            {navItems.map((item) => {
+              if (isLogin || item.public) {
+                return (
+                  <li>
+                    <NavLink to={item.link(user.name)}>{item.name}</NavLink>
+                  </li>
+                );
+              }
+            })}
+          </>
+        )}
 
         <li id="login-btn">
-          {name ? (
-            <h3>{`H3llo, ${name} !`}</h3>
+          {user ? (
+            <div style={navbar.userIcon}>
+              <ion-icon name="person-sharp"></ion-icon>
+              <h3>{user.name.split(" ")[0]}</h3>
+            </div>
           ) : (
             <NavLink to="/login">Login</NavLink>
           )}
         </li>
-        <li>
-          <NavLink to={name ? `/cart/${name}` : "/login"}>
-            <div className="cart-icon">
-              <div className="cart-icon-badge">{total}</div>
-              <ion-icon name="cart"></ion-icon>
-            </div>
-          </NavLink>
-        </li>
-        <li>
-          {isLogin === "true" && (
-            <div
-              className="logout-btn"
-              onClick={() => {
-                setIsLogoutOpen(true);
-              }}
-            >
-              <ion-icon name="log-out-outline"></ion-icon>
-            </div>
-          )}
-        </li>
+        {isLogin === "true" && (
+          <>
+            <li>
+              <NavLink to={`/cart/${user.name}`}>
+                <div className="cart-icon">
+                  {total !== 0 && (
+                    <div className="cart-icon-badge">{total}</div>
+                  )}
+                  <ion-icon name="cart"></ion-icon>
+                </div>
+              </NavLink>
+            </li>
+            <li>
+              <div
+                className="logout-btn"
+                onClick={() => {
+                  setIsLogout(true);
+                }}
+              >
+                <ion-icon name="log-out-outline"></ion-icon>
+              </div>
+            </li>
+          </>
+        )}
       </ul>
-      <LogOut isLogoutOpen={isLogoutOpen} setIsLogoutOpen={setIsLogoutOpen} />
+      {
+        // ======================================SIDEBAR FOR MOBILE SCREEN=======================
+
+        <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+          <header>
+            {user && (
+              <div style={navbar.sideIconUser}>
+                <ion-icon name="person-sharp"></ion-icon>
+                <h3>{user.name}</h3>
+              </div>
+            )}
+          </header>
+          <ul className="vertical-sidebar">
+            {navItems.map((item) => {
+              if (isLogin || item.public) {
+                return (
+                  <li>
+                    <NavLink to={item.link(user.name)}>{item.name}</NavLink>
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        </aside>
+      }
+      <LogOut isLogout={isLogout} setIsLogout={setIsLogout} />
     </div>
   );
 }

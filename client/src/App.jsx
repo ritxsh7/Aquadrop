@@ -23,28 +23,6 @@ import { loginUser } from "./features/user";
 import Orders from "./pages/Orders";
 
 const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // console.log(user);
-
-    const user = JSON.parse(localStorage.getItem("aqua-user"));
-    if (user) {
-      const { tokenExpire } = user;
-      console.log(tokenExpire - Date.now());
-      if (tokenExpire - Date.now() < 0) {
-        window.localStorage.removeItem("aqua-user");
-        window.localStorage.setItem("isLoggedIn", false);
-        window.location.reload();
-      } else {
-        dispatch(loginUser(user));
-        window.localStorage.setItem("isLoggedIn", "true");
-      }
-    } else {
-      window.localStorage.setItem("isLoggedIn", "false");
-    }
-  }, []);
-
   return (
     <Router>
       <div className="App">

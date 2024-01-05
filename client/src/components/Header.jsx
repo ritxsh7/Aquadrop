@@ -11,7 +11,7 @@ export default function Header() {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      window.scrollY > 0 ? setSticky(true) : setSticky(false);
+      window.scrollY > 50 ? setSticky(true) : setSticky(false);
     });
   }, []);
 
@@ -20,9 +20,7 @@ export default function Header() {
       <Link to="/" style={{ textDecoration: "none", color: "whitesmoke" }}>
         <div className="logo">
           <img src={logo}></img>
-          <h3>
-            Aqua<span>Drop</span>
-          </h3>
+          <h3>AquaDrop</h3>
         </div>
       </Link>
       <Navbar />

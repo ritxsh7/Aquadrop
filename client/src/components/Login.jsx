@@ -41,9 +41,7 @@ export default function Login() {
         email,
         password,
       });
-      // console.log(response?.data?.data);
       const userData = response.data.data;
-      // console.log(userData);
       dispatch(loginUser(userData));
       window.localStorage.setItem("aqua-user", JSON.stringify(userData));
       window.localStorage.setItem("isLoggedIn", "true");
@@ -64,7 +62,7 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (user.name) {
+    if (user?.name) {
       navigate("/");
     }
   }, [user]);

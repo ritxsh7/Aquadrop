@@ -6,7 +6,6 @@ import axios from "axios";
 //components
 import StoresCard from "./StoresCard";
 import Loader from "./Loader";
-import Footer from "./Footer";
 
 export default function Home() {
   const [shops, setShops] = useState([]);
@@ -17,23 +16,20 @@ export default function Home() {
 
   //stores
 
-  const getTopShops = useCallback(async () => {
-    try {
-      const response = await axios.get(`${backendUrl}/get-top-shops`);
-      setShops(response.data.data);
-      // console.log(shops);
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-      setErr(true);
-      setErrMsg(err.message);
-      // console.log(errMsg);
-    }
-  }, [shops]);
-
   useEffect(() => {
+    const getTopShops = async () => {
+      try {
+        const response = await axios.get(`${backendUrl}/get-top-shops`);
+        setShops(response.data.data);
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        setErr(true);
+        setErrMsg(err.message);
+      }
+    };
     getTopShops();
-  }, []);
+  }, [backendUrl]);
 
   const shopList = shops.map((shop) => {
     return (
@@ -60,8 +56,7 @@ export default function Home() {
             water for you.
           </p>
         </div>
-        <div className="horizon"></div>
-        <div className="shop-by-store">{shopList}</div>
+        <article className="shop-by-store">{shopList}</article>
         {err && (
           <p style={{ textAlign: "center", color: "red" }}>
             {errMsg}, check your internet connection

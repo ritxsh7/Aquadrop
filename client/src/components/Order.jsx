@@ -3,8 +3,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 const Order = (props) => {
-  // console.log(props);
-  // console.log(Date.now());
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const { token } = useSelector((store) => store.user);
@@ -28,8 +26,6 @@ const Order = (props) => {
   };
 
   const date = new Date(props.timeD);
-  // console.log(date.toString().slice(4, 16));
-  // console.log(date.toLocaleString().slice(11));
 
   return (
     <div className="order">

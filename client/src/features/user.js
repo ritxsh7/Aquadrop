@@ -1,14 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  login: false,
-  role: "",
-  id: "",
-  name: "",
-  email: "",
-  token: "",
-  address: null,
-};
+//===========token from local storage==============
+const userInfo = JSON.parse(localStorage.getItem("aqua-user"));
+let token;
+if (userInfo) {
+  const { tokenExpire } = userInfo;
+  if (tokenExpire - Date.now() < 0) {
+    window.localStorage.removeItem("aqua-user");
+    window.localStorage.setItem("isLoggedIn", false);
+  } else {
+    token = userInfo.token;
+    window.localStorage.setItem("isLoggedIn", "true");
+  }
+} else {
+  window.localStorage.setItem("isLoggedIn", "false");
+}
+
+const initialState = userInfo || null;
 
 const user = createSlice({
   name: "user",
