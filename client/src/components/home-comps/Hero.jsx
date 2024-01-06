@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 
 //comps
-import ForwardIcon from "../images/forward.png";
-import Steps from "../images/steps.png";
+import ForwardIcon from "../../images/forward.png";
 
 //backend and routes
 import axios from "axios";
 
 function Hero() {
   const [pincode, setPincode] = useState("411018");
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const exploreShops = async (e) => {
     try {
@@ -18,10 +16,6 @@ function Hero() {
         alert("Enter a valid Pin");
         return;
       }
-      // const response = await axios.get(
-      //   `${backendUrl}/nearbyshops/?pin=${pincode}`
-      // );
-      // // console.log(response);
     } catch (err) {
       console.log(err.msg);
     }

@@ -1,20 +1,22 @@
 import React from "react";
-import LoginSticker from "../images/sticker.png";
-import Loader from "./Loader";
-import SmallLoader from "./SmallLoader";
+import LoginSticker from "../../images/sticker.png";
+import Loader from "../general-comps/Loader";
+import SmallLoader from "../general-comps/SmallLoader";
 import { GoogleButton } from "react-google-button";
-import login from "../utils/styles/login";
+import login from "../../utils/styles/login";
 
 //backend and states and stores
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../features/user";
+import { loginUser } from "../../features/user";
 import { NavLink, useNavigate } from "react-router-dom";
 
 //auth
-import { signinWithGoogle } from "../Config/googleAuth";
+import { signinWithGoogle } from "../../config/googleAuth";
+import { demoEmail, demoPass } from "../../utils/constants/demo";
+import { Button } from "@mui/material";
 
 export default function Login() {
   //============================NAVIGATION===========================
@@ -23,6 +25,7 @@ export default function Login() {
   //=================setup store and state==========================
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  console.log(demoEmail, demoPass);
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -30,9 +33,10 @@ export default function Login() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState(false);
   const [errMsg, setErrMsg] = useState("");
+  const [isDemo, setIsDemo] = useState(false);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-  //========================functions==================================
+  //========================FUNCTIONS==================================
 
   //1. LOGIN FUNC
   const handleLogin = async () => {
@@ -62,6 +66,27 @@ export default function Login() {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      const { email, displayName } = await signinWithGoogle();
+      try {
+        const response = await axios.post(`${backendUrl}/user/google-auth/`, {
+          name: displayName,
+          email,
+        });
+        const user = response.data.data;
+        dispatch(loginUser(user));
+        window.localStorage.setItem("aqua-user", JSON.stringify(user));
+        window.localStorage.setItem("isLoggedIn", "true");
+        window.history.back();
+      } catch (err) {
+        console.log(err);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     if (user?.name) {
       navigate("/");
@@ -83,22 +108,20 @@ export default function Login() {
           type="email"
           name="email"
           id="nm"
+          value={email}
           placeholder="Email Id"
           required
           onChange={(e) => setEmail(e.target.value)}
         />
-
         <input
           type="password"
           name="password"
           id="em"
+          value={password}
           placeholder="Password"
           required
           onChange={(e) => setPassword(e.target.value)}
         />
-
-        <input type="button" id="loginup" value="Login" onClick={handleLogin} />
-
         {error && <p style={{ color: "red", textAlign: "center" }}>{errMsg}</p>}
         {success && (
           <p style={{ color: "limegreen", textAlign: "center" }}>
@@ -106,18 +129,20 @@ export default function Login() {
             <SmallLoader loading={loading} />
           </p>
         )}
+        <button
+          value="Login"
+          className="login-btn"
+          disabled={loading}
+          onClick={handleLogin}
+        >
+          Login
+        </button>
 
         <Loader loading={loading} />
-
         <GoogleButton
-          onClick={async () => {
-            const user = await signinWithGoogle();
-            dispatch(loginUser(user));
-            window.localStorage.setItem("aqua-user", JSON.stringify(user));
-            window.localStorage.setItem("isLoggedIn", "true");
-            window.history.back();
-          }}
+          onClick={handleGoogleLogin}
           style={login.signinWithGoogle}
+          disabled={loading}
           className="goole-btn"
         />
         <p className="sign-up" style={{ margin: "1rem 0" }}>
@@ -126,6 +151,22 @@ export default function Login() {
             Sign up
           </NavLink>
         </p>
+        {!isDemo && (
+          <>
+            <h2 style={{ margin: "1rem 0", color: "black" }}>OR</h2>
+            <Button
+              variant="outlined"
+              sx={{ width: "80%" }}
+              onClick={(e) => {
+                setEmail(demoEmail);
+                setPassword(demoPass);
+                setIsDemo(true);
+              }}
+            >
+              Use Demo Account
+            </Button>
+          </>
+        )}
       </form>
     </div>
   );

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserAddress } from "../features/user";
+import { updateUserAddress } from "../../features/user";
 import axios from "axios";
-import SmallLoader from "./SmallLoader";
+import SmallLoader from "../general-comps/SmallLoader";
 
 const Address = () => {
   const [firstLine, setFirstLine] = useState("");
@@ -11,7 +11,6 @@ const Address = () => {
   const [pincode, setPincode] = useState("");
   const [edit, setEdit] = useState(false);
   const [loading, setLoading] = useState(false);
-  //   const [success, setSuccess] = useState("");
   const [err, setErr] = useState("");
 
   //store

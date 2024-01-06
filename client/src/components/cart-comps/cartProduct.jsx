@@ -1,8 +1,7 @@
 import React from "react";
-import productImage from "../images/Products.jpg";
 
 import { useDispatch } from "react-redux";
-import { calculateTotal, removeCart } from "../features/cart";
+import { calculateTotal, removeCart } from "../../features/cart";
 
 const blackColor = {
   color: "black",

@@ -6,7 +6,7 @@ export default [
   },
   {
     name: "Become a seller >",
-    link: (user) => "/seller",
+    link: (user) => "/seller/register",
     public: true,
   },
   {

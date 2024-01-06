@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Order from "../components/Order";
-import Header from "../components/Header";
+import Order from "../components/orders-comps/Order";
 import { NavLink } from "react-router-dom";
 
 //styles
 import "../styles/Orders.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import Loader from "../components/Loader";
-import Footer from "../components/Footer";
+import Loader from "../components/general-comps/Loader";
 import "../styles/Orders.css";
 import emptyCart from "../images/empty.webp";
-import ProtectedPage from "../components/ProtectedPage";
 
 const Orders = () => {
   //states

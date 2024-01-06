@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 //components
 import Navbar from "./Navbar";
-import logo from "../images/logo.png";
+import logo from "../../images/logo.png";
 
 export default function Header() {
   const [sticky, setSticky] = useState(false);

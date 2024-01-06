@@ -1,5 +1,5 @@
 import React from "react";
-import Steps from "../images/steps.png";
+import Steps from "../../images/steps.png";
 
 export default () => {
   return (

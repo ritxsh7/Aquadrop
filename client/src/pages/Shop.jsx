@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header";
 
 //styles
 import "../styles/Shop.css";
-import Loader from "../components/Loader";
-import ratingStar from "../images/ratingStar.png";
-import ProductCard from "../components/ProductCard";
+import Loader from "../components/general-comps/Loader";
+import ratingStar from "./../images/ratingStar.png";
+import ProductCard from "../components/shop-comp/ProductCard";
 
 //routers
 import { useParams } from "react-router-dom";

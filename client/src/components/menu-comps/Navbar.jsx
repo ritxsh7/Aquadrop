@@ -1,10 +1,9 @@
 //components and styles
-import navItems from "../utils/constants/navItems";
-import "../styles/cartDialog.css";
-import navbar from "../utils/styles/navbar";
+import navItems from "../../utils/constants/navItems";
+import "../../styles/cartDialog.css";
+import navbar from "../../utils/styles/navbar";
 
 //routers and backend
-import { Link } from "react-scroll";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 

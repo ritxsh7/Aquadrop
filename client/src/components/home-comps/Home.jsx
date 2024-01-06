@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 //components
-import StoresCard from "./StoresCard";
-import Loader from "./Loader";
+import StoresCard from "../shop-comp/StoresCard";
+import Loader from "../general-comps/Loader";
 
 export default function Home() {
   const [shops, setShops] = useState([]);

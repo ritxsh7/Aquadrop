@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 
 //styles
-import "../styles/ProductCard.css";
-import Loader from "./Loader";
+import "../../styles/ProductCard.css";
 
 //routes
 import { useNavigate } from "react-router-dom";
 
 //store
 import { useDispatch, useSelector } from "react-redux";
-import { calculateTotal, addTocart, removeCart } from "../features/cart";
+import { calculateTotal, addTocart, removeCart } from "../../features/cart";
 
 const ProductCard = ({ _id, name, image, price, description, shopId }) => {
   //setup store

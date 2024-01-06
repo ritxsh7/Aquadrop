@@ -1,15 +1,15 @@
 //styles and comps
-import "../styles/Login.css";
-import Loader from "./Loader";
-import SmallLoader from "./SmallLoader";
-import LoginSticker from "../images/sticker.png";
+import "../../styles/Login.css";
+import Loader from "../general-comps/Loader";
+import SmallLoader from "../general-comps/SmallLoader";
+import LoginSticker from "../../images/sticker.png";
 import { GoogleButton } from "react-google-button";
-import { signinWithGoogle } from "../Config/googleAuth";
+import { signinWithGoogle } from "../../config/googleAuth";
 
 //store and states
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../features/user";
+import { loginUser } from "../../features/user";
 
 //connect backend
 import axios from "axios";
@@ -37,6 +37,7 @@ export default function Signup() {
 
   //signup function
   const handleSignUp = async (e) => {
+    e.preventDefault();
     setLoading(true);
 
     if (isNaN(pincode)) {
@@ -54,7 +55,6 @@ export default function Signup() {
         pincode,
         role: "Customer",
       });
-      // console.log(response);
       setSuccess(response.data.message);
       setTimeout(() => {
         setUserName(user?.name);
@@ -116,14 +116,14 @@ export default function Signup() {
 
         <Loader loading={loading} />
 
-        <input
-          type="button"
-          id="loginup"
-          value="Signup"
-          onClick={() => {
-            handleSignUp();
-          }}
-        />
+        <button
+          value="Sign In"
+          className="login-btn"
+          disabled={loading}
+          onClick={handleSignUp}
+        >
+          Sign In
+        </button>
         {error && <p style={{ color: "red" }}>{errMsg}</p>}
         {success && (
           <p style={{ color: "limegreen", textAlign: "center" }}>

@@ -1,8 +1,8 @@
 //styles
 import { Dialog } from "@mui/material";
-import checkIcon from "../images/checkIcon.png";
-import dialog from "../utils/styles/dialog";
-import "../styles/orderDialog.css";
+import checkIcon from "../../images/checkIcon.png";
+import dialog from "../../utils/styles/dialog";
+import "../../styles/orderDialog.css";
 
 //routing
 import { useNavigate } from "react-router-dom";

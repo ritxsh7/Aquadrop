@@ -548,7 +548,6 @@ body {
 .login-page{
   background: url('../src/images/login-bg.jpg');
   height: 100vh;
-  width: 100vw;
   background-size: cover;
 }
 

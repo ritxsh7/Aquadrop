@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 
 //styles
 import "../styles/CartPage.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import CartProduct from "../components/cartProduct";
+import CartProduct from "../components/cart-comps/cartProduct";
 import emptyCart from "../images/empty.webp";
-import SmallLoader from "../components/SmallLoader";
+import SmallLoader from "../components/general-comps/SmallLoader";
 
 //store
 import { useSelector } from "react-redux/es/hooks/useSelector";
@@ -18,9 +16,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 //backend
 import axios from "axios";
-import OrderSuccessfull from "../components/OrderSuccessfull";
-import Address from "../components/Address";
-import ProtectedPage from "../components/ProtectedPage";
+import OrderSuccessfull from "../components/orders-comps/OrderSuccessfull";
+import Address from "../components/cart-comps/Address";
 
 const CartPage = () => {
   //stores

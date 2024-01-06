@@ -22,16 +22,7 @@ export const signinWithGoogle = async () => {
     // The signed-in user info.
     var { email, displayName } = result.user;
     console.log(email, displayName);
-    try {
-      const response = await axios.post(`${backendUrl}/user/google-auth/`, {
-        name: displayName,
-        email,
-      });
-      const user = response.data.data;
-      return user;
-    } catch (err) {
-      console.log(err);
-    }
+    return { email, displayName };
   } catch (error) {
     console.log(error);
     // Handle Errors here.
