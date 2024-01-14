@@ -1,0 +1,38 @@
+ .signup-form {
+     background-color: #DFEEFF;
+     min-height: 70vh;
+     width: 100vw;
+     max-width: 650px;
+     padding: 20px ;
+     border-radius: 10px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     margin: 0 auto;
+ }
+
+ .signup-form  h2{
+    font-size: large;
+    font-weight: 400;
+ }
+
+ .seller-intro{
+    font-size: small;
+    align-items: left;
+ }
+
+ .shopimg, .seller-icon{
+    height: 4rem;
+    width: 4rem;
+    margin: auto;
+ }
+ .signup-form form{
+    margin: 1rem 0;
+ }
+
+ @media screen and (min-width : 650px){
+   .signup-form{
+      padding: 0;
+   }
+   .seller-icon{
+      margin: 0 auto;
+   }
+ }

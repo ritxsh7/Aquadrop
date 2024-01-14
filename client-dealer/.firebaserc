@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "aquadrop-7f434"
+  },
+  "targets": {
+    "aquadrop-7f434": {
+      "hosting": {
+        "admin": [
+          "dealer-aquadrop"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

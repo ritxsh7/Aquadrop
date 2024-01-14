@@ -70,7 +70,7 @@ function Navbar() {
             onClick={() =>
               setTimeout(() => {
                 setIsSidebarOpen(!isSidebarOpen);
-              }, 500)
+              }, 50)
             }
           >
             <ion-icon name="menu-sharp"></ion-icon>

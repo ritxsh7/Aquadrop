@@ -3,14 +3,20 @@ import { useState } from "react";
 
 //styles
 import { Typography, TextField, Button, Container, Alert } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import "./SellerLogin.css";
 
 //backend
 import axios from "axios";
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-const SellerSignIn = () => {
+//features
+import { useSelector, useDispatch } from "react-redux";
+import { toggleLoading } from "../../redux/features/dealer";
+
+const SellerSignIn = ({ setAuthState }) => {
   //================================STATES AND STORES=================
+
+  const dispatch = useDispatch();
 
   const [alert, setAlert] = useState(false);
   const [errMsg, setErrMsg] = useState("");
@@ -26,12 +32,16 @@ const SellerSignIn = () => {
 
   const handleSellerSignIn = async () => {
     try {
+      dispatch(toggleLoading(true));
       const response = await axios.post(`${backendUrl}/dealer/signup`, details);
-      setAlert(false);
       console.log(response);
+      setAlert(false);
+      dispatch(toggleLoading(false));
+      setAuthState({ view: "login" });
     } catch ({ response }) {
       setAlert(true);
       setErrMsg(response.data.message);
+      dispatch(toggleLoading(false));
     }
   };
 
@@ -108,10 +118,17 @@ const SellerSignIn = () => {
       />
 
       <Typography component="p" align="center">
-        Already registered?{" "}
-        <NavLink to="/seller/login" style={{ color: "dodgerblue" }}>
+        Already registered?
+        <span
+          style={{
+            color: "dodgerblue",
+            textDecoration: "underline",
+            cursor: "pointer",
+          }}
+          onClick={() => setAuthState({ view: "login" })}
+        >
           Login
-        </NavLink>
+        </span>
       </Typography>
       <Button
         sx={{ width: "100%", height: "3rem", margin: "1rem 0" }}

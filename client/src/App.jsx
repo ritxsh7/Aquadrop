@@ -15,7 +15,6 @@ import ProtectedPage from "./components/general-comps/ProtectedPage";
 import Orders from "./pages/Orders";
 import Header from "./components/menu-comps/Header";
 import Footer from "./components/menu-comps/Footer";
-import SellerLogin from "./components/seller-auth-comps/SellerLogin";
 
 const App = () => {
   return (
@@ -27,11 +26,6 @@ const App = () => {
             <Route exact path="/" element={<LandingPage />}></Route>
             <Route exact path="/login" element={<Login />}></Route>
             <Route exact path="/signup" element={<Signup />}></Route>
-            <Route
-              exact
-              path="/seller/register"
-              element={<SellerLogin />}
-            ></Route>
             <Route exact path="/shop/:id" element={<Shop />}></Route>
             <Route
               exact

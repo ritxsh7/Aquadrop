@@ -25,7 +25,6 @@ export default function Login() {
   //=================setup store and state==========================
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  console.log(demoEmail, demoPass);
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");

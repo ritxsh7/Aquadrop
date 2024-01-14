@@ -6,7 +6,7 @@ export default [
   },
   {
     name: "Become a seller >",
-    link: (user) => "/seller/register",
+    link: (user) => "https://dealer-aquadrop.web.app",
     public: true,
   },
   {

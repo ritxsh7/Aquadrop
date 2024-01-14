@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -11,15 +11,16 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    // required: true,
   },
   role: {
     type: String,
     enum: ["Customer", "Dealer", "Admin"],
   },
-  pincode: {
-    type: Number,
-    // required: true,
+  phone: {
+    type: String,
+  },
+  gstID: {
+    type: String,
   },
   address: {
     firstLine: {
@@ -36,6 +37,12 @@ const userSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Order",
+    },
+  ],
+  shops: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Shop",
     },
   ],
 });

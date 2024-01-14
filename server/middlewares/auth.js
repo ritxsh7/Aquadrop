@@ -7,14 +7,10 @@ dotenv.config();
 //========================authentication middleware======================
 export const auth = (req, res, next) => {
   try {
-    //extract from body token
-    // console.log(req.body);
     let token = req.header("Authorization");
-    // console.log(token);
 
     if (token.startsWith("Bearer ")) {
       token = token.split(" ")[1];
-      // console.log(token);
     } else {
       return res.status(400).json({
         message: "Not a bearer token",
@@ -31,7 +27,6 @@ export const auth = (req, res, next) => {
     //verify the jwt token
     try {
       const payload = jwt.verify(token, process.env.JWT_SECRET);
-      // console.log(payload);
 
       //add a new field user in the req body which will be receiver by the controller
       req.body.user = payload;
@@ -56,7 +51,6 @@ export const auth = (req, res, next) => {
 export const isUser = (req, res, next) => {
   try {
     const { user } = req.body;
-    // console.log(user);
     if (user.role !== "Customer") {
       return res.status(400).json({
         success: false,

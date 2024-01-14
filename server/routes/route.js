@@ -1,14 +1,19 @@
 import express from "express";
+
+import { auth, isUser, isDealer } from "../middlewares/auth.js";
+
+//=============imports for user==============================
 import {
   cancelOrder,
   getOrders,
   signinWithGoogle,
   userSignUp,
+  placeOrder,
+  updateAddress,
+  userLogin,
 } from "../controllers/userController.js";
-import { userLogin } from "../controllers/userController.js";
-import { auth, isUser, isDealer } from "../middlewares/auth.js";
-import { placeOrder } from "../controllers/userController.js";
-import { updateAddress } from "../controllers/userController.js";
+
+// =========imports for shops========================
 
 import {
   addShop,
@@ -18,10 +23,14 @@ import {
   addProducts,
 } from "../controllers/shopController.js";
 
-const router = express.Router();
+//=============import for dealer===================-
+import {
+  getDealerInfo,
+  signUpDealer,
+} from "../controllers/sellerController.js";
+import { loginDealer } from "../controllers/sellerController.js";
 
-//=======================MAIN ROUTE====================================
-// router.get("/", auth, userLogin);
+const router = express.Router();
 
 //====================AUTHENTICATION ROUTES=============================
 router.post("/user/signup", userSignUp);
@@ -36,7 +45,9 @@ router.post("/user/google-auth/", signinWithGoogle);
 
 //===========================ROUTES FOR DEALER=========================
 
-router.post("/dealer/signup", userSignUp);
+router.post("/dealer/signup", signUpDealer);
+router.post("/dealer/login", loginDealer);
+router.get("/dealer/info", auth, isDealer, getDealerInfo);
 router.post("/add-shop", addShop);
 
 //========================PRODUCT ROUTES================================

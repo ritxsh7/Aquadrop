@@ -7,8 +7,6 @@ dotenv.config();
 //models
 import User from "../model/User.js";
 import Order from "../model/Order.js";
-import Product from "../model/Product.js";
-import Shop from "../model/Shop.js";
 
 //==============================SIGNUP==================================
 
