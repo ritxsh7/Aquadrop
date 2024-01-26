@@ -29,6 +29,14 @@ import {
   signUpDealer,
 } from "../controllers/sellerController.js";
 import { loginDealer } from "../controllers/sellerController.js";
+import {
+  getThisMonthsEarnings,
+  getThisMonthsOrders,
+} from "../controllers/seller.dashboard.js";
+import {
+  getThisMonthsEarningsNumber,
+  getThisMonthsOrdersNumber,
+} from "../controllers/seller.dashboard.cards.js";
 
 const router = express.Router();
 
@@ -49,6 +57,35 @@ router.post("/dealer/signup", signUpDealer);
 router.post("/dealer/login", loginDealer);
 router.get("/dealer/info", auth, isDealer, getDealerInfo);
 router.post("/add-shop", addShop);
+
+// ======================ROUTES FOR DEALER DASHBOARD FILTERS==================
+router.get(
+  "/dealer/dashboard/get-orders/:id",
+  auth,
+  isDealer,
+  getThisMonthsOrders
+);
+
+router.get(
+  "/dealer/dashboard/get-earnings/:id",
+  auth,
+  isDealer,
+  getThisMonthsEarnings
+);
+
+router.get(
+  "/dealer/dashboard/get-orders-numbers/:id",
+  auth,
+  isDealer,
+  getThisMonthsOrdersNumber
+);
+
+router.get(
+  "/dealer/dashboard/get-earnings-numbers/:id",
+  auth,
+  isDealer,
+  getThisMonthsEarningsNumber
+);
 
 //========================PRODUCT ROUTES================================
 router.get("/get-top-shops", getTopShops);

@@ -87,14 +87,14 @@ export const loginDealer = async (req, res) => {
 
       //create a jwt token
       const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: "2m",
+        expiresIn: "30d",
       });
       return res.status(200).json({
         data: {
           name: checkUser.name,
           phone: checkUser.phone,
           role: checkUser.role,
-          tokenExpire: Date.now() + 2 * 60 * 1000,
+          tokenExpire: Date.now() + 30 * 24 * 60 * 60 * 1000,
         },
         token: jwtToken,
         message: "Login successful",

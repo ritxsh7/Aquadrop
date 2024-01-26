@@ -44,7 +44,6 @@ const Address = () => {
       );
       console.log(response.data);
       const newAddress = response?.data?.address;
-      //   setAddress(response?.data?.address);
       dispatch(updateUserAddress(newAddress));
       const newUser = { email, name, role, token, address: newAddress };
       window.localStorage.setItem("aqua-user", JSON.stringify(newUser));
@@ -84,7 +83,7 @@ const Address = () => {
             margin: "0.4rem 0",
           }}
         >
-          {JSON.stringify(address) !== "{}" ? (
+          {address ? (
             <p>
               {`${address.firstLine}, ${address.locality}, Pimpri, Pune - `}
               <b>{address.pincode}</b>
@@ -98,10 +97,17 @@ const Address = () => {
       {edit ? (
         <>
           {err && <p style={{ color: "tomato" }}>{err}</p>}
-
-          <button className="change-address" onClick={updateAddress}>
-            Update Changes
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <span
+              style={{ fontSize: "1.5rem", cursor: "pointer" }}
+              onClick={() => setEdit(false)}
+            >
+              <ion-icon name="arrow-back-sharp"></ion-icon>
+            </span>
+            <button className="change-address" onClick={updateAddress}>
+              Update Changes
+            </button>
+          </div>
         </>
       ) : (
         <div

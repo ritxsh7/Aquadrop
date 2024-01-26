@@ -4,9 +4,6 @@ import ratingStar from "../../images/ratingStar.png";
 // style
 import "../../styles/StoresCard.css";
 
-//images
-import locationIcon from "../../images/locationIcon.png";
-
 export default function StoresCard(props) {
   return (
     <div className="storescard">

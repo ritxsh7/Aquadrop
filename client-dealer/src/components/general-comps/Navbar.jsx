@@ -58,34 +58,36 @@ export default function MenuAppBar() {
           <Sidebar open={open} toggleSidebar={toggleSideBar} />
 
           {/* ========================NAVBAR FOR MEDIUM SCREENS======================== */}
-          <List sx={{ display: { xs: "none", md: "flex" }, ml: "auto" }}>
-            {menuConfigs.map((item, index) => (
-              <ListItemButton component={NavLink} to={item.path} key={index}>
-                <ListItemText sx={{ width: "max-content" }}>
-                  {item.display}
-                </ListItemText>
-              </ListItemButton>
-            ))}
-          </List>
+          <Stack direction="row" sx={{ ml: "auto", alignItems: "center" }}>
+            <List sx={{ display: { xs: "none", md: "flex" } }}>
+              {menuConfigs.map((item, index) => (
+                <ListItemButton component={NavLink} to={item.path} key={index}>
+                  <ListItemText sx={{ width: "max-content" }}>
+                    {item.display}
+                  </ListItemText>
+                </ListItemButton>
+              ))}
+            </List>
 
-          {auth.dealer ? (
-            <Button variant="contained" sx={{ ml: "auto" }}>
-              {auth.dealer.name.split(" ")[0]}
-            </Button>
-          ) : (
-            <Button
-              variant="outlined"
-              component={NavLink}
-              to="/dealer/register"
-              sx={{
-                backgroundColor: "white",
-                ml: "auto",
-                ":hover": { backgroundColor: "white", color: "#4b4b4b" },
-              }}
-            >
-              Login
-            </Button>
-          )}
+            {auth.dealer ? (
+              <Button variant="contained">
+                {auth.dealer.name.split(" ")[0]}
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                component={NavLink}
+                to="/dealer/register"
+                sx={{
+                  backgroundColor: "white",
+                  height: "3rem",
+                  ":hover": { backgroundColor: "white", color: "#4b4b4b" },
+                }}
+              >
+                Login
+              </Button>
+            )}
+          </Stack>
         </Toolbar>
       </AppBar>
     </Box>

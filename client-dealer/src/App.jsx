@@ -1,45 +1,42 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./utils/theme/theme";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   logoutDealer,
   saveDealer,
   toggleLoading,
 } from "./redux/features/dealer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 //========================PAGES======================
 import Register from "./views/Register";
 import Navbar from "./components/general-comps/Navbar";
 import Dashboard from "./views/Dashboard";
 import Loader from "./components/general-comps/Loader";
+import dashboard from "./api/modules/dashboard";
 
 function App() {
   //store setup
   const auth = useSelector((store) => store.dealer);
   const dispatch = useDispatch();
+  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     const getDealerInfo = async () => {
       dispatch(toggleLoading(true));
-      try {
-        const dealerInfo = await axios.get(
-          "http://localhost:8080/api/v1/dealer/info",
-          {
-            headers: {
-              Authorization: `Bearer ${auth.token}`,
-            },
-          }
-        );
-        dispatch(saveDealer(dealerInfo.data));
-        dispatch(toggleLoading(false));
-      } catch (err) {
+
+      const { response, err } = await dashboard.getDealerInfo();
+      if (response) {
+        setIsLogin(true);
+        dispatch(saveDealer(response));
+      }
+      if (err) {
         console.log(err);
         dispatch(logoutDealer());
-        dispatch(toggleLoading(false));
+        setIsLogin(false);
       }
+      dispatch(toggleLoading(false));
     };
     getDealerInfo();
   }, [dispatch]);

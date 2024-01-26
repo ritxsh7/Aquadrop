@@ -1,7 +1,8 @@
 .shop-page{
     width: 90vw;
-    max-width: 750px;
+    max-width: 900px;
     margin: 3rem auto;
+    min-height: 100vh;
 }
 
 .shop-banner{

@@ -10,4 +10,7 @@ export const theme = createTheme({
       contrastText: "#4b4b4b",
     },
   },
+  typography: {
+    fontFamily: "Bricolage Grotesque",
+  },
 });

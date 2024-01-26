@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, TextField, Button, Typography, Alert } from "@mui/material";
 
 //stores
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginDealer, toggleLoading } from "../../redux/features/dealer";
 
 //backend
@@ -31,9 +31,9 @@ const Login = ({ setAuthState }) => {
       setErr(false);
       setSuccess(true);
       setTimeout(() => {
+        dispatch(toggleLoading(false));
         navigate("/");
         window.location.reload();
-        dispatch(toggleLoading(false));
       }, 2000);
     } catch (err) {
       setErr(true);

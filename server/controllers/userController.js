@@ -7,6 +7,7 @@ dotenv.config();
 //models
 import User from "../model/User.js";
 import Order from "../model/Order.js";
+import mongoose from "mongoose";
 
 //==============================SIGNUP==================================
 
@@ -125,13 +126,11 @@ export const placeOrder = async (req, res) => {
   try {
     const { order } = req.body;
     const { user } = req.body;
-    console.log(order);
-    // console.log(user);
 
     //create cartItems accroding to the schema of Order.items[]
     const cartItems = order.items.map((item) => {
       return {
-        shopId: item.shopId,
+        shopId: new mongoose.Types.ObjectId(item.shopId),
         productId: item.id,
         quantity: item.qty,
         price: item.mrp,
@@ -160,8 +159,6 @@ export const placeOrder = async (req, res) => {
       )
         .populate("orders")
         .exec();
-      // console.log(newPlacedOrder);
-      // console.log(checkUser);
       if (!checkUser) {
         return res.status(400).json({
           success: false,
