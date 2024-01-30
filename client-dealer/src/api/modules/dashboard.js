@@ -1,4 +1,4 @@
-import dealerApi from "..";
+import { dealerApi } from "..";
 
 const dashboardEndpoints = {
   dealerInfo: "/dealer/info",
@@ -6,6 +6,10 @@ const dashboardEndpoints = {
   recentEarnings: (id) => `/dealer/dashboard/get-earnings/${id}`,
   orderNumbers: (id) => `/dealer/dashboard/get-orders-numbers/${id}`,
   earningsNumbers: (id) => `/dealer/dashboard/get-earnings-numbers/${id}`,
+  customersNumbers: (id) => `/dealer/dashboard/get-customers-number/${id}`,
+  productsNumbers: (id) => `/dealer/dashboard/get-products-number/${id}`,
+  getAllOrders: (id, page) => `/dealer/get-all-orders/${id}?page=${page}`,
+  approveOrder: (id) => `/dealer/approve-order/${id}`,
 };
 
 export default {
@@ -52,6 +56,48 @@ export default {
       const response = await dealerApi.get(
         dashboardEndpoints.earningsNumbers(id)
       );
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+
+  getCustomersNumbers: async (id) => {
+    try {
+      const response = await dealerApi.get(
+        dashboardEndpoints.customersNumbers(id)
+      );
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+
+  getProductsNumbers: async (id) => {
+    try {
+      const response = await dealerApi.get(
+        dashboardEndpoints.customersNumbers(id)
+      );
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+
+  getAllOrders: async (id, page) => {
+    try {
+      const response = await dealerApi.get(
+        dashboardEndpoints.getAllOrders(id, page)
+      );
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+
+  approveOrder: async (id) => {
+    try {
+      const response = await dealerApi.put(dashboardEndpoints.approveOrder(id));
       return { response };
     } catch (err) {
       return { err };

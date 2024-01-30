@@ -28,12 +28,18 @@ import {
   getDealerInfo,
   signUpDealer,
 } from "../controllers/sellerController.js";
+
 import { loginDealer } from "../controllers/sellerController.js";
+
 import {
+  approveOrder,
+  getAllOrders,
   getThisMonthsEarnings,
   getThisMonthsOrders,
 } from "../controllers/seller.dashboard.js";
+
 import {
+  getThisMonthsCustomer,
   getThisMonthsEarningsNumber,
   getThisMonthsOrdersNumber,
 } from "../controllers/seller.dashboard.cards.js";
@@ -66,6 +72,10 @@ router.get(
   getThisMonthsOrders
 );
 
+router.get("/dealer/get-all-orders/:id", getAllOrders);
+
+router.put("/dealer/approve-order/:id", approveOrder);
+
 router.get(
   "/dealer/dashboard/get-earnings/:id",
   auth,
@@ -85,6 +95,20 @@ router.get(
   auth,
   isDealer,
   getThisMonthsEarningsNumber
+);
+
+router.get(
+  "/dealer/dashboard/get-customers-number/:id",
+  auth,
+  isDealer,
+  getThisMonthsCustomer
+);
+
+router.get(
+  '/"/dealer/dashboard/get-products-number/:id',
+  auth,
+  isDealer,
+  getThisMonthsCustomer
 );
 
 //========================PRODUCT ROUTES================================

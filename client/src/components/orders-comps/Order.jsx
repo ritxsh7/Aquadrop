@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const Order = (props) => {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const { token } = useSelector((store) => store.user);
-
+  console.log(props);
   //states
   const orderItems = props.name;
   const [fullList, setFullList] = useState(false);
@@ -65,7 +65,7 @@ const Order = (props) => {
         )}
       </div>
       <p className="price">₹ {props.price}</p>
-      {Date.now() > props.timeD ? (
+      {props.timeD ? (
         <div className="timestamp">
           {date.toString().slice(4, 16)}
           <br />

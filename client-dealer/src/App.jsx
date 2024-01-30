@@ -15,12 +15,12 @@ import Navbar from "./components/general-comps/Navbar";
 import Dashboard from "./views/Dashboard";
 import Loader from "./components/general-comps/Loader";
 import dashboard from "./api/modules/dashboard";
+import AddShop from "./views/AddShop";
 
 function App() {
   //store setup
-  const auth = useSelector((store) => store.dealer);
+  const dealer = useSelector((store) => store.dealer);
   const dispatch = useDispatch();
-  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     const getDealerInfo = async () => {
@@ -28,13 +28,10 @@ function App() {
 
       const { response, err } = await dashboard.getDealerInfo();
       if (response) {
-        setIsLogin(true);
         dispatch(saveDealer(response));
       }
       if (err) {
-        console.log(err);
         dispatch(logoutDealer());
-        setIsLogin(false);
       }
       dispatch(toggleLoading(false));
     };
@@ -48,9 +45,23 @@ function App() {
           <Navbar />
           <Routes>
             <Route exact path="/dealer/register" element={<Register />}></Route>
-            <Route exact path="/" element={<Dashboard />}></Route>
+            <Route
+              exact
+              path="/"
+              element={dealer.login && <Dashboard />}
+            ></Route>
+            <Route
+              exact
+              path="/dealer/register-shop/"
+              element={<AddShop />}
+            ></Route>
+            <Route
+              exact
+              path="/dealer/register-shop/register/:id"
+              element={<AddShop />}
+            ></Route>
           </Routes>
-          <Loader loading={auth.loading} />
+          <Loader loading={dealer.loading} />
         </>
       </ThemeProvider>
     </Router>

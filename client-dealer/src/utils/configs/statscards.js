@@ -11,18 +11,19 @@ export default [
     getInfo: async (id) => await dashboard.getOrdersNumbers(id),
   },
   {
-    display: "Earning (₹)",
+    display: "Earnings (₹)",
     icon: earnings,
+    prefix: "₹",
     getInfo: async (id) => await dashboard.getEarningsNumbers(id),
-  },
-  {
-    display: "Products",
-    icon: products,
-    getInfo: () => {},
   },
   {
     display: "Customers",
     icon: customers,
-    getInfo: () => {},
+    getInfo: async (id) => await dashboard.getCustomersNumbers(id),
+  },
+  {
+    display: "Products",
+    icon: products,
+    getInfo: async (id) => await dashboard.getProductsNumbers(id),
   },
 ];

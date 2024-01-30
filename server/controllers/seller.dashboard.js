@@ -74,3 +74,41 @@ export const getThisMonthsEarnings = async (req, res) => {
     return res.json({ message: "Can't get earnings" + err.message });
   }
 };
+
+export const getAllOrders = async (req, res) => {
+  const { id } = req.params;
+  const { page } = req.query;
+
+  const skip = (page - 1) * 4;
+  try {
+    const count = await Order.find({ "items.shopId": id }).count();
+
+    const orders = await Order.find({ "items.shopId": id })
+      .skip(skip)
+      .limit(4)
+      .sort({ timePlaced: -1 })
+      .populate("userId", "name email address")
+      .exec();
+    res.status(200).json({
+      orders,
+      count,
+    });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+export const approveOrder = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const order = await Order.findByIdAndUpdate(id, {
+      status: true,
+      timeDelivered: Date.now(),
+    });
+    res.status(200).json({
+      order,
+    });
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+};

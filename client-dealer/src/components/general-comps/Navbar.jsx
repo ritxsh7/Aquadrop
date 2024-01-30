@@ -80,7 +80,7 @@ export default function MenuAppBar() {
                 to="/dealer/register"
                 sx={{
                   backgroundColor: "white",
-                  height: "3rem",
+                  height: "2.5rem",
                   ":hover": { backgroundColor: "white", color: "#4b4b4b" },
                 }}
               >

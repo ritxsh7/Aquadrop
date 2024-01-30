@@ -231,8 +231,7 @@ export const getOrders = async (req, res) => {
           image: order.items[0].productId.image,
           name: order.items.map((item) => item.productId.name),
           timeP: order.timePlaced.getTime(),
-          dateP: order.timePlaced,
-          timeD: order.timePlaced.getTime() + 2 * 60 * 60 * 1000,
+          timeD: order.timeDelivered,
           price: order.totalAmount,
         };
       });

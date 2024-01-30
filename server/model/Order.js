@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const orderSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "user",
     required: true,
   },
   items: [
@@ -29,6 +29,14 @@ const orderSchema = new mongoose.Schema({
     default: Date.now(),
   },
   timeDelivered: Date,
+  totalEarings: {
+    type: Number,
+    default: 0,
+  },
+  status: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export default mongoose.model("Order", orderSchema);
