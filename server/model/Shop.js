@@ -6,17 +6,13 @@ const shopSchema = new mongoose.Schema({
     ref: "user",
     required: true,
   },
-  enrollId: {
-    type: Number,
-    require: true,
-  },
   name: {
     type: String,
     required: true,
   },
-  date: {
+  GST_ID: {
     type: String,
-    default: Date.now(),
+    required: true,
   },
   image: {
     type: String,
@@ -47,19 +43,17 @@ const shopSchema = new mongoose.Schema({
     required: true,
   },
   address: {
-    shop: {
-      No: {
-        type: Number,
-      },
-      building: {
-        type: String,
-      },
-    },
-    street: {
+    line1: {
       type: String,
+      required: true,
     },
-    area: {
+    line2: {
       type: String,
+      required: true,
+    },
+    locality: {
+      type: String,
+      required: true,
     },
     city: {
       type: String,
@@ -68,10 +62,6 @@ const shopSchema = new mongoose.Schema({
     state: {
       type: String,
       default: "Maharashtra",
-    },
-    country: {
-      type: String,
-      default: "India",
     },
   },
 });

@@ -6,6 +6,8 @@ import OrdersChart from "../components/dashboard-comps/OrdersChart";
 import EarningsChart from "../components/dashboard-comps/EarningsChart";
 import HeaderText from "../components/dashboard-comps/HeaderText";
 import Transactions from "../components/dashboard-comps/Transactions";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   // ==============================STATES AND STORES===========================

@@ -10,10 +10,11 @@ import cloudinary from "cloudinary";
 export const addShop = async (req, res) => {
   try {
     //extract
-    const { owner, enrollId, name, address, pincode } = req.body;
+    const { id } = req.params;
+    const { name, address, pincode, img, GST_ID } = req.body;
 
     //already exists
-    const checkShop = await Shop.findOne({ enrollId }).populate("owner").exec();
+    const checkShop = await Shop.findOne({ GST_ID }).populate("owner").exec();
     if (checkShop) {
       return res.status(400).json({
         success: false,
@@ -24,12 +25,14 @@ export const addShop = async (req, res) => {
 
     //save to db
     const shop = new Shop({
-      owner,
-      enrollId,
+      owner: id,
+      GST_ID,
       name,
       address,
       pincode,
+      img,
     });
+
     const newShop = await shop.save();
 
     //success

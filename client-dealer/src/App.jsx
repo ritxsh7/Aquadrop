@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./utils/theme/theme";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +36,7 @@ function App() {
         dispatch(saveDealer(response));
       }
       if (err) {
+        console.log(err);
         dispatch(logoutDealer());
       }
       dispatch(toggleLoading(false));
@@ -44,11 +50,23 @@ function App() {
         <>
           <Navbar />
           <Routes>
-            <Route exact path="/dealer/register" element={<Register />}></Route>
+            <Route
+              exact
+              path="/dealer/register"
+              element={
+                dealer.login ? <Navigate replace to="/" /> : <Register />
+              }
+            ></Route>
             <Route
               exact
               path="/"
-              element={dealer.login && <Dashboard />}
+              element={
+                dealer.login ? (
+                  <Dashboard />
+                ) : (
+                  <Navigate replace to="/dealer/register" />
+                )
+              }
             ></Route>
             <Route
               exact

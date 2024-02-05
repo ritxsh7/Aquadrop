@@ -6,9 +6,8 @@ import { useDispatch } from "react-redux";
 import { loginDealer, toggleLoading } from "../../redux/features/dealer";
 
 //backend
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+import { authApi } from "../../api/modules/auth";
 
 const Login = ({ setAuthState }) => {
   const dispatch = useDispatch();
@@ -24,20 +23,22 @@ const Login = ({ setAuthState }) => {
   const [success, setSuccess] = useState(false);
 
   const handleSellerLogin = async () => {
-    try {
-      dispatch(toggleLoading(true));
-      const response = await axios.post(`${backendUrl}/dealer/login`, details);
-      dispatch(loginDealer(response.data));
+    dispatch(toggleLoading(true));
+    const { response, err } = await authApi.login(details);
+    console.log(response);
+    if (response) {
+      dispatch(loginDealer(response));
       setErr(false);
       setSuccess(true);
       setTimeout(() => {
-        dispatch(toggleLoading(false));
         navigate("/");
-        window.location.reload();
+        dispatch(toggleLoading(false));
       }, 2000);
-    } catch (err) {
+    }
+    if (err) {
+      console.log(err);
       setErr(true);
-      setErrMsg(err.response.data.message);
+      setErrMsg(err.message);
       dispatch(toggleLoading(false));
     }
   };

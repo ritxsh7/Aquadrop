@@ -1,4 +1,4 @@
-import { dealerApi } from "..";
+import { dealerApi } from "../dealer-api";
 
 const dashboardEndpoints = {
   dealerInfo: "/dealer/info",

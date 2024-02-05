@@ -16,7 +16,8 @@ const dealer = createSlice({
       state.login = true;
     },
     loginDealer: (state, action) => {
-      state.token = action.payload.token;
+      state.dealer = action.payload.data;
+      state.login = true;
       localStorage.setItem("aqua-dealer-tkn", action.payload.token);
     },
     logoutDealer: (state, action) => {

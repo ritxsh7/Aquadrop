@@ -14,7 +14,7 @@ import { dealerShop } from "../../api/modules/shop";
 import { useDispatch } from "react-redux";
 import { toggleLoading } from "../../redux/features/dealer";
 
-const Name = ({ shop, setShop }) => {
+const Name = ({ shop, setShop, isErr, setErr, setIsErr }) => {
   const [next, setNext] = useState(false);
   const [areas, setAreas] = useState(null);
   const dispatch = useDispatch();
@@ -23,15 +23,28 @@ const Name = ({ shop, setShop }) => {
     dispatch(toggleLoading(true));
     const { response, err } = await dealerShop.getPincode(pincode);
     if (response) {
+      setIsErr(false);
       setAreas(response[0].PostOffice);
+      setNext(true);
     }
-    if (err) console.log(err);
+    if (err) {
+      setIsErr(true);
+      setErr(err);
+    }
     dispatch(toggleLoading(false));
-    setNext(true);
   };
 
-  const handleChange = (e) => {
-    setShop({ ...shop, locality: e.target.value });
+  const handleChange = async (e) => {
+    const name = e.target.value;
+    const details = await areas.filter((area) => area.Name === name);
+    setShop({
+      ...shop,
+      address: {
+        city: details[0].Block,
+        state: details[0].State,
+        locality: name,
+      },
+    });
   };
 
   return (
@@ -91,12 +104,14 @@ const Name = ({ shop, setShop }) => {
             <Select
               placeholder="Locality"
               sx={{ my: "1rem" }}
-              value={shop.locality}
+              value={shop.address.locality}
               label="Locality"
               onChange={handleChange}
             >
-              {areas.map((area) => (
-                <MenuItem value={area.Name}>{area.Name}</MenuItem>
+              {areas.map((area, i) => (
+                <MenuItem value={area.Name} key={i}>
+                  {area.Name}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -105,7 +120,9 @@ const Name = ({ shop, setShop }) => {
             fullWidth
             component={NavLink}
             to="/dealer/register-shop/register/2"
-            disabled={shop.name && shop.pincode && shop.locality ? false : true}
+            disabled={
+              shop.name && shop.pincode && shop.address.locality ? false : true
+            }
             sx={{ backgroundColor: "#000", my: "1rem" }}
           >
             Next

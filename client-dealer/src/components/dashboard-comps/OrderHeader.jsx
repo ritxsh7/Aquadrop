@@ -4,7 +4,13 @@ import React from "react";
 const OrderHeader = () => {
   return (
     <Paper>
-      <Stack direction="row" p="1rem" bgcolor="#202124" color="#fff">
+      <Stack
+        direction="row"
+        p="1rem"
+        bgcolor="#202124"
+        color="#fff"
+        minWidth="650px"
+      >
         <Typography variant="h6" fontSize="1rem" width="10%">
           Order ID
         </Typography>

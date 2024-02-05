@@ -42,17 +42,24 @@ const InvoiceList = () => {
       <HeaderText bg="dodgerblue" text="#fff">
         Recent transactions
       </HeaderText>
-      <OrderHeader />
-      <Stack>
-        {invoices?.map((item) => (
-          <Order {...item} key={item._id} />
-        ))}
-      </Stack>
+      <Box sx={{ overflowX: "scroll" }}>
+        <OrderHeader />
+        <Stack className="dashboard-transactions">
+          {invoices?.map((item) => (
+            <Order {...item} key={item._id} />
+          ))}
+        </Stack>
+      </Box>
       <Paper width="100%">
         <Pagination
           count={count}
           color="primary"
-          sx={{ p: "1rem", ml: "50%" }}
+          sx={{
+            p: "1rem",
+            "& .MuiPagination-ul": {
+              justifyContent: "center",
+            },
+          }}
           onChange={handleChange}
         />
       </Paper>

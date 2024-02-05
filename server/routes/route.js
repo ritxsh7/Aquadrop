@@ -62,7 +62,7 @@ router.post("/user/google-auth/", signinWithGoogle);
 router.post("/dealer/signup", signUpDealer);
 router.post("/dealer/login", loginDealer);
 router.get("/dealer/info", auth, isDealer, getDealerInfo);
-router.post("/add-shop", addShop);
+router.post("/dealer/add-shop/:id", addShop);
 
 // ======================ROUTES FOR DEALER DASHBOARD FILTERS==================
 router.get(

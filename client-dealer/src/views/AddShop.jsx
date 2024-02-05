@@ -20,7 +20,7 @@ const AddShop = () => {
         alignItems="center"
       >
         <LeftBanner />
-        {id ? <ShopForm id={id} /> : <RightBanner />}
+        <Box>{id ? <ShopForm id={id} /> : <RightBanner />} </Box>
       </Stack>
     </Box>
   );

@@ -27,6 +27,15 @@
   background-color: rgb(223, 238, 255,0.75);
 }
 
+
+.shop-form::-webkit-scrollbar{
+  width: 0;
+}
+
+.dashboard-transactions{
+  min-width: 650px;
+}
+
 @media screen and (min-width : 650px) {
   .banner-left{
     width : auto;

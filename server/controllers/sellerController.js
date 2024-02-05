@@ -105,7 +105,8 @@ export const loginDealer = async (req, res) => {
       });
     }
   } catch (err) {
-    res.status.json({ message: "Error while logging in" + err.message });
+    res.status(400).json({ message: "Error while logging in" + err.message });
+    console.log(err.message);
   }
 };
 
@@ -116,5 +117,15 @@ export const getDealerInfo = async (req, res) => {
     return res.status(200).json(user);
   } catch (err) {
     return res.status(400).send("Invalid user");
+  }
+};
+
+export const saveShop = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, img, address, pincode } = req.body;
+    console.log(name, img, address, pincode, id);
+  } catch (err) {
+    res.status(400).send(err.message);
   }
 };
