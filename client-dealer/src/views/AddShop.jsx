@@ -20,7 +20,9 @@ const AddShop = () => {
         alignItems="center"
       >
         <LeftBanner />
-        <Box>{id ? <ShopForm id={id} /> : <RightBanner />} </Box>
+        <Box overflowY={{ md: "scroll" }}>
+          {id ? <ShopForm id={id} /> : <RightBanner />}{" "}
+        </Box>
       </Stack>
     </Box>
   );

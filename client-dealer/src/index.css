@@ -38,7 +38,6 @@
 
 @media screen and (min-width : 650px) {
   .banner-left{
-    width : auto;
     height: inherit;
   }
 }

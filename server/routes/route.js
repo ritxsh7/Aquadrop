@@ -1,4 +1,5 @@
 import express from "express";
+import { upload } from "../configs/multer.js";
 
 import { auth, isUser, isDealer } from "../middlewares/auth.js";
 
@@ -14,7 +15,6 @@ import {
 } from "../controllers/userController.js";
 
 // =========imports for shops========================
-
 import {
   addShop,
   getTopShops,
@@ -28,7 +28,6 @@ import {
   getDealerInfo,
   signUpDealer,
 } from "../controllers/sellerController.js";
-
 import { loginDealer } from "../controllers/sellerController.js";
 
 import {
@@ -62,7 +61,13 @@ router.post("/user/google-auth/", signinWithGoogle);
 router.post("/dealer/signup", signUpDealer);
 router.post("/dealer/login", loginDealer);
 router.get("/dealer/info", auth, isDealer, getDealerInfo);
-router.post("/dealer/add-shop/:id", addShop);
+router.post(
+  "/dealer/add-shop/:id",
+  // auth,
+  // isDealer,
+  upload.single("shop-images"),
+  addShop
+);
 
 // ======================ROUTES FOR DEALER DASHBOARD FILTERS==================
 router.get(

@@ -21,7 +21,7 @@ const LeftBanner = () => {
         my={{ xs: "0.6rem", md: "1.5rem" }}
         gap="1rem"
         alignItems="center"
-        justifyContent="center"
+        justifyContent={{ xs: "center", md: "left" }}
       >
         <Box
           component="img"

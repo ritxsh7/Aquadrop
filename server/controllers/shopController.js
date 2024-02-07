@@ -11,26 +11,33 @@ export const addShop = async (req, res) => {
   try {
     //extract
     const { id } = req.params;
-    const { name, address, pincode, img, GST_ID } = req.body;
+    const { name, address, pincode, GST_ID } = req.body;
 
-    //already exists
+    // already exists
     const checkShop = await Shop.findOne({ GST_ID }).populate("owner").exec();
     if (checkShop) {
       return res.status(400).json({
         success: false,
-        data: checkShop,
         message: "Shop Already exists!",
       });
     }
 
-    //save to db
+    const { result, error } = await uploadImages(req.file.path, name);
+    if (result) {
+      console.log(result);
+    }
+    if (error) {
+      console.log(error);
+    }
+
+    // save to db
     const shop = new Shop({
       owner: id,
       GST_ID,
       name,
       address,
       pincode,
-      img,
+      img: result,
     });
 
     const newShop = await shop.save();
@@ -108,14 +115,16 @@ export const getShopDetails = async (req, res) => {
 };
 
 //=================================UPLOAD IMAGES====================
-export const uploadImages = (url) => {
-  cloudinary.v2.uploader.upload(
-    url,
-    { public_id: "olympic_flag" },
-    function (error, result) {
-      console.log(result);
-    }
-  );
+const uploadImages = async (url, id) => {
+  try {
+    const result = await cloudinary.v2.uploader.upload(url, {
+      public_id: id,
+      folder: "Aquadrop/shop-images/",
+    });
+    return { result: result.secure_url };
+  } catch (error) {
+    return { error };
+  }
 };
 
 //========================================ADD PRODUCTS IN THE SHOP====================

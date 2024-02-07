@@ -1,4 +1,4 @@
-import { Alert, Stack } from "@mui/material";
+import { Alert, Stack, Box } from "@mui/material";
 import React, { useState } from "react";
 import SellerSteps from "../seller-auth-comps/SellerSteps";
 import Name from "./Name";
@@ -29,14 +29,14 @@ const ShopForm = ({ id }) => {
     <Stack
       alignItems="center"
       textAlign="center"
-      width={{ md: "70vw" }}
-      height="100%"
+      width={{ xs: "100vw", md: "60vw" }}
       my="auto"
       bgcolor="#DFEEFF"
       letterSpacing="normal"
       p="1rem 0"
       className="shop-form"
-      sx={{ overflowY: "scroll" }}
+      height="95vh"
+      maxHeight="95vh"
     >
       <SellerSteps activeStep={1} />
       <Elem
