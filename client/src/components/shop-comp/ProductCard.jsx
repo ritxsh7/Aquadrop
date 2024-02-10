@@ -50,7 +50,6 @@ const ProductCard = ({ _id, name, image, price, description, shopId }) => {
 
   return (
     <div className="product-card">
-      {/* <Loader loading={loading} /> */}
       <div className="left">
         <h1>{name}</h1>
         <p>₹ {price}</p>
@@ -59,7 +58,7 @@ const ProductCard = ({ _id, name, image, price, description, shopId }) => {
           <button
             className="add-to-cart"
             style={{
-              backgroundColor: `${added ? "#B0495A" : "#009ED1"}`,
+              backgroundColor: `${added ? "#B0495A" : "#0195FF"}`,
             }}
             onClick={added ? removeFromCart : addToCart}
           >

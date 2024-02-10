@@ -15,7 +15,10 @@ body,html {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Bricolage Grotesque' !important;
 }
-
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
 
 .App{
   width: 100%;
@@ -142,7 +145,6 @@ body,html {
 }
 .navbar-const > ul > li img{
   width: 28px;
-  /* margin-left: 18px; */
   transition: 0.3s;
   margin-right: 5px;
 }
@@ -266,22 +268,26 @@ body,html {
   z-index: 1000;
   position: fixed;
   top: 0;
-  left: -200px;
-  width: 200px;
-  height: 100%;
-  background-color: #cde5fd;
+  left: -100vw;
+  width: 100vw;
+  height: 100vh;
   color: white;
+  background-color: transparent;
   transition: left 0.3s ease-in-out;
+  transition: background-color 1s ease;
+}
+
+.sidebar-navbar{
+  width: 250px;
+  height: 100%;
+  background-color: #DFEEFF;
 }
 
 .sidebar.open {
   left: 0;
+  background-color: rgba(0,0,0,0.45);
 }
 
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-}
 
 .vertical-sidebar {
   height: 100%;
@@ -289,10 +295,11 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
+  padding: 1rem 0.5rem;
 }
 
 .vertical-sidebar li {
-  padding: 15px;
+  padding: 0.8rem;
   text-align: left;
 }
 
@@ -513,12 +520,13 @@ body {
 }
 .shop-by-store{
   width: 80%;
+  max-width: 1020px;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(3,1fr);
   row-gap: 6%;
   column-gap: 2%;
-  background-color: #cde5fd;
+  background-color: #DFEEFF;
   padding: 4rem 1rem;
   border-top: 1px solid #0077ff77;
 }
@@ -556,11 +564,11 @@ body {
 .homepage
 {
   height: max-content;
-  background-color: #cde5fd;
+  background-color: #DFEEFF;
 }
 
  .home-header{
-  background: linear-gradient(180deg, white,#cde5fd) ;
+  background: linear-gradient(180deg, white,#DFEEFF) ;
   display: flex;
   align-items: center;
   justify-content: center;

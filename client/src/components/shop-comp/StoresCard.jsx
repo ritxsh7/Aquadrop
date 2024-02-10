@@ -6,50 +6,56 @@ import "../../styles/StoresCard.css";
 
 export default function StoresCard(props) {
   return (
-    <div className="storescard">
-      <div className="img-div">
-        <img className="storecard-image" src={props.image}></img>
-      </div>
-
-      <div
-        className="stats"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <div className="stats-title">
-          <h2 className="storecard-name">{props.name}</h2>
-
-          <div className="storecard-ratings">
-            <p>{props.rating}</p>
-            <img src={ratingStar}></img>
-          </div>
+    <>
+      <div className="storescard">
+        <div className="img-div">
+          <img className="storecard-image" src={props.image}></img>
         </div>
 
         <div
-          className="location"
+          className="stats"
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            paddingTop: 6,
-            fontSize: "0.9rem",
-            alignItems: "center",
+            flexDirection: "column",
           }}
         >
-          <p>
-            {props.address.area}, {props.address.city}
-          </p>
+          <div className="stats-title">
+            <h2 className="storecard-name">{props.name}</h2>
+
+            <div className="storecard-ratings">
+              <p>{props.rating}</p>
+              <img src={ratingStar}></img>
+            </div>
+          </div>
 
           <div
-            className="marker"
-            style={{ display: "flex", alignItems: "center" }}
+            className="location"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              paddingTop: 6,
+              fontSize: "0.9rem",
+              alignItems: "center",
+            }}
           >
-            <ion-icon name="location-sharp"></ion-icon>
-            <p>{props.distance} KM</p>
+            <p>
+              {props.address.area}, {props.address.city}
+            </p>
+
+            <div className="marker">
+              <div>
+                <ion-icon
+                  style={{ display: "block" }}
+                  name="location-sharp"
+                ></ion-icon>
+              </div>
+              <p>{props.distance}4 KM</p>
+            </div>
           </div>
+          <button className="explore-shop-md">Explore products</button>
         </div>
       </div>
-    </div>
+      <button className="explore-shop-sm">Explore products</button>
+    </>
   );
 }

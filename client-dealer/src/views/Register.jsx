@@ -8,17 +8,17 @@ const Register = () => {
 
   const { login } = useSelector((store) => store.dealer);
 
-  return login ? (
-    <></>
-  ) : (
-    <Container
-      fixed
-      sx={{
-        padding: "0",
-      }}
-    >
-      <SellerLogin />
-    </Container>
+  return (
+    login && (
+      <Container
+        fixed
+        sx={{
+          padding: "0",
+        }}
+      >
+        <SellerLogin />
+      </Container>
+    )
   );
 };
 

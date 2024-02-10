@@ -9,13 +9,13 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: #3E6FAE;
+    background-color: dodgerblue;
     border-radius: 0.5rem;
 }
 
 .shop-img{
     width: 28rem;
-    height: 16rem;
+    height: 18rem;
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     border-left: 7rem solid wheat;
@@ -59,21 +59,23 @@
 
 @media screen and (max-width : 450px) {
     .shop-banner{
-        padding: 0 1rem;
+        padding: 0.6rem;
+        border-radius: 0.1rem;
     }
     .shop-page{
         margin: 1rem;
     }
     .shop-img{
-        width: 7rem;
+    
+        width: 9rem;
         height: 9rem;
         margin: auto;
         border: none;
-        border-radius: 0.5rem;
+        border-radius: 0.1rem;
     }
     .shop-name{
         font-size: small;
-        padding: 1rem 0;
+        padding: 0;
     }
     .shop-name h2{
         font-size: medium;

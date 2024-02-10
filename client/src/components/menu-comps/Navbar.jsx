@@ -34,7 +34,7 @@ function Navbar() {
 
   useEffect(() => {
     const handleClick = (e) => {
-      if (isSidebarOpen && !e.target.closest(".sidebar")) {
+      if (isSidebarOpen && !e.target.closest(".sidebar-navbar")) {
         setIsSidebarOpen(!isSidebarOpen);
         console.log("close now");
       }
@@ -128,26 +128,46 @@ function Navbar() {
       {
         // ======================================SIDEBAR FOR MOBILE SCREEN=======================
 
-        <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
-          <header>
-            {user && (
-              <div style={navbar.sideIconUser}>
-                <ion-icon name="person-sharp"></ion-icon>
-                <h3>{user.name}</h3>
-              </div>
-            )}
-          </header>
-          <ul className="vertical-sidebar">
-            {navItems.map(
-              (item) =>
-                (item.public || isLogin === "true") && (
-                  <li key={item.name} onClick={() => setIsSidebarOpen(false)}>
-                    <NavLink to={item.link(user)}>{item.name}</NavLink>
-                  </li>
-                )
-            )}
-          </ul>
-        </aside>
+        <>
+          <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+            <div className="sidebar-navbar">
+              <header>
+                {user && (
+                  <div style={navbar.sideIconUser}>
+                    <ion-icon name="person-sharp"></ion-icon>
+                    <h3>{user.name}</h3>
+                  </div>
+                )}
+              </header>
+              <ul className="vertical-sidebar">
+                {navItems.map(
+                  (item) =>
+                    (item.public || isLogin === "true") && (
+                      <li
+                        key={item.name}
+                        onClick={() => setIsSidebarOpen(false)}
+                      >
+                        <NavLink to={item.link(user)}>
+                          <div
+                            style={{
+                              fontSize: "1.1rem",
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "0.8rem",
+                              color: "#4b4b4b",
+                            }}
+                          >
+                            <ion-icon name={item.icon}></ion-icon>
+                            <p>{item.name}</p>
+                          </div>
+                        </NavLink>
+                      </li>
+                    )
+                )}
+              </ul>
+            </div>
+          </aside>
+        </>
       }
       <LogOut isLogout={isLogout} setIsLogout={setIsLogout} />
     </div>
