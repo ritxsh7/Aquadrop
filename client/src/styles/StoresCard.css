@@ -92,7 +92,7 @@
 
 .explore-shop-sm{
     width: 100%;
-    padding: 1rem;
+    padding: 0.7rem;
     border: none;
     margin: 0.2rem 0;
     background-color: #0195FF;
@@ -145,6 +145,7 @@
         border-radius: 0.5rem;
         height: 6rem;
         padding: 0;
+        gap: 0.5rem;
     }
     .stats-title{
         padding: 0;

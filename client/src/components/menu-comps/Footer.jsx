@@ -7,9 +7,11 @@ const Footer = () => {
       <footer className="footer" id="footer">
         <p>Policies : Terms of use | Infrigement | Privacy</p>
         <p>© AquaDrop 2023</p>
-        <p style={{ float: "right" }}>
-          Need help? Visit the Help Center or <a>Contact Us</a>
-        </p>
+        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          Need help? Contact Us
+          <ion-icon name="call"></ion-icon>
+          <span>+91 8421119810</span>
+        </div>
       </footer>
     </Element>
   );
