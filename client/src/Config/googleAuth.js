@@ -1,8 +1,5 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { app } from "./firebase";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../features/user";
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
