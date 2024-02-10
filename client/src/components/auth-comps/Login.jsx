@@ -14,7 +14,7 @@ import { loginUser } from "../../features/user";
 import { NavLink, useNavigate } from "react-router-dom";
 
 //auth
-import { signinWithGoogle } from "../../config/googleAuth";
+import { signinWithGoogle } from "../../Config/googleAuth";
 import { demoEmail, demoPass } from "../../utils/constants/demo";
 import { Button } from "@mui/material";
 
