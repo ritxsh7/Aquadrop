@@ -4,8 +4,7 @@ import Loader from "../general-comps/Loader";
 import SmallLoader from "../general-comps/SmallLoader";
 import LoginSticker from "../../images/sticker.png";
 import { GoogleButton } from "react-google-button";
-import { signinWithGoogle } from "../../config/googleAuth";
-
+import { signinWithGoogle } from "../../Config/googleAuth";
 //store and states
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
