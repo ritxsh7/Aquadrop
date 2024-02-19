@@ -42,6 +42,7 @@ const shopSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  coordinates: [Number],
   address: {
     line1: {
       type: String,

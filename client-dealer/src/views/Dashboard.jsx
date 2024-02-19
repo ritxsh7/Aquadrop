@@ -12,6 +12,16 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   // ==============================STATES AND STORES===========================
 
+  const { dealer } = useSelector((store) => store.dealer);
+  console.log(dealer);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!dealer.shop) {
+      navigate("/dealer/register-shop");
+    }
+  }, [dealer]);
+
   return (
     <Box
       sx={{

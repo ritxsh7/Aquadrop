@@ -33,6 +33,7 @@ function App() {
 
       const { response, err } = await dashboard.getDealerInfo();
       if (response) {
+        console.log(response);
         dispatch(saveDealer(response));
       }
       if (err) {
@@ -48,26 +49,7 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <>
-          <Navbar />
           <Routes>
-            <Route
-              exact
-              path="/dealer/register"
-              element={
-                dealer.login ? <Navigate replace to="/" /> : <Register />
-              }
-            ></Route>
-            <Route
-              exact
-              path="/"
-              element={
-                dealer.login ? (
-                  <Dashboard />
-                ) : (
-                  <Navigate replace to="/dealer/register" />
-                )
-              }
-            ></Route>
             <Route
               exact
               path="/dealer/register-shop/"
@@ -77,6 +59,39 @@ function App() {
               exact
               path="/dealer/register-shop/register/:id"
               element={<AddShop />}
+            ></Route>
+            <Route
+              exact
+              path="/*"
+              element={
+                <>
+                  <Navbar />
+                  <Routes>
+                    <Route
+                      exact
+                      path="/dealer/register"
+                      element={
+                        dealer.login ? (
+                          <Navigate replace to="/" />
+                        ) : (
+                          <Register />
+                        )
+                      }
+                    ></Route>
+                    <Route
+                      exact
+                      path="/"
+                      element={
+                        dealer.login ? (
+                          <Dashboard />
+                        ) : (
+                          <Navigate replace to="/dealer/register" />
+                        )
+                      }
+                    ></Route>
+                  </Routes>
+                </>
+              }
             ></Route>
           </Routes>
           <Loader loading={dealer.loading} />

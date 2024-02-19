@@ -8,16 +8,6 @@ export const signUpDealer = async (req, res) => {
     const { name, email, gstID, phone, password } = req.body;
 
     // ================CHECK VALIDATION============================
-    if (
-      name === "" ||
-      password === "" ||
-      email === "" ||
-      gstID === "" ||
-      phone === ""
-    )
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid credentials" });
     const checkDealer = await User.findOne({ phone: phone });
 
     if (checkDealer)
@@ -83,6 +73,7 @@ export const loginDealer = async (req, res) => {
         gstID: checkUser.gstID,
         phone: checkUser.phone,
         role: checkUser.role,
+        shop: checkUser.shop,
       };
 
       //create a jwt token
@@ -91,9 +82,12 @@ export const loginDealer = async (req, res) => {
       });
       return res.status(200).json({
         data: {
+          id: checkUser._id,
+          gstId: checkUser.gstID,
           name: checkUser.name,
           phone: checkUser.phone,
           role: checkUser.role,
+          shop: checkUser.shop,
           tokenExpire: Date.now() + 30 * 24 * 60 * 60 * 1000,
         },
         token: jwtToken,
@@ -113,19 +107,9 @@ export const loginDealer = async (req, res) => {
 // ======================================GET DEALER INFO==========================================
 export const getDealerInfo = async (req, res) => {
   try {
-    const { user } = req.body;
+    const { user } = req;
     return res.status(200).json(user);
   } catch (err) {
     return res.status(400).send("Invalid user");
-  }
-};
-
-export const saveShop = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { name, img, address, pincode } = req.body;
-    console.log(name, img, address, pincode, id);
-  } catch (err) {
-    res.status(400).send(err.message);
   }
 };

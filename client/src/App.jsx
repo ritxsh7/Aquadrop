@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./utils/theme/theme";
 
+import { useDispatch } from "react-redux";
+
 //pages
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
@@ -15,8 +17,33 @@ import ProtectedPage from "./components/general-comps/ProtectedPage";
 import Orders from "./pages/Orders";
 import Header from "./components/menu-comps/Header";
 import Footer from "./components/menu-comps/Footer";
+import { useEffect } from "react";
+import { SaveLocation } from "./features/user";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            dispatch(
+              SaveLocation({
+                longitude: position.coords.longitude,
+                lattitude: position.coords.latitude,
+              })
+            );
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+    };
+    getLocation();
+  }, [navigator.geolocation]);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>

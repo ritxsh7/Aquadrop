@@ -46,7 +46,7 @@ export default function MenuAppBar() {
             direction="row"
             gap="0.5rem"
             alignItems="center"
-            sx={{ backgroundColor: "dodgerblue", color: "white" }}
+            sx={{ backgroundColor: "#407BFF", color: "white" }}
           >
             <Box>
               <img src={logo} style={{ width: "1.4rem" }}></img>

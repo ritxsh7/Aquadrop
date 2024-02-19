@@ -24,8 +24,6 @@ const user = createSlice({
   reducers: {
     loginUser: (state, { payload }) => {
       const { name, role, email, token, address } = payload;
-      //   console.log(token);
-      // console.log(payload);
       return { ...state, login: true, role, name, email, token, address };
     },
     updateUserAddress: (state, { payload }) => {
@@ -33,9 +31,12 @@ const user = createSlice({
         return { ...state, address: payload };
       }
     },
+    SaveLocation: (state, action) => {
+      state.location = action.payload;
+    },
   },
 });
 
 //====================exports=========================
 export default user.reducer;
-export const { loginUser, updateUserAddress } = user.actions;
+export const { loginUser, updateUserAddress, SaveLocation } = user.actions;

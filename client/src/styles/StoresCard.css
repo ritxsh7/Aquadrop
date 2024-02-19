@@ -1,9 +1,9 @@
-.storescard{
-    color:white;
-    display:flex;
+.storescard {
+    color: white;
+    display: flex;
     height: 400px;
     flex-direction: column;
-    padding:0.5rem;
+    padding: 0.5rem;
     background-color: #f9f9f9;
     border-radius: 0.1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -12,37 +12,40 @@
     transition-duration: 0.5s;
 }
 
-.storecard p{
-    margin: 0 ;
+.storecard p {
+    margin: 0;
 }
 
-.storescard:hover{
-    cursor:pointer;
+.storescard:hover {
+    cursor: pointer;
     background-color: #ececec;
-    
+
 }
 
-.md{
+.md {
     display: block;
 }
 
-.sm{
+.sm {
     display: none;
 }
-.storecard-name{
+
+.storecard-name {
     font-size: 1.3rem;
 }
 
-.img-div{
+.img-div {
     width: 100%;
     padding: 0.5rem;
 }
-.storecard-image{
+
+.storecard-image {
     width: 100%;
     height: 12rem;
     border-radius: 0.1rem;
 }
-.stats{
+
+.stats {
     color: #0195FF;
     width: 100%;
     padding: 0.5rem;
@@ -50,47 +53,52 @@
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
-.stats-title{
+
+.stats-title {
     font-size: medium;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.6rem 0 0.8rem 0;
 }
-.storecard-ratings{
-    display: flex ;
-    align-items: center ;
+
+.storecard-ratings {
+    display: flex;
+    align-items: center;
     color: white;
     background-color: rgb(0, 209, 83);
     padding: 3px 8px;
     border-radius: 12px;
 }
-.storecard-ratings img{
-    padding: 0 ;
-    width: 16px ;
-    margin-left: 3px ;
-}
-.storecard-ratings p{
-    margin: 0 ;
+
+.storecard-ratings img {
+    padding: 0;
+    width: 16px;
+    margin-left: 3px;
 }
 
-.marker{
-    display: flex ;
+.storecard-ratings p {
+    margin: 0;
+}
+
+.marker {
+    display: flex;
     height: 100%;
     gap: 2px;
 }
 
-.location{
+.location {
     color: #333;
     padding-bottom: 0.5rem;
 }
-.location > p{
+
+.location>p {
     width: 80%;
     height: 2rem;
-    margin: 0 ;
+    margin: 0;
 }
 
-.explore-shop-sm{
+.explore-shop-sm {
     width: 100%;
     padding: 0.7rem;
     border: none;
@@ -101,7 +109,8 @@
     display: none;
     font-size: 1rem;
 }
-.explore-shop-md{
+
+.explore-shop-md {
     width: 100%;
     padding: 1rem;
     border: none;
@@ -112,63 +121,77 @@
     font-size: large;
 }
 
-@media screen and (max-width : 450px){
-    .storescard{
-        gap : 0.5rem;
+@media screen and (max-width : 450px) {
+    .storescard {
+        gap: 0.5rem;
         padding: 0.5rem;
         width: 100%;
         display: flex;
         flex-direction: row;
         height: auto;
     }
-    .explore-shop-sm{
-        display : block;
+
+    .explore-shop-sm {
+        display: block;
     }
-    .explore-shop-md{
+
+    .explore-shop-md {
         display: none;
     }
 
-    .explore-shop{
+    .explore-shop {
         padding: 0.7rem;
     }
 
-    .img-div{
-       width: 30%;
-       padding: 0;
+    .img-div {
+        width: 30%;
+        padding: 0;
     }
 
-    .storecard-image{
+    .storecard-image {
         height: 6rem;
         width: 6rem;
     }
-    .stats{
+
+    .stats {
+        margin-left: 0.3rem;
         border-radius: 0.5rem;
         height: 6rem;
         padding: 0;
         gap: 0.5rem;
     }
-    .stats-title{
+
+    .stats-title {
         padding: 0;
     }
-    .stats-title h2{
+
+    .stats-title h2 {
         padding: 0;
-        font-weight: 400    ;
+        font-weight: 400;
     }
-    .storecard-name{
+
+    .storecard-name {
         font-size: large;
     }
-    .storecard-ratings img{
+
+    .storecard-ratings img {
         height: 0.8rem;
         width: 0.8rem;
     }
-    .storecard-ratings{
+
+    .storecard-ratings {
         font-size: x-small;
-        padding: 0.2rem 0.5rem ;
+        padding: 0.2rem 0.5rem;
     }
-    .location > p{
+
+    .location>p {
         width: 75%;
     }
-    .marker{
-        width : 30%
+    .marker {
+        align-items: center;
+        width: 30%
+    }
+    .marker > p{
+        font-size: x-small;
     }
 }

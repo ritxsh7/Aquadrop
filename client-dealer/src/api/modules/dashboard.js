@@ -2,14 +2,14 @@ import { dealerApi } from "../dealer-api";
 
 const dashboardEndpoints = {
   dealerInfo: "/dealer/info",
-  recentOrders: (id) => `/dealer/dashboard/get-orders/${id}`,
-  recentEarnings: (id) => `/dealer/dashboard/get-earnings/${id}`,
-  orderNumbers: (id) => `/dealer/dashboard/get-orders-numbers/${id}`,
-  earningsNumbers: (id) => `/dealer/dashboard/get-earnings-numbers/${id}`,
-  customersNumbers: (id) => `/dealer/dashboard/get-customers-number/${id}`,
-  productsNumbers: (id) => `/dealer/dashboard/get-products-number/${id}`,
-  getAllOrders: (id, page) => `/dealer/get-all-orders/${id}?page=${page}`,
-  approveOrder: (id) => `/dealer/approve-order/${id}`,
+  recentOrders: () => `/dealer/dashboard/get-orders`,
+  recentEarnings: () => `/dealer/dashboard/get-earnings`,
+  orderNumbers: () => `/dealer/dashboard/get-orders-numbers`,
+  earningsNumbers: () => `/dealer/dashboard/get-earnings-numbers`,
+  customersNumbers: () => `/dealer/dashboard/get-customers-number`,
+  productsNumbers: () => `/dealer/dashboard/get-products-number`,
+  getAllOrders: (page) => `/dealer/get-all-orders?page=${page}`,
+  approveOrder: () => `/dealer/approve-order`,
 };
 
 export default {
@@ -22,19 +22,37 @@ export default {
     }
   },
 
-  getRecentOrders: async (id) => {
+  getRecentOrders: async () => {
     try {
-      const response = await dealerApi.get(dashboardEndpoints.recentOrders(id));
+      const response = await dealerApi.get(dashboardEndpoints.recentOrders());
       return { response };
     } catch (err) {
       return { err };
     }
   },
 
-  getRecentEarnings: async (id) => {
+  getRecentEarnings: async () => {
+    try {
+      const response = await dealerApi.get(dashboardEndpoints.recentEarnings());
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+
+  getOrdersNumbers: async () => {
+    try {
+      const response = await dealerApi.get(dashboardEndpoints.orderNumbers());
+      return { response };
+    } catch (err) {
+      return { err };
+    }
+  },
+
+  getEarningsNumbers: async () => {
     try {
       const response = await dealerApi.get(
-        dashboardEndpoints.recentEarnings(id)
+        dashboardEndpoints.earningsNumbers()
       );
       return { response };
     } catch (err) {
@@ -42,19 +60,10 @@ export default {
     }
   },
 
-  getOrdersNumbers: async (id) => {
-    try {
-      const response = await dealerApi.get(dashboardEndpoints.orderNumbers(id));
-      return { response };
-    } catch (err) {
-      return { err };
-    }
-  },
-
-  getEarningsNumbers: async (id) => {
+  getCustomersNumbers: async () => {
     try {
       const response = await dealerApi.get(
-        dashboardEndpoints.earningsNumbers(id)
+        dashboardEndpoints.customersNumbers()
       );
       return { response };
     } catch (err) {
@@ -62,10 +71,10 @@ export default {
     }
   },
 
-  getCustomersNumbers: async (id) => {
+  getProductsNumbers: async () => {
     try {
       const response = await dealerApi.get(
-        dashboardEndpoints.customersNumbers(id)
+        dashboardEndpoints.customersNumbers()
       );
       return { response };
     } catch (err) {
@@ -73,10 +82,10 @@ export default {
     }
   },
 
-  getProductsNumbers: async (id) => {
+  getAllOrders: async (page) => {
     try {
       const response = await dealerApi.get(
-        dashboardEndpoints.customersNumbers(id)
+        dashboardEndpoints.getAllOrders(page)
       );
       return { response };
     } catch (err) {
@@ -84,20 +93,9 @@ export default {
     }
   },
 
-  getAllOrders: async (id, page) => {
+  approveOrder: async () => {
     try {
-      const response = await dealerApi.get(
-        dashboardEndpoints.getAllOrders(id, page)
-      );
-      return { response };
-    } catch (err) {
-      return { err };
-    }
-  },
-
-  approveOrder: async (id) => {
-    try {
-      const response = await dealerApi.put(dashboardEndpoints.approveOrder(id));
+      const response = await dealerApi.put(dashboardEndpoints.approveOrder());
       return { response };
     } catch (err) {
       return { err };

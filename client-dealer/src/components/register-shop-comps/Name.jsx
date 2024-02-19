@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import {
-  Box,
+  Stack,
   TextField,
   Typography,
   Button,
   Select,
-  InputLabel,
+  Box,
   MenuItem,
   FormControl,
 } from "@mui/material";
+
+import { RegisterShopStyles } from "../../utils/styles";
 import { NavLink } from "react-router-dom";
 import { dealerShop } from "../../api/modules/shop";
 import { useDispatch } from "react-redux";
@@ -48,41 +50,41 @@ const Name = ({ shop, setShop, isErr, setErr, setIsErr }) => {
   };
 
   return (
-    <Box width="85%" maxWidth="450px" mt={{ xs: "1rem", md: "4rem" }}>
-      <Typography variant="h3">Give your shop a name?</Typography>
-      <TextField
-        variant="standard"
-        label="Shop Name"
-        type="text"
-        placeholder="Give your shop a name"
-        fullWidth
-        onChange={(e) => setShop({ ...shop, name: e.target.value })}
-        sx={{
-          my: "1rem",
-          fontSize: "2rem",
-          "& .MuiInputBase-root": {
-            color: "#4b4b4b",
-            fontSize: { md: "2rem" },
-          },
-        }}
-      />
-      <Typography variant="h3">Zipcode of your area?</Typography>
-      <TextField
-        variant="standard"
-        label="Zip Code"
-        type="text"
-        placeholder="Enter Zipcode e.g 411018"
-        fullWidth
-        onChange={(e) => setShop({ ...shop, pincode: e.target.value })}
-        sx={{
-          my: "1rem",
-          fontSize: "2rem",
-          "& .MuiInputBase-root": {
-            color: "#4b4b4b",
-            fontSize: { md: "2rem" },
-          },
-        }}
-      />
+    <Stack
+      width="85%"
+      maxWidth="450px"
+      gap="1rem"
+      mt={{ xs: "1rem", md: "4rem" }}
+    >
+      <Box>
+        <Typography variant="h5" color="white" textAlign="left">
+          Give your shop a name?
+        </Typography>
+        <TextField
+          variant="outlined"
+          type="text"
+          placeholder="Give your shop a name"
+          fullWidth
+          value={shop.name}
+          onChange={(e) => setShop({ ...shop, name: e.target.value })}
+          sx={RegisterShopStyles.TextInput}
+        />
+      </Box>
+      <Box>
+        <Typography variant="h5" color="white" textAlign="left">
+          Zipcode of your area?
+        </Typography>
+        <TextField
+          variant="outlined"
+          type="text"
+          placeholder="Enter Zipcode e.g 411018"
+          value={shop.pincode}
+          fullWidth
+          onChange={(e) => setShop({ ...shop, pincode: e.target.value })}
+          className="shop-register-inputs"
+          sx={RegisterShopStyles.TextInput}
+        />
+      </Box>
       {!next && (
         <Button
           variant="contained"
@@ -92,19 +94,30 @@ const Name = ({ shop, setShop, isErr, setErr, setIsErr }) => {
             getPincode(shop.pincode);
           }}
           disabled={shop.name && shop.pincode ? false : true}
-          sx={{ backgroundColor: "#000", my: "1rem" }}
+          sx={{ backgroundColor: "#fff", my: "1rem", color: "dodgerblue" }}
         >
           Next
         </Button>
       )}
       {next && (
         <>
-          <Typography variant="h3">What's your locality?</Typography>
+          <Typography variant="h5" color="white" textAlign="left">
+            What's your locality?
+          </Typography>
           <FormControl fullWidth>
             <Select
               placeholder="Locality"
-              sx={{ my: "1rem" }}
               value={shop.address.locality}
+              sx={{
+                color: "white", // Text color
+
+                "& .MuiSelect-root": {
+                  border: "1px solid white",
+                },
+                "& .MuiSelect-outlined": {
+                  border: "2px solid white", // Border color
+                },
+              }}
               label="Locality"
               onChange={handleChange}
             >
@@ -123,13 +136,17 @@ const Name = ({ shop, setShop, isErr, setErr, setIsErr }) => {
             disabled={
               shop.name && shop.pincode && shop.address.locality ? false : true
             }
-            sx={{ backgroundColor: "#000", my: "1rem" }}
+            sx={{
+              backgroundColor: "#fff",
+              my: "1rem",
+              color: "dodgerblue",
+            }}
           >
             Next
           </Button>
         </>
       )}
-    </Box>
+    </Stack>
   );
 };
 

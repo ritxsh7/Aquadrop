@@ -7,6 +7,7 @@
     padding: 0;
 
 }
+
 .statscard-image{
   height : 4rem;
   width : 4rem;
@@ -15,18 +16,24 @@
 }
 
 .shop-banner{
-  background-image: url('./assets/banner.jpg');
-  height: 95vh;
-  background-position: center;
-  background-size: cover;
+  height: auto;
+  width: 100%;
 }
 
 .banner-left{
-  width: 100%;
-  height: 45vh;
-  background-color: rgb(223, 238, 255,0.75);
+  background-image: url('./assets/left-banner.png');
+  padding: 0.3rem;
+  width: 100vw;
+  height: 43vh;
+  background-size: cover;
+  background-position:top;
+  background-repeat: no-repeat;
 }
 
+.shop-form{
+  background-color: #407BFF;
+  width: 100vw;
+}
 
 .shop-form::-webkit-scrollbar{
   width: 0;
@@ -36,8 +43,89 @@
   min-width: 650px;
 }
 
+.shop-register-inputs{
+  color: white !important;
+}
+
 @media screen and (min-width : 650px) {
   .banner-left{
-    height: inherit;
+    width : 36vw;
+    height: 100vh;
+    background-size: cover;
+  }
+  .shop-form{
+    width : 64vw;
+    overflow-y: scroll;
+  }
+}
+
+.drop-container {
+  position: relative;
+  display: flex;
+  width : 100%;
+  max-width: 530px;
+  margin: 5rem auto;
+  gap: 10px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #4b4b4b;
+  color: #444;
+  cursor: pointer;
+  background-color: #EBF4FF;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover {
+  background: #dfeeff;
+}
+
+.drop-container:hover .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+#images::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #407BFF;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  transition: background .2s ease-in-out;
+}
+
+#images::file-selector-button:hover {
+  background: #0d45a5;
+}
+
+.upload-img{
+  height: 5rem;
+  width: 5rem;
+}
+
+@media screen and (max-width : 450px){
+  .drop-container{
+    height : 8rem;
+    margin: 1rem auto;
+  }
+  .drop-title{
+    font-size: small ;
+  }
+  .upload-img{
+    height : 2rem;
+    width: 2rem;
   }
 }

@@ -9,6 +9,7 @@ const lastDate = new Date(year, month + 1, 0);
 
 const getAllorders = async (id) => {
   const orders = await Order.find({ "items.shopId": id });
+  console.log(id);
   return orders;
 };
 

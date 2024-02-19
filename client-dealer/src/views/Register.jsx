@@ -9,7 +9,7 @@ const Register = () => {
   const { login } = useSelector((store) => store.dealer);
 
   return (
-    login && (
+    !login && (
       <Container
         fixed
         sx={{

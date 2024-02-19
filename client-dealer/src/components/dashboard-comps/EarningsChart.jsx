@@ -61,9 +61,7 @@ const EarningsChart = () => {
 
   useEffect(() => {
     const recentEarnings = async () => {
-      const { response, err } = await dashboard.getRecentEarnings(
-        "650d7f98e6964ef181b1ceec"
-      );
+      const { response, err } = await dashboard.getRecentEarnings();
       if (response) {
         setEarnings(response.result);
       }

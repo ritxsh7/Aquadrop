@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
   },
   password: {
     type: String,
@@ -39,12 +38,10 @@ const userSchema = new mongoose.Schema({
       ref: "Order",
     },
   ],
-  shops: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Shop",
-    },
-  ],
+  shop: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Shop",
+  },
 });
 
 const User = mongoose.model("user", userSchema);

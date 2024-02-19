@@ -18,7 +18,7 @@ const StatsCard = ({ display, icon, getInfo, prefix }) => {
   useEffect(() => {
     const getOrders = async () => {
       dispatch(toggleLoading(true));
-      const { response, err } = await getInfo("650d7f98e6964ef181b1ceec");
+      const { response, err } = await getInfo();
       if (response) {
         setNumbers(response.number);
         setAggregate(response.aggregate);

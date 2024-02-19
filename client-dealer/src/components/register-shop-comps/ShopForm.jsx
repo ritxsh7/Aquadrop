@@ -4,9 +4,11 @@ import SellerSteps from "../seller-auth-comps/SellerSteps";
 import Name from "./Name";
 import Address from "./Address";
 import Summary from "./Summary";
+import ConfirmAddress from "./ConfirmAddress";
+import UploadImage from "./UploadImage";
 
 const ShopForm = ({ id }) => {
-  const forms = [Name, Address, Summary];
+  const forms = [Name, Address, ConfirmAddress, Summary, UploadImage];
   const Elem = forms[id - 1];
 
   const [shop, setShop] = useState({
@@ -18,8 +20,9 @@ const ShopForm = ({ id }) => {
       city: "",
       state: "",
     },
+    coordinates: "",
     pincode: "",
-    img: "",
+    area: "",
   });
 
   const [isErr, setIsErr] = useState(false);
@@ -29,16 +32,15 @@ const ShopForm = ({ id }) => {
     <Stack
       alignItems="center"
       textAlign="center"
-      width={{ xs: "100vw", md: "60vw" }}
+      width={{ xs: "100vw", md: "100%" }}
       my="auto"
-      bgcolor="#DFEEFF"
       letterSpacing="normal"
       p="1rem 0"
-      className="shop-form"
-      height="95vh"
-      maxHeight="95vh"
+      height={{ md: "100vh" }}
+      minHeight="60vh"
+      sx={{ overflowY: { md: "scroll" } }}
     >
-      <SellerSteps activeStep={1} />
+      <SellerSteps activeStep={1} style />
       <Elem
         shop={shop}
         setShop={setShop}

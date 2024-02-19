@@ -21,9 +21,11 @@ import {
   getNearShops,
   getShopDetails,
   addProducts,
+  uploadImages,
 } from "../controllers/shopController.js";
 
 //=============import for dealer===================-
+import { getAwsLocation } from "../controllers/shopController.js";
 import {
   getDealerInfo,
   signUpDealer,
@@ -42,6 +44,8 @@ import {
   getThisMonthsEarningsNumber,
   getThisMonthsOrdersNumber,
 } from "../controllers/seller.dashboard.cards.js";
+import { ValidateRegistration } from "../middlewares/validation.js";
+import { registrationSchema } from "../configs/validation-schema.js";
 
 const router = express.Router();
 
@@ -58,59 +62,62 @@ router.post("/user/google-auth/", signinWithGoogle);
 
 //===========================ROUTES FOR DEALER=========================
 
-router.post("/dealer/signup", signUpDealer);
+router.post(
+  "/dealer/signup",
+  registrationSchema,
+  ValidateRegistration,
+  signUpDealer
+);
 router.post("/dealer/login", loginDealer);
 router.get("/dealer/info", auth, isDealer, getDealerInfo);
+router.post("/dealer/get-aws-location", auth, isDealer, getAwsLocation);
+router.post("/dealer/register-shop", auth, isDealer, addShop);
+
 router.post(
-  "/dealer/add-shop/:id",
-  // auth,
-  // isDealer,
-  upload.single("shop-images"),
-  addShop
+  "/dealer/shop/upload-img",
+  auth,
+  isDealer,
+  upload.single("img"),
+  uploadImages
 );
 
 // ======================ROUTES FOR DEALER DASHBOARD FILTERS==================
-router.get(
-  "/dealer/dashboard/get-orders/:id",
-  auth,
-  isDealer,
-  getThisMonthsOrders
-);
+router.get("/dealer/dashboard/get-orders", auth, isDealer, getThisMonthsOrders);
 
-router.get("/dealer/get-all-orders/:id", getAllOrders);
+router.get("/dealer/get-all-orders", auth, isDealer, getAllOrders);
 
-router.put("/dealer/approve-order/:id", approveOrder);
+router.put("/dealer/approve-order", auth, isDealer, approveOrder);
 
 router.get(
-  "/dealer/dashboard/get-earnings/:id",
+  "/dealer/dashboard/get-earnings",
   auth,
   isDealer,
   getThisMonthsEarnings
 );
 
 router.get(
-  "/dealer/dashboard/get-orders-numbers/:id",
+  "/dealer/dashboard/get-orders-numbers",
   auth,
   isDealer,
   getThisMonthsOrdersNumber
 );
 
 router.get(
-  "/dealer/dashboard/get-earnings-numbers/:id",
+  "/dealer/dashboard/get-earnings-numbers",
   auth,
   isDealer,
   getThisMonthsEarningsNumber
 );
 
 router.get(
-  "/dealer/dashboard/get-customers-number/:id",
+  "/dealer/dashboard/get-customers-number",
   auth,
   isDealer,
   getThisMonthsCustomer
 );
 
 router.get(
-  '/"/dealer/dashboard/get-products-number/:id',
+  '/"/dealer/dashboard/get-products-number',
   auth,
   isDealer,
   getThisMonthsCustomer

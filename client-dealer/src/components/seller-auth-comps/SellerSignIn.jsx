@@ -40,6 +40,7 @@ const SellerSignIn = ({ setAuthState }) => {
       setAuthState({ view: "login" });
     } catch ({ response }) {
       setAlert(true);
+      console.log(response.data);
       setErrMsg(response.data.message);
       dispatch(toggleLoading(false));
     }
@@ -138,7 +139,13 @@ const SellerSignIn = ({ setAuthState }) => {
       >
         Join as Seller
       </Button>
-      {alert && <Alert severity="warning">{errMsg}</Alert>}
+      {alert && (
+        <Alert severity="warning">
+          {errMsg.map((err, i) => (
+            <p>* {err.msg}</p>
+          ))}
+        </Alert>
+      )}
     </Container>
   );
 };

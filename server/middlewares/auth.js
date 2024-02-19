@@ -27,9 +27,8 @@ export const auth = (req, res, next) => {
     //verify the jwt token
     try {
       const payload = jwt.verify(token, process.env.JWT_SECRET);
-
+      req.user = payload;
       //add a new field user in the req body which will be receiver by the controller
-      req.body.user = payload;
     } catch (err) {
       return res.status(400).json({
         success: false,
@@ -43,14 +42,14 @@ export const auth = (req, res, next) => {
       message: "Authentication error" + err.message,
     });
   }
-  //call the next middleware
+
   next();
 };
 
 //=====================isUser Middleware=================================
 export const isUser = (req, res, next) => {
   try {
-    const { user } = req.body;
+    const { user } = req;
     if (user.role !== "Customer") {
       return res.status(400).json({
         success: false,
@@ -70,7 +69,8 @@ export const isUser = (req, res, next) => {
 //=====================isDealer Middleware===============================
 export const isDealer = (req, res, next) => {
   try {
-    const { user } = req.body;
+    const { user } = req;
+    // console.log(user);
     if (user.role === "Dealer") {
       next();
     } else {

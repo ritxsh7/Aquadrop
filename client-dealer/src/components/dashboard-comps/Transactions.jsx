@@ -21,10 +21,7 @@ const InvoiceList = () => {
   useEffect(() => {
     const getInvoices = async () => {
       dispatch(toggleLoading(true));
-      const { response, err } = await dashboard.getAllOrders(
-        "650d7f98e6964ef181b1ceec",
-        page
-      );
+      const { response, err } = await dashboard.getAllOrders(page);
       if (response) {
         setInvoices(response.orders);
         setCount(Math.floor(response.count / 3));

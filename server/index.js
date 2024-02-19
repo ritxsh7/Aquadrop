@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import Connection from "./configs/db.js";
 import Router from "./routes/route.js";
 import { cloudConnect } from "./configs/cloud.js";
+import { upload } from "./configs/multer.js";
 
 dotenv.config();
 const app = express();
@@ -13,6 +14,8 @@ const url = process.env.MONGODB_URL;
 app.use(cors());
 app.use(express.json());
 app.use("/api/v1", Router);
+app.use(upload.single("img"));
+app.use(upload.any());
 
 //===========connections==============
 Connection(url);

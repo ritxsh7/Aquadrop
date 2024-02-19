@@ -4,53 +4,86 @@ import Product from "../model/Product.js";
 
 //tools
 import cloudinary from "cloudinary";
+import { GeocodeAddress } from "../aws/geocode.js";
+import User from "../model/User.js";
 
-//========================ENROLL SHOPS================================================
+//===============================ENROLL SHOPS================================================
+
+export const getAwsLocation = async (req, res) => {
+  // console.log(req.body);
+  const { address, pincode } = req.body;
+  const location = `${address.line1}, ${address.line2}, ${address.locality}, ${address.city}, ${address.state}`;
+  try {
+    const geocode = await GeocodeAddress(location);
+    const NearbyLocations = geocode.Locations.filter(
+      (location) => location.Place.PostalCode === pincode
+    ).map((location) => location.Place);
+
+    return res.status(200).json({
+      NearbyLocations,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      message: "Can't fetch locations",
+    });
+  }
+};
 
 export const addShop = async (req, res) => {
   try {
     //extract
-    const { id } = req.params;
-    const { name, address, pincode, GST_ID } = req.body;
+    const { name, address, coordinates, pincode, area } = req.body;
+    const { gstID, id } = req.user;
 
     // already exists
-    const checkShop = await Shop.findOne({ GST_ID }).populate("owner").exec();
-    if (checkShop) {
+    const CheckShop = await Shop.findOne({ GST_ID: gstID })
+      .populate("owner")
+      .exec();
+    if (CheckShop) {
       return res.status(400).json({
         success: false,
-        message: "Shop Already exists!",
+        message: "You already own a shop at Aquadrop!",
       });
-    }
-
-    const { result, error } = await uploadImages(req.file.path, name);
-    if (result) {
-      console.log(result);
-    }
-    if (error) {
-      console.log(error);
     }
 
     // save to db
     const shop = new Shop({
       owner: id,
-      GST_ID,
+      GST_ID: gstID,
       name,
       address,
       pincode,
-      img: result,
+      coordinates,
     });
 
     const newShop = await shop.save();
+
+    try {
+      const CheckDealer = await User.findOneAndUpdate(
+        { _id: id },
+        { shop: newShop._id },
+        { new: true }
+      );
+      console.log(CheckDealer);
+    } catch (err) {
+      console.log("Can't register your shop " + err.message);
+      res.status(400).json({
+        success: false,
+        message: "Can't register your shop",
+      });
+    }
 
     //success
     return res.status(200).json({
       success: true,
       data: newShop,
+      message: "Successfully Registered a shop",
     });
   } catch (err) {
+    console.log("Can't register your shop " + err.message);
     res.status(400).json({
       success: false,
-      message: err.message,
+      message: "Can't register your shop",
     });
   }
 };
@@ -115,16 +148,34 @@ export const getShopDetails = async (req, res) => {
 };
 
 //=================================UPLOAD IMAGES====================
-const uploadImages = async (url, id) => {
-  try {
-    const result = await cloudinary.v2.uploader.upload(url, {
-      public_id: id,
-      folder: "Aquadrop/shop-images/",
-    });
-    return { result: result.secure_url };
-  } catch (error) {
-    return { error };
+export const uploadImages = async (req, res) => {
+  const { user } = req;
+  if (req.file) {
+    try {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "Aquadrop/shop-images",
+        resource_type: "image",
+      });
+      try {
+        console.log(result.secure_url);
+        const CheckShop = await Shop.findOneAndUpdate(
+          { GST_ID: user.gstID },
+          { image: result.secure_url }
+        );
+      } catch (err) {
+        console.log("Failed to upload file " + err.message);
+        return res
+          .status(400)
+          .json({ message: "Failed to save image on the server" });
+      }
+      return res.status(200).json({ message: "Image Uploaded succesfully" });
+    } catch (err) {
+      console.log("Failed to upload file " + err.message);
+      return res.status(400).json({ message: "Failed to upload file" });
+    }
   }
+  console.log(req.file);
+  return res.status(400).json({ message: "Please upload a file" });
 };
 
 //========================================ADD PRODUCTS IN THE SHOP====================

@@ -60,12 +60,12 @@ const OrdersChart = () => {
 
   //=======================GET ORDERS DATA FROM THE SERVER=======================
   useEffect(() => {
-    const getThisMonthsOrders = async (id) => {
+    const getThisMonthsOrders = async () => {
       try {
         const {
           response: { orderFilters },
           err,
-        } = await dashboard.getRecentOrders(id);
+        } = await dashboard.getRecentOrders();
         if (err) throw err;
 
         const datesArray = orderFilters.map((order) => order.timePlaced);
@@ -76,7 +76,7 @@ const OrdersChart = () => {
         console.log(err);
       }
     };
-    getThisMonthsOrders("650d7f98e6964ef181b1ceec");
+    getThisMonthsOrders();
   }, []);
   return (
     <Box

@@ -1,10 +1,26 @@
 import React from "react";
 import ratingStar from "../../images/ratingStar.png";
+import { calculateDistance } from "../../utils/constants/distance";
+import { useSelector } from "react-redux";
 
 // style
 import "../../styles/StoresCard.css";
 
 export default function StoresCard(props) {
+  const { location } = useSelector((store) => store.user);
+  console.log(location);
+  console.log(props.coordinates);
+
+  let distance;
+
+  if (props.coordinates)
+    distance = calculateDistance(
+      location.lattitude,
+      location.longitude,
+      props.coordinates[1],
+      props.coordinates[0]
+    );
+
   return (
     <>
       <div className="storescard">
@@ -39,7 +55,7 @@ export default function StoresCard(props) {
             }}
           >
             <p>
-              {props.address.area}, {props.address.city}
+              {props.address.line2} {props.address.city}
             </p>
 
             <div className="marker">
@@ -49,7 +65,7 @@ export default function StoresCard(props) {
                   name="location-sharp"
                 ></ion-icon>
               </div>
-              <p>{props.distance}4 KM</p>
+              <p>{distance} KM</p>
             </div>
           </div>
           <button className="explore-shop-md">Explore products</button>

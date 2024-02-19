@@ -12,16 +12,15 @@ const AddShop = () => {
     <Box className="shop-banner">
       <Stack
         sx={{
-          backgroundColor: "rgb(0,0,0,0.7)",
           height: "100%",
-          letterSpacing: { xs: "0.4rem", md: "0.7rem" },
+          letterSpacing: "",
         }}
         direction={{ xs: "column", md: "row" }}
         alignItems="center"
       >
         <LeftBanner />
-        <Box overflowY={{ md: "scroll" }}>
-          {id ? <ShopForm id={id} /> : <RightBanner />}{" "}
+        <Box className="shop-form">
+          {id ? <ShopForm id={id} /> : <RightBanner />}
         </Box>
       </Stack>
     </Box>

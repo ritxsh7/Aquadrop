@@ -4,7 +4,7 @@ import Order from "../model/Order.js";
 
 export const getThisMonthsOrders = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.user;
     const allOrders = await Order.find({ "items.shopId": id }).lean().exec();
     const orderFilters = allOrders.map((order) => {
       return {
@@ -25,7 +25,7 @@ export const getThisMonthsEarnings = async (req, res) => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
 
-  const { id } = req.params;
+  const { id } = req.user;
 
   const firstDate = new Date(year, month, 1);
   const lastDate = new Date(year, month + 1, 0);
@@ -76,7 +76,7 @@ export const getThisMonthsEarnings = async (req, res) => {
 };
 
 export const getAllOrders = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.user;
   const { page } = req.query;
 
   const skip = (page - 1) * 4;
@@ -99,7 +99,7 @@ export const getAllOrders = async (req, res) => {
 };
 
 export const approveOrder = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.user;
   try {
     const order = await Order.findByIdAndUpdate(id, {
       status: true,

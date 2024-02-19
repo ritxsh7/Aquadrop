@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
+import { RegisterShopStyles } from "../../utils/styles";
 
 const Address = ({ shop, setShop }) => {
   const navigate = useNavigate();
@@ -19,12 +20,15 @@ const Address = ({ shop, setShop }) => {
     shop.address.locality && (
       <>
         <Stack width="85%" maxWidth="450px">
-          <Typography variant="h3">Fill out your address</Typography>
+          <Typography variant="h6" color="white">
+            Fill out your address
+          </Typography>
           <TextField
             required
             variant="standard"
-            label="Shop No / Block No. / Floor"
+            label="Shop Name / Block No. / Floor"
             type="text"
+            value={shop.address.line1}
             placeholder="e.g Block 7"
             onChange={(e) => {
               setShop({
@@ -32,20 +36,14 @@ const Address = ({ shop, setShop }) => {
                 address: { ...shop.address, line1: e.target.value },
               });
             }}
-            sx={{
-              my: "1rem",
-              fontSize: "2rem",
-              "& .MuiInputBase-root": {
-                color: "#4b4b4b",
-                fontSize: { md: "2rem" },
-              },
-            }}
+            sx={RegisterShopStyles.TextInput}
           />
           <TextField
             required
             variant="standard"
             label=" Building Name, Street Name, Locality"
             type="text"
+            value={shop.address.line2}
             placeholder="e.g John Doe Street"
             onChange={(e) => {
               setShop({
@@ -53,14 +51,7 @@ const Address = ({ shop, setShop }) => {
                 address: { ...shop.address, line2: e.target.value },
               });
             }}
-            sx={{
-              my: "1rem",
-              fontSize: "2rem",
-              "& .MuiInputBase-root": {
-                color: "#4b4b4b",
-                fontSize: { md: "2rem" },
-              },
-            }}
+            sx={RegisterShopStyles.TextInput}
           />
           <TextField
             variant="standard"
@@ -69,14 +60,7 @@ const Address = ({ shop, setShop }) => {
             placeholder="e.g Shivajinagar"
             disabled
             value={shop.address.locality}
-            sx={{
-              my: "1rem",
-              fontSize: "2rem",
-              "& .MuiInputBase-root": {
-                color: "#4b4b4b",
-                fontSize: { md: "2rem" },
-              },
-            }}
+            sx={RegisterShopStyles.TextInput}
           />
           <TextField
             disabled
@@ -85,14 +69,7 @@ const Address = ({ shop, setShop }) => {
             type="text"
             placeholder="e.g Pune"
             value={shop.address.city}
-            sx={{
-              my: "1rem",
-              fontSize: "2rem",
-              "& .MuiInputBase-root": {
-                color: "#4b4b4b",
-                fontSize: { md: "2rem" },
-              },
-            }}
+            sx={RegisterShopStyles.TextInput}
           />
           <TextField
             disabled
@@ -101,14 +78,7 @@ const Address = ({ shop, setShop }) => {
             type="text"
             value={shop.address.state}
             placeholder="e.g Gujarat"
-            sx={{
-              my: "1rem",
-              fontSize: "2rem",
-              "& .MuiInputBase-root": {
-                color: "#4b4b4b",
-                fontSize: { md: "2rem" },
-              },
-            }}
+            sx={RegisterShopStyles.TextInput}
           />
           <Button
             variant="contained"
@@ -124,7 +94,7 @@ const Address = ({ shop, setShop }) => {
                 ? false
                 : true
             }
-            sx={{ backgroundColor: "#000", my: "1rem" }}
+            sx={{ backgroundColor: "#fff", my: "1rem", color: "#407BFF" }}
           >
             Next
           </Button>

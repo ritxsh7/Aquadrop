@@ -6,18 +6,13 @@
   margin: 0 ;
   padding: 0 ;
   box-sizing: border-box;
-  font-family: 'Bricolage Grotesque' !important;
+  font-family: 'Bricolage Grotesque';
 }
 body,html {
   height: 100%;
   margin: 0; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Bricolage Grotesque' !important;
-}
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
 }
 
 .App{
@@ -273,7 +268,7 @@ body {
   height: 100vh;
   color: white;
   background-color: transparent;
-  transition: background-color 0.3s ease;
+  transition: all 0.1s ease;
 }
 
 .sidebar-navbar{
@@ -284,6 +279,7 @@ body {
 
 .sidebar.open {
   left: 0;
+  width: 200vw;
   background-color: rgba(0,0,0,0.45);
 }
 
