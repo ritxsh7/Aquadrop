@@ -8,15 +8,14 @@ import "../../styles/StoresCard.css";
 
 export default function StoresCard(props) {
   const { location } = useSelector((store) => store.user);
-  console.log(location);
   console.log(props.coordinates);
 
   let distance;
 
-  if (props.coordinates)
+  if (location && props.coordinates)
     distance = calculateDistance(
-      location.lattitude,
-      location.longitude,
+      location?.lattitude,
+      location?.longitude,
       props.coordinates[1],
       props.coordinates[0]
     );
@@ -65,7 +64,7 @@ export default function StoresCard(props) {
                   name="location-sharp"
                 ></ion-icon>
               </div>
-              <p>{distance} KM</p>
+              {location && <p>{distance} KM</p>}
             </div>
           </div>
           <button className="explore-shop-md">Explore products</button>
