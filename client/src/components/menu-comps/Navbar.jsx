@@ -147,7 +147,10 @@ function Navbar() {
                         key={item.name}
                         onClick={() => setIsSidebarOpen(false)}
                       >
-                        <NavLink to={item.link(user)}>
+                        <NavLink
+                          to={item.link(user)}
+                          target={item.target && "_blank"}
+                        >
                           <div
                             style={{
                               fontSize: "1.1rem",

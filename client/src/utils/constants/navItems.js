@@ -9,12 +9,14 @@ export default [
     name: "Become a seller >",
     icon: "person-add-sharp",
     link: (user) => "https://dealer-aquadrop.web.app",
+    target: true,
     public: true,
   },
   {
     name: "Cart",
     icon: "cart",
     link: (user) => user && `/cart/${user.name}`,
+
     public: false,
   },
   {
