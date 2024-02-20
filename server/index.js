@@ -16,6 +16,13 @@ app.use(express.json());
 app.use("/api/v1", Router);
 app.use(upload.single("img"));
 app.use(upload.any());
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://dealer-aquadrop.web.app"
+  );
+  next();
+});
 
 //===========connections==============
 Connection(url);
