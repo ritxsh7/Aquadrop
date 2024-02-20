@@ -8,7 +8,7 @@ export default [
   {
     name: "Become a seller >",
     icon: "person-add-sharp",
-    link: (user) => "https://dealer-aquadrop.web.app",
+    link: (user) => "https://aquadrop-dealer.vercel.app/",
     target: true,
     public: true,
   },
