@@ -56,7 +56,7 @@ export default function StoresCard(props) {
               {props.address.line2} {props.address.city}
             </p>
 
-            {location && (
+            {props.coordinates && (
               <div className="marker">
                 <div>
                   <ion-icon
