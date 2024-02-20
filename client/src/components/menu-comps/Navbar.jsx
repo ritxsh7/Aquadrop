@@ -91,10 +91,10 @@ function Navbar() {
         )}
 
         <li id="login-btn">
-          {user ? (
+          {isLogin === "true" ? (
             <div style={navbar.userIcon}>
               <ion-icon name="person-sharp"></ion-icon>
-              <h3>{user.name.split(" ")[0]}</h3>
+              <h3>{user?.name?.split(" ")[0]}</h3>
             </div>
           ) : (
             <NavLink to="/login">Login</NavLink>

@@ -16,7 +16,7 @@ if (userInfo) {
   window.localStorage.setItem("isLoggedIn", "false");
 }
 
-const initialState = userInfo || null;
+const initialState = userInfo || { location: "" };
 
 const user = createSlice({
   name: "user",
