@@ -8,7 +8,6 @@ import "../../styles/StoresCard.css";
 
 export default function StoresCard(props) {
   const { location } = useSelector((store) => store.user);
-  console.log(props.coordinates);
 
   let distance;
 
@@ -57,15 +56,17 @@ export default function StoresCard(props) {
               {props.address.line2} {props.address.city}
             </p>
 
-            <div className="marker">
-              <div>
-                <ion-icon
-                  style={{ display: "block" }}
-                  name="location-sharp"
-                ></ion-icon>
+            {location && (
+              <div className="marker">
+                <div>
+                  <ion-icon
+                    style={{ display: "block" }}
+                    name="location-sharp"
+                  ></ion-icon>
+                </div>
+                <p>{distance} KM</p>
               </div>
-              {location && <p>{distance} KM</p>}
-            </div>
+            )}
           </div>
           <button className="explore-shop-md">Explore products</button>
         </div>
