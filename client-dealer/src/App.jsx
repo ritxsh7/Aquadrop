@@ -21,6 +21,7 @@ import Dashboard from "./views/Dashboard";
 import Loader from "./components/general-comps/Loader";
 import dashboard from "./api/modules/dashboard";
 import AddShop from "./views/AddShop";
+import Inventory from "./views/Inventory";
 
 function App() {
   //store setup
@@ -33,7 +34,6 @@ function App() {
 
       const { response, err } = await dashboard.getDealerInfo();
       if (response) {
-        console.log(response);
         dispatch(saveDealer(response));
       }
       if (err) {
@@ -78,16 +78,11 @@ function App() {
                         )
                       }
                     ></Route>
+                    <Route exact path="/" element={<Dashboard />}></Route>
                     <Route
                       exact
-                      path="/"
-                      element={
-                        dealer.login ? (
-                          <Dashboard />
-                        ) : (
-                          <Navigate replace to="/dealer/register" />
-                        )
-                      }
+                      path={`/dealer/:id/inventory`}
+                      element={<Inventory />}
                     ></Route>
                   </Routes>
                 </>

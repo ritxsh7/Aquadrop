@@ -19,7 +19,7 @@ const Order = ({ _id, totalQty, totalAmount, timePlaced, userId, status }) => {
     if (response) {
       window.location.reload();
     }
-    if (err) alert(err);
+    if (err) console.log(err);
     dispatch(toggleLoading(false));
   };
 

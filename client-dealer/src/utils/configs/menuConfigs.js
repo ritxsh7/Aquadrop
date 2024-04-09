@@ -1,17 +1,17 @@
 export const menuConfigs = [
   {
     display: "Home",
-    path: "/",
+    path: (id) => `/`,
     icon: "home",
   },
   {
     display: "Register Shop",
-    path: "/dealer/register-shop",
+    path: (id) => `/dealer/register-shop`,
     icon: "storefront",
   },
   {
     display: "Add Products",
-    path: "/dealer/shop/products",
+    path: (id) => `/dealer/${id}/inventory`,
     icon: "bag-add",
   },
 ];

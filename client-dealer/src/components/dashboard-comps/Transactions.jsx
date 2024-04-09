@@ -27,7 +27,7 @@ const InvoiceList = () => {
         setCount(Math.floor(response.count / 3));
       }
       if (err) {
-        alert(err);
+        console.log(err);
       }
       dispatch(toggleLoading(false));
     };

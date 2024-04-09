@@ -125,7 +125,7 @@ export const userLogin = async (req, res) => {
 export const placeOrder = async (req, res) => {
   try {
     const { order } = req.body;
-    const { user } = req.body;
+    const { user } = req;
 
     //create cartItems accroding to the schema of Order.items[]
     const cartItems = order.items.map((item) => {
@@ -214,7 +214,7 @@ export const updateAddress = async (req, res) => {
 
 export const getOrders = async (req, res) => {
   try {
-    const { id } = req.body.user;
+    const { id } = req.user;
 
     try {
       const checkUser = await Order.find({ userId: id }).populate({

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, TextField, Button, Typography, Alert } from "@mui/material";
 
 //stores
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginDealer, toggleLoading } from "../../redux/features/dealer";
 
 //backend
@@ -12,6 +12,9 @@ import { authApi } from "../../api/modules/auth";
 const Login = ({ setAuthState }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { dealer } = useSelector((store) => store.dealer);
+  console.log(dealer);
 
   const [details, setDetails] = useState({
     phone: "",
@@ -25,15 +28,11 @@ const Login = ({ setAuthState }) => {
   const handleSellerLogin = async () => {
     dispatch(toggleLoading(true));
     const { response, err } = await authApi.login(details);
-    console.log(response);
     if (response) {
       dispatch(loginDealer(response));
       setErr(false);
       setSuccess(true);
-      setTimeout(() => {
-        navigate("/");
-        dispatch(toggleLoading(false));
-      }, 2000);
+      navigate(`/`);
     }
     if (err) {
       console.log(err);

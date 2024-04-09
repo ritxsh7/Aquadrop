@@ -20,7 +20,6 @@ import {
   getTopShops,
   getNearShops,
   getShopDetails,
-  addProducts,
   uploadImages,
 } from "../controllers/shopController.js";
 
@@ -46,6 +45,12 @@ import {
 } from "../controllers/seller.dashboard.cards.js";
 import { ValidateRegistration } from "../middlewares/validation.js";
 import { registrationSchema } from "../configs/validation-schema.js";
+import {
+  AddProduct,
+  DeleteSelectedProducts,
+  GetAllProducts,
+  SearchQuery,
+} from "../controllers/shop.products.js";
 
 const router = express.Router();
 
@@ -123,10 +128,33 @@ router.get(
   getThisMonthsCustomer
 );
 
-//========================PRODUCT ROUTES================================
+// ==============================DEALER PRODUCT ROUTES=================================
+router.post(
+  "/dealer/inventory/add-products",
+  auth,
+  isDealer,
+  upload.single("product-img"),
+  AddProduct
+);
+
+router.get(
+  "/dealer/inventory/get-all-products",
+  auth,
+  isDealer,
+  GetAllProducts
+);
+
+router.delete(
+  "/dealer/inventory/delete-selected-products",
+  auth,
+  isDealer,
+  DeleteSelectedProducts
+);
+
+router.get("/dealer/inventory/search-product", auth, isDealer, SearchQuery);
+
+//========================USER SHOP ROUTES================================
 router.get("/get-top-shops", getTopShops);
 router.get("/nearbyshops", getNearShops);
 router.get("/get-shop/:id", getShopDetails);
-router.post("/add-product", addProducts);
-
 export default router;

@@ -85,7 +85,7 @@ const Address = () => {
         >
           {address ? (
             <p>
-              {`${address.firstLine}, ${address.locality}, Pimpri, Pune - `}
+              {`${address.firstLine}, ${address.locality},`}
               <b>{address.pincode}</b>
             </p>
           ) : (

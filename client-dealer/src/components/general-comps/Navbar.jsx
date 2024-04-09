@@ -61,7 +61,11 @@ export default function MenuAppBar() {
           <Stack direction="row" sx={{ ml: "auto", alignItems: "center" }}>
             <List sx={{ display: { xs: "none", md: "flex" } }}>
               {menuConfigs.map((item, index) => (
-                <ListItemButton component={NavLink} to={item.path} key={index}>
+                <ListItemButton
+                  component={NavLink}
+                  to={item.path(auth?.dealer?.id)}
+                  key={index}
+                >
                   <ListItemText sx={{ width: "max-content" }}>
                     {item.display}
                   </ListItemText>

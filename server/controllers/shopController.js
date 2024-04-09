@@ -3,7 +3,7 @@ import Shop from "../model/Shop.js";
 import Product from "../model/Product.js";
 
 //tools
-import cloudinary from "cloudinary";
+
 import { GeocodeAddress } from "../aws/geocode.js";
 import User from "../model/User.js";
 
@@ -152,74 +152,25 @@ export const uploadImages = async (req, res) => {
   const { user } = req;
   if (req.file) {
     try {
-      const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: "Aquadrop/shop-images",
-        resource_type: "image",
-      });
-      try {
-        console.log(result.secure_url);
-        const CheckShop = await Shop.findOneAndUpdate(
-          { GST_ID: user.gstID },
-          { image: result.secure_url }
-        );
-      } catch (err) {
-        console.log("Failed to upload file " + err.message);
-        return res
-          .status(400)
-          .json({ message: "Failed to save image on the server" });
+      const { result, err } = UploadImagetoCloudinary(req, res, req.file.path);
+      const CheckShop = await Shop.findOneAndUpdate(
+        { GST_ID: user.gstID },
+        { image: result.secure_url }
+      );
+      if (err) {
+        return res.status(400).json({
+          success: false,
+          message: "Failed to upload file",
+        });
       }
-      return res.status(200).json({ message: "Image Uploaded succesfully" });
     } catch (err) {
       console.log("Failed to upload file " + err.message);
-      return res.status(400).json({ message: "Failed to upload file" });
+      return res
+        .status(400)
+        .json({ message: "Failed to save image on the server" });
     }
+    return res.status(200).json({ message: "Image Uploaded succesfully" });
   }
   console.log(req.file);
   return res.status(400).json({ message: "Please upload a file" });
-};
-
-//========================================ADD PRODUCTS IN THE SHOP====================
-export const addProducts = async (req, res) => {
-  try {
-    const { name, price, image, shopId } = req.body;
-
-    const checkProduct = await Product.findOne({
-      name,
-    });
-
-    if (checkProduct) {
-      return res.status(400).json({
-        success: false,
-        message: "Already exists",
-      });
-    }
-
-    const newProduct = new Product({
-      name,
-      price,
-      image,
-    });
-    await newProduct.save();
-
-    const shop = await Shop.findOneAndUpdate(
-      { _id: shopId },
-      { $push: { products: newProduct._id } },
-      { new: true }
-    )
-      .populate("products")
-      .exec();
-    console.log(shop);
-
-    res.status(200).json({
-      success: true,
-      data: shop,
-      message: "Product inserted",
-    });
-  } catch (err) {
-    console.log(err.message);
-    res.status(400).json({
-      success: false,
-      message: err.message,
-    });
-  }
 };

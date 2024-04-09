@@ -1,3 +1,5 @@
+import { borderRadius, maxHeight } from "@mui/system";
+
 export const RegisterShopStyles = {
   TextInput: {
     my: "1rem",
@@ -40,5 +42,49 @@ export const RegisterShopStyles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "top",
+  },
+};
+
+export const InventoryStyles = {
+  Table: {
+    width: "90%",
+    maxWidth: "850px",
+    margin: "auto",
+  },
+
+  Toolkit: {
+    width: "100%",
+    ml: "auto",
+    height: "auto",
+    my: "2rem",
+    justifyContent: "space-between",
+    height: {
+      xs: "7rem",
+      md: "auto",
+    },
+    maxHeight: "3rem",
+  },
+  SearchBar: {
+    width: "100%",
+    maxWidth: "400px",
+  },
+  Button: {
+    width: "150px",
+  },
+  Items: {
+    backgroundColor: "#fff",
+    margin: "1rem auto",
+  },
+  Alternate: {
+    backgroundColor: "#f0f0f0",
+  },
+  RecommendBox: {
+    margin: "1rem 0",
+    width: "100%",
+    maxWidth: "400px",
+    backgroundColor: "#fbfbfb",
+    minHeight: "2rem",
+    borderRadius: "0.4rem",
+    zIndex: "10",
   },
 };
