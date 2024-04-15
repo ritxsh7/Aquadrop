@@ -87,7 +87,7 @@ const Inventory = () => {
   }, [SetShowBox]);
 
   return (
-    <ProtectedPage>
+    <>
       <Box sx={{ backgroundColor: "#DFEEFF", minHeight: "93vh" }}>
         <Stack sx={InventoryStyles.Table}>
           <Stack direction={{ md: "row" }} sx={InventoryStyles.Toolkit}>
@@ -147,7 +147,7 @@ const Inventory = () => {
           <ItemsTable products={products} />
         </Stack>
       </Box>
-    </ProtectedPage>
+    </>
   );
 };
 

@@ -13,9 +13,6 @@ const Login = ({ setAuthState }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { dealer } = useSelector((store) => store.dealer);
-  console.log(dealer);
-
   const [details, setDetails] = useState({
     phone: "",
     password: "",

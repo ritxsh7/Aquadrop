@@ -9,7 +9,7 @@ const dashboardEndpoints = {
   customersNumbers: () => `/dealer/dashboard/get-customers-number`,
   productsNumbers: () => `/dealer/dashboard/get-products-number`,
   getAllOrders: (page) => `/dealer/get-all-orders?page=${page}`,
-  approveOrder: () => `/dealer/approve-order`,
+  approveOrder: (id) => `/dealer/approve-order/${id}`,
 };
 
 export default {
@@ -93,9 +93,9 @@ export default {
     }
   },
 
-  approveOrder: async () => {
+  approveOrder: async (id) => {
     try {
-      const response = await dealerApi.put(dashboardEndpoints.approveOrder());
+      const response = await dealerApi.put(dashboardEndpoints.approveOrder(id));
       return { response };
     } catch (err) {
       return { err };

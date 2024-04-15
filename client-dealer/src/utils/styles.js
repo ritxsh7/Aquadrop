@@ -86,5 +86,6 @@ export const InventoryStyles = {
     minHeight: "2rem",
     borderRadius: "0.4rem",
     zIndex: "10",
+    boxShadow: "",
   },
 };

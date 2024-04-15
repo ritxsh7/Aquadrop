@@ -91,7 +91,7 @@ router.get("/dealer/dashboard/get-orders", auth, isDealer, getThisMonthsOrders);
 
 router.get("/dealer/get-all-orders", auth, isDealer, getAllOrders);
 
-router.put("/dealer/approve-order", auth, isDealer, approveOrder);
+router.put("/dealer/approve-order/:id", auth, isDealer, approveOrder);
 
 router.get(
   "/dealer/dashboard/get-earnings",

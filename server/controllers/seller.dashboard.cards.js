@@ -9,7 +9,6 @@ const lastDate = new Date(year, month + 1, 0);
 
 const getAllorders = async (id) => {
   const orders = await Order.find({ "items.shopId": id });
-  console.log(id);
   return orders;
 };
 
@@ -36,7 +35,7 @@ const getThisMonthsOrders = async (id) => {
 
 export const getThisMonthsOrdersNumber = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.user.shop;
     const aggregate = await getAllorders(id);
     const allOrders = await getThisMonthsOrders(id);
     const number = allOrders.length;
@@ -52,7 +51,7 @@ export const getThisMonthsOrdersNumber = async (req, res) => {
 
 export const getThisMonthsEarningsNumber = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.user.shop;
 
     const allOrders = await getThisMonthsOrders(id);
     const sum = await getEarnings(allOrders);
@@ -67,7 +66,7 @@ export const getThisMonthsEarningsNumber = async (req, res) => {
 
 export const getThisMonthsCustomer = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.user.shop;
     const orders = await getThisMonthsOrders(id);
     const newUsers = new Set(orders.map((item) => String(item.userId)));
     const allOrders = await getAllorders(id);
@@ -81,9 +80,4 @@ export const getThisMonthsCustomer = async (req, res) => {
       message: "Error while getting customers data " + err.message,
     });
   }
-};
-
-export const getProducts = async (req, res) => {
-  const { products } = await Shop.find({ _id: id });
-  console.log(products);
 };

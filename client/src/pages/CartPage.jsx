@@ -40,8 +40,8 @@ const CartPage = () => {
   //placing order endpoint
   const placeOrder = async () => {
     try {
-      if (!address) {
-        alert("Address is required for placing an order !");
+      if (Object.keys(address).length === 0) {
+        alert("Address is required for placing an order!");
         return;
       }
       setLoading(true);

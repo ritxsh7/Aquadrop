@@ -12,7 +12,7 @@ const Dashboard = () => {
   // ==============================STATES AND STORES===========================
 
   return (
-    <ProtectedPage>
+    <>
       <Box
         sx={{
           minHeight: "100vh",
@@ -36,7 +36,7 @@ const Dashboard = () => {
           </Stack>
         </Container>
       </Box>
-    </ProtectedPage>
+    </>
   );
 };
 

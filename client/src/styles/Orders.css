@@ -49,6 +49,7 @@
 }
 
 .empty-orders{
+    min-height: 81vh;
     padding: 1rem;
 }
 

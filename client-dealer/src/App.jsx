@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./utils/theme/theme";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +17,7 @@ import Loader from "./components/general-comps/Loader";
 import dashboard from "./api/modules/dashboard";
 import AddShop from "./views/AddShop";
 import Inventory from "./views/Inventory";
+import ProtectedPage from "./components/general-comps/ProtectedPage";
 
 function App() {
   //store setup
@@ -60,6 +56,7 @@ function App() {
               path="/dealer/register-shop/register/:id"
               element={<AddShop />}
             ></Route>
+            <Route exact path="/dealer/register" element={<Register />}></Route>
             <Route
               exact
               path="/*"
@@ -67,23 +64,14 @@ function App() {
                 <>
                   <Navbar />
                   <Routes>
-                    <Route
-                      exact
-                      path="/dealer/register"
-                      element={
-                        dealer.login ? (
-                          <Navigate replace to="/" />
-                        ) : (
-                          <Register />
-                        )
-                      }
-                    ></Route>
-                    <Route exact path="/" element={<Dashboard />}></Route>
-                    <Route
-                      exact
-                      path={`/dealer/:id/inventory`}
-                      element={<Inventory />}
-                    ></Route>
+                    <Route element={<ProtectedPage />}>
+                      <Route exact path="/" element={<Dashboard />}></Route>
+                      <Route
+                        exact
+                        path={`/dealer/:id/inventory`}
+                        element={<Inventory />}
+                      ></Route>
+                    </Route>
                   </Routes>
                 </>
               }
