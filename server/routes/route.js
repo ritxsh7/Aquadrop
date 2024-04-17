@@ -12,6 +12,7 @@ import {
   placeOrder,
   updateAddress,
   userLogin,
+  SubscribeToSNS,
 } from "../controllers/userController.js";
 
 // =========imports for shops========================
@@ -51,12 +52,15 @@ import {
   GetAllProducts,
   SearchQuery,
 } from "../controllers/shop.products.js";
+import { PublishMessage } from "../aws/sns.js";
 
 const router = express.Router();
 
 //====================AUTHENTICATION ROUTES=============================
 router.post("/user/signup", userSignUp);
 router.post("/user/login", userLogin);
+router.post("/sms", PublishMessage);
+router.post("/subscribe", SubscribeToSNS);
 
 //========================ROUTES FOR CUSTOMER==========================
 router.post("/user/order/:id", auth, isUser, placeOrder);

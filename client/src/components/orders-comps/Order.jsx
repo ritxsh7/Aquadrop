@@ -32,7 +32,9 @@ const Order = (props) => {
 
   return (
     <div className="order">
-      <img src={props.image} alt="Product 1"></img>
+      <div className="order-img">
+        <img src={props.image} alt="Product 1"></img>
+      </div>
       <div className="names">
         <div className="always-show">
           <p>1. {orderItems[0]}</p>

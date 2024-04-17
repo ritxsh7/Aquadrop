@@ -8,6 +8,7 @@ dotenv.config();
 import User from "../model/User.js";
 import Order from "../model/Order.js";
 import mongoose from "mongoose";
+import { PublishMessage, Subsribe } from "../aws/sns.js";
 
 //==============================SIGNUP==================================
 
@@ -323,5 +324,25 @@ export const signinWithGoogle = async (req, res) => {
       success: false,
       message: "Google Auth error : " + err.message,
     });
+  }
+};
+
+export const PublishSMS = async (req, res) => {
+  try {
+    const result = await PublishMessage();
+    console.log(result);
+    return res.json({ result: result });
+  } catch (err) {
+    return res.json({ error: err });
+  }
+};
+
+export const SubscribeToSNS = async (req, res) => {
+  try {
+    const result = await Subsribe();
+    console.log(result);
+    return res.json({ result: result });
+  } catch (err) {
+    return res.json({ error: err });
   }
 };
