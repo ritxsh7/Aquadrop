@@ -54,9 +54,6 @@ const Order = (props) => {
             {orderItems.map((item, i) =>
               i < 2 ? "" : <p>{`${i + 1}.  ${item}`}</p>
             )}
-            {orderItems.map((item, i) =>
-              i < 2 ? "" : <p>{`${i + 1}.  ${item}`}</p>
-            )}
             <p
               style={{ cursor: "pointer", color: "#4b4b4b" }}
               onClick={() => setFullList(false)}
