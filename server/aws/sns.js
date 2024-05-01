@@ -35,7 +35,7 @@ export const PublishMessage = async () => {
     const client = new SNSClient(config);
     const input = {
       PhoneNumber: "+919172717332",
-      Message: "Hello, Sanket! I am your Girlfriend",
+      Message: "Hello, Sanket",
       Subject: "Order at Aquadrop",
       MessageAttributes: {
         "AWS.SNS.SMS.SenderID": {
