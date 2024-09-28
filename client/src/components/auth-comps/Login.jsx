@@ -32,7 +32,6 @@ export default function Login() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState(false);
   const [errMsg, setErrMsg] = useState("");
-  const [isDemo, setIsDemo] = useState(false);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   //========================FUNCTIONS==================================
@@ -150,22 +149,6 @@ export default function Login() {
             Sign up
           </NavLink>
         </p>
-        {!isDemo && (
-          <>
-            <h2 style={{ margin: "1rem 0", color: "black" }}>OR</h2>
-            <Button
-              variant="outlined"
-              sx={{ width: "80%" }}
-              onClick={(e) => {
-                setEmail(demoEmail);
-                setPassword(demoPass);
-                setIsDemo(true);
-              }}
-            >
-              Use Demo Account
-            </Button>
-          </>
-        )}
       </form>
     </div>
   );

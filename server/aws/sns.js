@@ -19,7 +19,7 @@ export const Subsribe = async () => {
     const input = {
       TopicArn: "arn:aws:sns:ap-south-1:894557541083:aquadrop-sns",
       Protocol: "sms",
-      Endpoint: "+919172717332",
+      Endpoint: "+917083448763",
     };
 
     const command = new SubscribeCommand(input);
@@ -34,9 +34,9 @@ export const PublishMessage = async () => {
   try {
     const client = new SNSClient(config);
     const input = {
-      PhoneNumber: "+919172717332",
-      Message: "Hello, Sanket! I am your Girlfriend",
-      Subject: "Order at Aquadrop",
+      PhoneNumber: "+917083448763",
+      Message: "Hello bhaiyaa",
+      // Subject: "Order at Aquadrop",
       MessageAttributes: {
         "AWS.SNS.SMS.SenderID": {
           DataType: "String",
